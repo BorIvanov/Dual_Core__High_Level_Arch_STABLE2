@@ -62,8 +62,8 @@ all: main-build
 main-build: Dual_Core__High_Level_Arch_CM7.elf secondary-outputs
 
 # Tool invocations
-Dual_Core__High_Level_Arch_CM7.elf Dual_Core__High_Level_Arch_CM7.map: $(OBJS) $(USER_OBJS) D:\University\Fontys\Year5\Internship\STM32H_Example\ Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\CM7\STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Dual_Core__High_Level_Arch_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\University\Fontys\Year5\Internship\STM32H_Example Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\CM7\STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Dual_Core__High_Level_Arch_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Dual_Core__High_Level_Arch_CM7.elf Dual_Core__High_Level_Arch_CM7.map: $(OBJS) $(USER_OBJS) D:\University\Fontys\Year5\Internship\STM32H_Example\ Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\CM7\STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Dual_Core__High_Level_Arch_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\University\Fontys\Year5\Internship\STM32H_Example Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\CM7\STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Dual_Core__High_Level_Arch_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
