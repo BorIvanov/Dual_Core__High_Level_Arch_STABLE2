@@ -1,0 +1,3 @@
+motor_z.c:19:6:initMotorZ	1
+motor_z.c:26:9:homeMotorZ	2
+motor_z.c:52:9:moveToPosZ	15

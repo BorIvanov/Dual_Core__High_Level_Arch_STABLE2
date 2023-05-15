@@ -1,0 +1,2 @@
+../Core/Src/level_3/servo_controller.c:15:6:set_Rotate_Servo	16	static
+../Core/Src/level_3/servo_controller.c:27:6:set_Slide_Servo	16	static
