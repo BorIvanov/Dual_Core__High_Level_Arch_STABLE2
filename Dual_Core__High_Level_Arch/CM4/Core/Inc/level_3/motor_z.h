@@ -51,6 +51,6 @@
 /* FUNCTIONS */
 void initMotorZ();
 uint8_t homeMotorZ();
-uint8_t move_to_posZ(double Zpos);
+uint8_t move_to_posZ(double posZ);
 
 #endif /* INC_MOTOR_Z_H_ */

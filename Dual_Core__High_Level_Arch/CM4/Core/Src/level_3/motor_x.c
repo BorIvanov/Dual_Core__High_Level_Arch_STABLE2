@@ -51,8 +51,8 @@ uint8_t homeMotorX()
 uint8_t move_to_posX(double posX)
 /* move_to_posX: Moves the motor to a position X cm away from the home position
  *
- * @param Zpos: Centimetres away from the home position
- *  RANGE Zpos:  TODO: Determine it
+ * @param posX: Centimetres away from the home position
+ *  RANGE posX:  TODO: Determine it
  */
 {
 	counterX = __HAL_TIM_GET_COUNTER(&htim3);					// get timer value
@@ -85,12 +85,13 @@ uint8_t move_to_posX(double posX)
 		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));	// update position
 		delta = posX - position_mm_X;								// update delta
 
+		/* ideally this should be a function */
 		uint8_t send[30];
 		sprintf(send, "%ld \r\n %d \r\n", position_mm_X, i_X);
 		ST_LINK_WRITE(send, sizeof(send));
 		HAL_Delay(50);
 	}
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0);
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0);					// set PWM to 0
 //	HAL_GPIO_WritePin(Ready_X_GPIO_Port, Ready_X_Pin, GPIO_PIN_RESET);
 	reset_Ready_X();
 	return 1;

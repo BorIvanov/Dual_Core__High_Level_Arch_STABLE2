@@ -48,16 +48,16 @@ uint8_t homeMotorZ()
 	return 1;
 }
 
-uint8_t move_to_posZ(double Zpos)
+uint8_t move_to_posZ(double posZ)
 /* move_to_posZ: Moves the motor to a position Z cm away from the home position
  *
- * @param Zpos: Centimetres away from the home position
- *  RANGE Zpos:  1 - 53 cm
+ * @param posZ: Centimetres away from the home position
+ *  RANGE posZ:  1 - 53 cm
  */
 {
 	counterZ = __HAL_TIM_GET_COUNTER(&htim4);					// get timer value
 	position_mm_Z = (double) ((counterZ / 3855) + (i_Z * 17));	// get position
-	double delta = Zpos - position_mm_Z;						// calculate delta
+	double delta = posZ - position_mm_Z;						// calculate delta
 
 	set_Ready_Z(); 												// enable motor
 	while (abs(delta) > 2)										// desired accuracy in cm?
@@ -88,7 +88,7 @@ uint8_t move_to_posZ(double Zpos)
 		/* End of Magic */
 
 		position_mm_Z = (double) ((counterZ / 3855) + (i_Z * 17));  // update position
-		delta = Zpos - position_mm_Z;								// update delta
+		delta = posZ - position_mm_Z;								// update delta
 
 		/* ideally this should be a function */
 		uint8_t send[30];

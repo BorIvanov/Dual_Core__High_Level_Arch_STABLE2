@@ -35,11 +35,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_line   0001fdb0  00000000  00000000  00082dfb  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    001a0efa  00000000  00000000  000a2bab  2**0
+ 16 .debug_str    001a0ef5  00000000  00000000  000a2bab  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .comment      00000050  00000000  00000000  00243aa5  2**0
+ 17 .comment      00000050  00000000  00000000  00243aa0  2**0
                   CONTENTS, READONLY
- 18 .debug_frame  00006808  00000000  00000000  00243af8  2**2
+ 18 .debug_frame  00006808  00000000  00000000  00243af0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1238,8 +1238,8 @@ uint8_t homeMotorX()
 08100df4 <move_to_posX>:
 /* move_to_posX: Moves the motor to a position X cm away from the home position
  *
- * @param Zpos: Centimetres away from the home position
- *  RANGE Zpos:  TODO: Determine it
+ * @param posX: Centimetres away from the home position
+ *  RANGE posX:  TODO: Determine it
  */
 {
  8100df4:	b580      	push	{r7, lr}
@@ -1420,7 +1420,7 @@ uint8_t homeMotorX()
  8100f6c:	701a      	strb	r2, [r3, #0]
 		/* End of Magic */
 
-		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));
+		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));	// update position
  8100f6e:	4b26      	ldr	r3, [pc, #152]	; (8101008 <move_to_posX+0x214>)
  8100f70:	681b      	ldr	r3, [r3, #0]
  8100f72:	4a26      	ldr	r2, [pc, #152]	; (810100c <move_to_posX+0x218>)
@@ -1439,7 +1439,7 @@ uint8_t homeMotorX()
  8100f90:	460b      	mov	r3, r1
  8100f92:	4920      	ldr	r1, [pc, #128]	; (8101014 <move_to_posX+0x220>)
  8100f94:	e9c1 2300 	strd	r2, r3, [r1]
-		delta = posX - position_mm_X;
+		delta = posX - position_mm_X;								// update delta
  8100f98:	4b1e      	ldr	r3, [pc, #120]	; (8101014 <move_to_posX+0x220>)
  8100f9a:	e9d3 2300 	ldrd	r2, r3, [r3]
  8100f9e:	e9d7 0100 	ldrd	r0, r1, [r7]
@@ -1448,6 +1448,7 @@ uint8_t homeMotorX()
  8100fa8:	460b      	mov	r3, r1
  8100faa:	e9c7 230a 	strd	r2, r3, [r7, #40]	; 0x28
 
+		/* ideally this should be a function */
 		uint8_t send[30];
 		sprintf(send, "%ld \r\n %d \r\n", position_mm_X, i_X);
  8100fae:	4b19      	ldr	r3, [pc, #100]	; (8101014 <move_to_posX+0x220>)
@@ -1476,7 +1477,7 @@ uint8_t homeMotorX()
  8100fe6:	2b02      	cmp	r3, #2
  8100fe8:	f73f af35 	bgt.w	8100e56 <move_to_posX+0x62>
 	}
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0);
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0);					// set PWM to 0
  8100fec:	4b0a      	ldr	r3, [pc, #40]	; (8101018 <move_to_posX+0x224>)
  8100fee:	681b      	ldr	r3, [r3, #0]
  8100ff0:	2200      	movs	r2, #0
@@ -1602,8 +1603,8 @@ uint8_t homeMotorZ()
 081010cc <move_to_posZ>:
 /* move_to_posZ: Moves the motor to a position Z cm away from the home position
  *
- * @param Zpos: Centimetres away from the home position
- *  RANGE Zpos:  1 - 53 cm
+ * @param posZ: Centimetres away from the home position
+ *  RANGE posZ:  1 - 53 cm
  */
 {
  81010cc:	b580      	push	{r7, lr}
@@ -1635,7 +1636,7 @@ uint8_t homeMotorZ()
  8101102:	460b      	mov	r3, r1
  8101104:	497b      	ldr	r1, [pc, #492]	; (81012f4 <move_to_posZ+0x228>)
  8101106:	e9c1 2300 	strd	r2, r3, [r1]
-	double delta = Zpos - position_mm_Z;						// calculate delta
+	double delta = posZ - position_mm_Z;						// calculate delta
  810110a:	4b7a      	ldr	r3, [pc, #488]	; (81012f4 <move_to_posZ+0x228>)
  810110c:	e9d3 2300 	ldrd	r2, r3, [r3]
  8101110:	e9d7 0100 	ldrd	r0, r1, [r7]
@@ -1813,7 +1814,7 @@ uint8_t homeMotorZ()
  8101272:	460b      	mov	r3, r1
  8101274:	491f      	ldr	r1, [pc, #124]	; (81012f4 <move_to_posZ+0x228>)
  8101276:	e9c1 2300 	strd	r2, r3, [r1]
-		delta = Zpos - position_mm_Z;								// update delta
+		delta = posZ - position_mm_Z;								// update delta
  810127a:	4b1e      	ldr	r3, [pc, #120]	; (81012f4 <move_to_posZ+0x228>)
  810127c:	e9d3 2300 	ldrd	r2, r3, [r3]
  8101280:	e9d7 0100 	ldrd	r0, r1, [r7]
@@ -1822,6 +1823,7 @@ uint8_t homeMotorZ()
  810128a:	460b      	mov	r3, r1
  810128c:	e9c7 230a 	strd	r2, r3, [r7, #40]	; 0x28
 
+		/* ideally this should be a function */
 		uint8_t send[30];
 		sprintf(send, "%f \r\n %u \r\n", position_mm_Z, i_Z);
  8101290:	4b18      	ldr	r3, [pc, #96]	; (81012f4 <move_to_posZ+0x228>)
@@ -2376,6 +2378,7 @@ void Error_Handler(void)
 	reset_Enable_Power();
  81016ca:	f000 fb8b 	bl	8101de4 <reset_Enable_Power>
 
+	/* ideally this should be a function */
 	uint8_t send[16];
 	sprintf(send, "ERROR, resetting");
  81016ce:	463b      	mov	r3, r7
@@ -2947,6 +2950,7 @@ uint32_t GetVAC(){
  8101978:	4a0c      	ldr	r2, [pc, #48]	; (81019ac <GetVAC+0x50>)
  810197a:	6013      	str	r3, [r2, #0]
 
+	/* ideally this should be a function */
 	uint8_t send[30];
 	sprintf(send, "VAC: %lu \r\n", value);
  810197c:	4b0b      	ldr	r3, [pc, #44]	; (81019ac <GetVAC+0x50>)
