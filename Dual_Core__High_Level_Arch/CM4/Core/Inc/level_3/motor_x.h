@@ -43,6 +43,6 @@
 /* FUNCTIONS */
 void initMotorX();
 uint8_t homeMotorX();
-uint8_t moveToPosX(double Xpos);
+uint8_t move_to_posX(double posX);
 
 #endif /* INC_MOTOR_X_H_ */

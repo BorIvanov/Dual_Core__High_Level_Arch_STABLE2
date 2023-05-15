@@ -150,25 +150,16 @@ int main(void)
 
 		HAL_Delay(2000);
 		//testing direction X
-		moveToPosX(30); // neutral - from Laurens
-		HAL_Delay(500);
-		moveToPosX(40);    // neutral - from Laurens
-		HAL_Delay(500);
-		moveToPosX(20);    // neutral - from Laurens
-		HAL_Delay(500);
+		move_to_posX(30);
 		//testing direction Z
-		moveToPosZ(42); // neutral - from Laurens
-		HAL_Delay(500);
-		moveToPosZ(10); // neutral - from Laurens
-		HAL_Delay(500);
-		moveToPosZ(30); // neutral - from Laurens
-		HAL_Delay(500);
+		move_to_posZ(42);
 
 
 
-		MoveToPos(46.67, 18);
 
-		MoveToPos(46.67, 0);
+		move_to_X_and_Z(46.67, 18);
+
+		move_to_X_and_Z(46.67, 0);
 
 		HAL_Delay(500);
 		set_Pump();
@@ -178,7 +169,7 @@ int main(void)
 
 		}
 //		reset_Pump();
-		MoveToPos(46.67, 18);
+		move_to_X_and_Z(46.67, 18);
 		set_Rotate_Servo(0.0);
 		HAL_Delay(1000);
 		reset_Valve();
@@ -188,8 +179,8 @@ int main(void)
 		HAL_Delay(1000);
 		float i = 0.0;
 		for(i = 0; i<1; i+=0.1){
-			MoveToPos(46.67, 18);
-			MoveToPos(46.67, 0);
+			move_to_X_and_Z(46.67, 18);
+			move_to_X_and_Z(46.67, 0);
 			HAL_Delay(2000);
 			set_Pump();
 			HAL_Delay(4000);
@@ -198,7 +189,7 @@ int main(void)
 
 			}
 //			reset_Pump();
-			MoveToPos(46.67, 18);
+			move_to_X_and_Z(46.67, 18);
 			set_Rotate_Servo(0.0);
 			HAL_Delay(1000);
 			reset_Valve();
@@ -233,6 +224,7 @@ void Error_Handler(void)
 
 	reset_Enable_Power();
 
+	/* ideally this should be a function */
 	uint8_t send[16];
 	sprintf(send, "ERROR, resetting");
 	ST_LINK_WRITE(send, 16);

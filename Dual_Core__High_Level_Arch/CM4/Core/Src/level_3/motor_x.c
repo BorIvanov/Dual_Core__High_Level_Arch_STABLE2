@@ -27,98 +27,72 @@ uint8_t homeMotorX()
 /* homeMotorX: Moves the motor to the home position */
 {
 
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 140); // set PWM of motor
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 140); 	// set PWM of motor
 
-	set_Direction_X(); // counter-clockwise  | towards HOME
-	set_Ready_X(); // enables motor X
+	set_Direction_X(); 									// counter-clockwise  | towards HOME
+	set_Ready_X(); 										// enables motor X
 
 	while (!get_Homing_X())
 	{
 
 	}
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0); // set PWM of motor
-	reset_Ready_X(); // disables motor
-	//HAL_GPIO_WritePin(Ready_X_GPIO_Port, Ready_X_Pin, GPIO_PIN_RESET);
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0); 	// set PWM of motor
+	reset_Ready_X(); 									// disables motor
 	HAL_Delay(1000);
 	/* Initialise variables */
 	position_mm_X = 0.0;
 	counterX = 0;
 	i_X = 0;
-	__HAL_TIM_SET_COUNTER(&htim3, 0); // reset timer
-	moveToPosX(10); // move away from home position
+	__HAL_TIM_SET_COUNTER(&htim3, 0); 					// reset timer
+	move_to_posX(5); 									// move away from home position (prev val 10)
 	return 1;
 }
 
-uint8_t moveToPosX(double Xpos)
-/* moveToPosX: Moves the motor to a position X cm away from the home position
+uint8_t move_to_posX(double posX)
+/* move_to_posX: Moves the motor to a position X cm away from the home position
  *
  * @param Zpos: Centimetres away from the home position
  *  RANGE Zpos:  TODO: Determine it
  */
 {
-	counterX = __HAL_TIM_GET_COUNTER(&htim3);
-	position_mm_X = (double) ((counterX / 3855) + (i_X * 17));
-	double delta = Xpos - position_mm_X;
+	counterX = __HAL_TIM_GET_COUNTER(&htim3);					// get timer value
+	position_mm_X = (double) ((counterX / 3855) + (i_X * 17)); 	// get position
+	double delta = posX - position_mm_X;						// calculate delta
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 120); 			// adjust speed (prev val 140) 120 is a bit slow, but safe speed for not crashing during testing
 
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 120); // slower speed chosen deliberatly (val 140)
-	set_Ready_X(); // enable motor
+	set_Ready_X(); 												// enable motor
 	while (abs(delta) > 2)
 	{
 		if (delta > 0)
-		{
-			reset_Direction_X(); // clockwise | towards END
-		}
+			reset_Direction_X(); 								// clockwise | towards END
 		else if (delta < 0)
-		{
-			set_Direction_X();  // counter-clockwise | towards HOME
-		}
+			set_Direction_X();  								// counter-clockwise | towards HOME
 		else
-		{
 			break;
-		}
-		counterX = __HAL_TIM_GET_COUNTER(&htim3);
-		if (counterX > 61680 && delta > 0 && once_X)
-		{
-			once_X = 0;
-		}
-		else if (counterX < 3855 && delta > 0 && !once_X)
-		{
-			once_X = 1;
-			i_X += 1;
-		}
-		else if (counterX < 3855 && delta < 0)
-		{
-			once_X = 0;
-		}
-		else if (counterX > 61680 && delta < 0 && !once_X)
-		{
-			once_X = 1;
-			i_X -= 1;
-		}
-		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));
-		delta = Xpos - position_mm_X;
-		//		uint8_t send[30];
-		//		sprintf(send, "%ld \r\n %d \r\n", position_mm_X, i_X);
-		//		ST_LINK_WRITE(send, sizeof(send));
-		HAL_Delay(50);
 
-		//		if(abs(delta) < 60){
-		//			y = 2*(pow(abs(delta), 0.49)) + 215;
-		//			if(y>250){
-		//				y = 250;
-		//			}
-		//		} else {
-		//			y = 250;
-		//		}
-		//
-		//		i++;
-		//		if(i == 200){
-		//			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, y);
-		//			i = 0;
-		//		}
+		counterX = __HAL_TIM_GET_COUNTER(&htim3);				// update counter
+		/* Some Magic */
+		if (counterX > 61680 && delta > 0 && once_X)
+			once_X = 0;
+		else if (counterX < 3855 && delta > 0 && !once_X)
+			once_X = 1, i_X += 1;
+		else if (counterX < 3855 && delta < 0)
+			once_X = 0;
+		else if (counterX > 61680 && delta < 0 && !once_X)
+			once_X = 1, i_X -= 1;
+		/* End of Magic */
+
+		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));	// update position
+		delta = posX - position_mm_X;								// update delta
+
+		uint8_t send[30];
+		sprintf(send, "%ld \r\n %d \r\n", position_mm_X, i_X);
+		ST_LINK_WRITE(send, sizeof(send));
+		HAL_Delay(50);
 	}
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0);
-	HAL_GPIO_WritePin(Ready_X_GPIO_Port, Ready_X_Pin, GPIO_PIN_RESET);
+//	HAL_GPIO_WritePin(Ready_X_GPIO_Port, Ready_X_Pin, GPIO_PIN_RESET);
+	reset_Ready_X();
 	return 1;
 }
 

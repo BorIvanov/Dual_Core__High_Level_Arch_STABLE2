@@ -12,10 +12,10 @@ void initMotors()
 	initMotorZ();
 }
 
-uint8_t MoveToPos(int16_t posX, int16_t posZ)
+uint8_t move_to_X_and_Z(int16_t posX, int16_t posZ) //MoveToPos
 {
-	moveToPosX(posX);
-	moveToPosZ(posZ);
+	move_to_posX(posX);
+	move_to_posZ(posZ);
 	return 1;
 }
 

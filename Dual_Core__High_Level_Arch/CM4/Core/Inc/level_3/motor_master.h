@@ -17,7 +17,7 @@
 
 void initMotors();
 
-uint8_t MoveToPos(int16_t posX, int16_t posZ);
+uint8_t move_to_X_and_Z(int16_t posX, int16_t posZ);
 
 uint8_t HomeMotors(uint8_t homeX, uint8_t homeZ);
 
