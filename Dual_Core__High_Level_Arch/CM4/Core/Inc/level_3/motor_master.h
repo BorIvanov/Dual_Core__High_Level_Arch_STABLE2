@@ -12,6 +12,8 @@
 #include "level_3/motor_z.h"
 #include "peripheral_devices/tim.h"
 #include "peripheral_devices/gpio.h"
+#include "peripheral_devices/usart.h"
+
 #include <stdlib.h>
 
 

@@ -163,10 +163,8 @@ uint32_t GetVAC(){
 	HAL_ADC_PollForConversion(&hadc1, 1);
 	value = HAL_ADC_GetValue(&hadc1);
 
-	/* ideally this should be a function */
-	uint8_t send[30];
-	sprintf(send, "VAC: %lu \r\n", value);
-	ST_LINK_WRITE(send, sizeof(send));
+	send_msg_data((uint8_t*)"\rVAC: %d\n\r", (int) value);
+
 	HAL_ADC_Stop(&hadc1);
 
 	return value;

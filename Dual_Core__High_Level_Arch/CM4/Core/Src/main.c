@@ -121,45 +121,68 @@ int main(void)
 		reset_Valve();
 
 		// THIS order of opening has to be preserved
+		send_msg((uint8_t*)"\rOpening Column 2\n\r");
 		set_Slide_Servo(OPEN_COL_2);
 		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 6\n\r");
 		set_Slide_Servo(OPEN_COL_6);
 		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 7\n\r");
 		set_Slide_Servo(OPEN_COL_7);
 		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 4\n\r");
 		set_Slide_Servo(OPEN_COL_4);
 		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 1\n\r");
 		set_Slide_Servo(OPEN_COL_1);
 		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 5\n\r");
 		set_Slide_Servo(OPEN_COL_5);
 		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 3\n\r");
 		set_Slide_Servo(OPEN_COL_3);
 		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening board fully\n\r");
 		set_Slide_Servo(SLIDE_OPEN);
 		HAL_Delay(1000);
 
+		send_msg((uint8_t*)"\rClosing board fully\n\r");
 		set_Slide_Servo(SLIDE_CLOSED);
+		HAL_Delay(1000);
 
 		set_Rotate_Servo(ROTATE_NEUTRAL);
 		HAL_Delay(1000);
-		set_Rotate_Servo(ROTATE_TO_STACK);
-		HAL_Delay(1000);
-		set_Rotate_Servo(ROTATE_TO_DROP);
-		HAL_Delay(1000);
-		set_Rotate_Servo(ROTATE_NEUTRAL);
+//		set_Rotate_Servo(ROTATE_TO_STACK);
+//		HAL_Delay(1000);
+//		set_Rotate_Servo(ROTATE_TO_DROP);
+//		HAL_Delay(1000);
+//		set_Rotate_Servo(ROTATE_NEUTRAL);
 
 		HAL_Delay(2000);
 		//testing direction X
+		send_msg_data((uint8_t*)"\rMoving to position X: %d\n\r", 30);
 		move_to_posX(30);
+		HAL_Delay(5000);
+
 		//testing direction Z
+		send_msg_data((uint8_t*)"\rMoving to position Z: %d\n\r", 42);
 		move_to_posZ(42);
+		HAL_Delay(5000);
 
+		send_msg_2data((uint8_t*)"\rMoving to pos Z: %d | pos X: %d\n\r", 46, 18);
+		move_to_X_and_Z(46, 18);
+		HAL_Delay(5000);
 
-
-
-		move_to_X_and_Z(46.67, 18);
-
-		move_to_X_and_Z(46.67, 0);
+		send_msg_2data((uint8_t*)"\rMoving to pos Z: %d | pos X: %d\n\r", 40, 3);
+		move_to_X_and_Z(40, 3);
+		HAL_Delay(5000);
 
 		HAL_Delay(500);
 		set_Pump();
@@ -224,10 +247,8 @@ void Error_Handler(void)
 
 	reset_Enable_Power();
 
-	/* ideally this should be a function */
-	uint8_t send[16];
-	sprintf(send, "ERROR, resetting");
-	ST_LINK_WRITE(send, 16);
+	send_msg("\rERROR, resetting\n\r");
+
 	NVIC_SystemReset();
 	while (1)
 	{

@@ -3,3 +3,6 @@
 ../Core/Src/peripheral_devices/usart.c:118:6:HAL_UART_MspInit	248	static
 ../Core/Src/peripheral_devices/usart.c:201:6:HAL_UART_MspDeInit	16	static
 ../Core/Src/peripheral_devices/usart.c:245:6:ST_LINK_WRITE	16	static
+../Core/Src/peripheral_devices/usart.c:250:6:send_msg	72	static
+../Core/Src/peripheral_devices/usart.c:259:6:send_msg_data	48	static
+../Core/Src/peripheral_devices/usart.c:268:6:send_msg_2data	64	static

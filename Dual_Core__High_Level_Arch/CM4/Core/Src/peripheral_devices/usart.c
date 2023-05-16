@@ -242,7 +242,34 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
-void ST_LINK_WRITE(uint8_t * msg, uint8_t length){
-	HAL_UART_Transmit(&huart3,msg,length,100);// Sending in normal mode
+void ST_LINK_WRITE(uint8_t * msg, uint8_t length)
+{
+	HAL_UART_Transmit(&huart3,msg,length,100);
+}
+
+void send_msg(uint8_t *msg_array)
+/* Sends a message to the user */
+{
+	uint8_t buffer[50];
+	sprintf(buffer,(uint8_t*) msg_array);
+	ST_LINK_WRITE(buffer, sizeof(buffer));
+	HAL_Delay(10);
+}
+
+void send_msg_data(uint8_t *msg_array, int data)
+/* Sends a message with data to the user */
+{
+
+	uint8_t buffer[30];
+	sprintf(buffer, (uint8_t*)msg_array, data);
+	ST_LINK_WRITE(buffer, sizeof(buffer));
+}
+
+void send_msg_2data(uint8_t *msg_array, int data, int data2)
+{
+	uint8_t buffer[40];
+	sprintf(buffer, (uint8_t*)msg_array, data, data2);
+	ST_LINK_WRITE(buffer, sizeof(buffer));
+	HAL_Delay(10);
 }
 /* USER CODE END 1 */

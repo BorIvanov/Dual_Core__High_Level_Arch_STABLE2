@@ -26,7 +26,7 @@ void initMotorZ()
 uint8_t homeMotorZ()
 /* homeMotorZ: Moves the motor to the home position */
 {
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 150); 	// set PWM of motor
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 115); 	// set PWM of motor
 
 	set_Direction_Z(); 									// counter-clockwise | towards HOME
 	set_Ready_Z(); 										// enable motor
@@ -44,7 +44,7 @@ uint8_t homeMotorZ()
 	counterZ = 0;
 	i_Z = 0;
 	__HAL_TIM_SET_COUNTER(&htim4, 0); 					// reset timer
-	move_to_posZ(10); 									// move away from home position
+//	move_to_posZ(10); 									// move away from home position
 	return 1;
 }
 
@@ -64,12 +64,12 @@ uint8_t move_to_posZ(double posZ)
 	{
 		if (delta > 0)
 		{
-			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 350);	// adjust speed (prev val 340)
+			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 360);	// adjust speed (prev val 340)
 			reset_Direction_Z(); 								// clockwise | towards END/up
 		}
 		else if (delta < 0)
 		{
-			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 115); 	// adjust speed (prev val 120)
+			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 100); 	// adjust speed (prev val 120)
 			set_Direction_Z(); 									// counter-clockwise | towards HOME/down
 		}
 		else
@@ -90,11 +90,7 @@ uint8_t move_to_posZ(double posZ)
 		position_mm_Z = (double) ((counterZ / 3855) + (i_Z * 17));  // update position
 		delta = posZ - position_mm_Z;								// update delta
 
-		/* ideally this should be a function */
-		uint8_t send[30];
-		sprintf(send, "%f \r\n %u \r\n", position_mm_Z, i_Z);
-		ST_LINK_WRITE(send, sizeof(send));
-		HAL_Delay(50);
+		send_msg_data((uint8_t*)"\rPos Z: %d\n\r", (int)position_mm_Z);
 	}
 	reset_Direction_Z();
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 200); // must be large enough for the motor to NOT drop?

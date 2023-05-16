@@ -44,7 +44,7 @@ uint8_t homeMotorX()
 	counterX = 0;
 	i_X = 0;
 	__HAL_TIM_SET_COUNTER(&htim3, 0); 					// reset timer
-	move_to_posX(5); 									// move away from home position (prev val 10)
+//	move_to_posX(5); 									// move away from home position (prev val 10)
 	return 1;
 }
 
@@ -85,14 +85,9 @@ uint8_t move_to_posX(double posX)
 		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));	// update position
 		delta = posX - position_mm_X;								// update delta
 
-		/* ideally this should be a function */
-		uint8_t send[30];
-		sprintf(send, "%ld \r\n %d \r\n", position_mm_X, i_X);
-		ST_LINK_WRITE(send, sizeof(send));
-		HAL_Delay(50);
+		send_msg_data((uint8_t*)"\rPos X: %d\n\r", (int)position_mm_X);
 	}
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0);					// set PWM to 0
-//	HAL_GPIO_WritePin(Ready_X_GPIO_Port, Ready_X_Pin, GPIO_PIN_RESET);
 	reset_Ready_X();
 	return 1;
 }

@@ -41,17 +41,33 @@ void init_MX_init(void)
 void init_Start_Up(void)
 /* init_Start_Up: Function to initialise the whole system and set inital values to PWMs
  *	The microcontroller peripherals. The Motors and Servos.
- *
- *	Homes the servos. TODO: Home the motors
+ *	Homes the servos.
  */
 {
+	send_msg((uint8_t*)"\rInitialising Micro-controller Signals\n\r");
 	init_MX_init();
+	HAL_Delay(50);
+
+	send_msg((uint8_t*)"\rEnabling movement signals\n\r");
 	init_Movement();
+	HAL_Delay(50);
 
-	HomeMotors(1, 1);
+	send_msg((uint8_t*)"\rHoming Motors\n\r");
+	HAL_Delay(50);
 
-	set_Slide_Servo(SLIDE_CLOSED); 		// part of homing procedure
-	set_Rotate_Servo(ROTATE_NEUTRAL); 	// part of homing procedure
+	HomeMotors(1, 1); // homing motors
+
+	send_msg((uint8_t*)"\rMotors Homed\n\r");
+	HAL_Delay(50);
+
+	send_msg((uint8_t*)"\rHoming servos\n\r");
+	HAL_Delay(50);
+
+	set_Slide_Servo(SLIDE_CLOSED);
+	set_Rotate_Servo(ROTATE_NEUTRAL);
+	send_msg((uint8_t*)"\rServos Homed\n\r");
+	HAL_Delay(50);
+
 }
 
 

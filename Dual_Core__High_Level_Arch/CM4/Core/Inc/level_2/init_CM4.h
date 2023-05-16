@@ -13,6 +13,7 @@
 #include "peripheral_devices/tim.h"
 #include "peripheral_devices/gpio.h"
 #include "peripheral_devices/adc.h"
+#include "peripheral_devices/usart.h"
 
 #include "level_2/init_CM4.h"
 #include "level_3/motor_master.h"
