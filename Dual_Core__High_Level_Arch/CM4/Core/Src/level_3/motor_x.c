@@ -58,7 +58,7 @@ uint8_t move_to_posX(double posX)
 	counterX = __HAL_TIM_GET_COUNTER(&htim3);					// get timer value
 	position_mm_X = (double) ((counterX / 3855) + (i_X * 17)); 	// get position
 	double delta = posX - position_mm_X;						// calculate delta
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 120); 			// adjust speed (prev val 140) 120 is a bit slow, but safe speed for not crashing during testing
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 130); 			// adjust speed (prev val 140) 120 is a bit slow, but safe speed for not crashing during testing
 
 	set_Ready_X(); 												// enable motor
 	while (abs(delta) > 2)

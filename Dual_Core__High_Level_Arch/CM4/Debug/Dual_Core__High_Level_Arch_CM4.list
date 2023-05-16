@@ -1279,10 +1279,10 @@ uint8_t homeMotorX()
  8100e40:	4602      	mov	r2, r0
  8100e42:	460b      	mov	r3, r1
  8100e44:	e9c7 230a 	strd	r2, r3, [r7, #40]	; 0x28
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 120); 			// adjust speed (prev val 140) 120 is a bit slow, but safe speed for not crashing during testing
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 130); 			// adjust speed (prev val 140) 120 is a bit slow, but safe speed for not crashing during testing
  8100e48:	4b73      	ldr	r3, [pc, #460]	; (8101018 <move_to_posX+0x224>)
  8100e4a:	681b      	ldr	r3, [r3, #0]
- 8100e4c:	2278      	movs	r2, #120	; 0x78
+ 8100e4c:	2282      	movs	r2, #130	; 0x82
  8100e4e:	63da      	str	r2, [r3, #60]	; 0x3c
 
 	set_Ready_X(); 												// enable motor
@@ -1533,10 +1533,10 @@ uint8_t homeMotorZ()
 {
  8101048:	b580      	push	{r7, lr}
  810104a:	af00      	add	r7, sp, #0
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 130); 	// set PWM of motor
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 150); 	// set PWM of motor
  810104c:	4b1a      	ldr	r3, [pc, #104]	; (81010b8 <homeMotorZ+0x70>)
  810104e:	681b      	ldr	r3, [r3, #0]
- 8101050:	2282      	movs	r2, #130	; 0x82
+ 8101050:	2296      	movs	r2, #150	; 0x96
  8101052:	641a      	str	r2, [r3, #64]	; 0x40
 
 	set_Direction_Z(); 									// counter-clockwise | towards HOME
@@ -1659,10 +1659,10 @@ uint8_t homeMotorZ()
  8101138:	2b00      	cmp	r3, #0
  810113a:	d007      	beq.n	810114c <move_to_posZ+0x80>
 		{
-			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 340);	// adjust speed (prev val 340)
+			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 350);	// adjust speed (prev val 340)
  810113c:	4b6e      	ldr	r3, [pc, #440]	; (81012f8 <move_to_posZ+0x22c>)
  810113e:	681b      	ldr	r3, [r3, #0]
- 8101140:	f44f 72aa 	mov.w	r2, #340	; 0x154
+ 8101140:	f44f 72af 	mov.w	r2, #350	; 0x15e
  8101144:	641a      	str	r2, [r3, #64]	; 0x40
 			reset_Direction_Z(); 								// clockwise | towards END/up
  8101146:	f000 fe1d 	bl	8101d84 <reset_Direction_Z>
@@ -1677,16 +1677,16 @@ uint8_t homeMotorZ()
  810115e:	2b00      	cmp	r3, #0
  8101160:	d100      	bne.n	8101164 <move_to_posZ+0x98>
 		{
-			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 100); 	// adjust speed (prev val 120)
+			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 115); 	// adjust speed (prev val 120)
 			set_Direction_Z(); 									// counter-clockwise | towards HOME/down
 		}
 		else
 			break;
  8101162:	e0b4      	b.n	81012ce <move_to_posZ+0x202>
-			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 100); 	// adjust speed (prev val 120)
+			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 115); 	// adjust speed (prev val 120)
  8101164:	4b64      	ldr	r3, [pc, #400]	; (81012f8 <move_to_posZ+0x22c>)
  8101166:	681b      	ldr	r3, [r3, #0]
- 8101168:	2264      	movs	r2, #100	; 0x64
+ 8101168:	2273      	movs	r2, #115	; 0x73
  810116a:	641a      	str	r2, [r3, #64]	; 0x40
 			set_Direction_Z(); 									// counter-clockwise | towards HOME/down
  810116c:	f000 fdfe 	bl	8101d6c <set_Direction_Z>
@@ -1854,7 +1854,7 @@ uint8_t homeMotorZ()
 	}
 	reset_Direction_Z();
  81012ce:	f000 fd59 	bl	8101d84 <reset_Direction_Z>
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 200); // must be large enough for the motor to NOT drop
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 200); // must be large enough for the motor to NOT drop?
  81012d2:	4b09      	ldr	r3, [pc, #36]	; (81012f8 <move_to_posZ+0x22c>)
  81012d4:	681b      	ldr	r3, [r3, #0]
  81012d6:	22c8      	movs	r2, #200	; 0xc8
