@@ -28,8 +28,8 @@ uint8_t homeMotorZ()
 {
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 115); 	// set PWM of motor
 
-	set_Direction_Z(); 									// counter-clockwise | towards HOME
-	set_Ready_Z(); 										// enable motor
+	set_Direction_Z(); 									// counter-clockwise | towards HOME TODO:Change name
+	set_Ready_Z(); 										// enable motor TODO:Change name
 
 
 	while (!get_Homing_Z()) 							// wait until home-switch is hit
@@ -44,7 +44,6 @@ uint8_t homeMotorZ()
 	counterZ = 0;
 	i_Z = 0;
 	__HAL_TIM_SET_COUNTER(&htim4, 0); 					// reset timer
-//	move_to_posZ(10); 									// move away from home position
 	return 1;
 }
 
@@ -60,7 +59,7 @@ uint8_t move_to_posZ(double posZ)
 	double delta = posZ - position_mm_Z;						// calculate delta
 
 	set_Ready_Z(); 												// enable motor
-	while (abs(delta) > 2)										// desired accuracy in cm?
+	while (abs(delta) > 2)										// desired accuracy in cm? TODO:prove it
 	{
 		if (delta > 0)
 		{
@@ -77,14 +76,14 @@ uint8_t move_to_posZ(double posZ)
 
 		counterZ = __HAL_TIM_GET_COUNTER(&htim4);				// update counter
 		/* Some Magic */
-		if (counterZ > 61680 && delta > 0 && once_Z)
-			once_Z = 0;
-		else if (counterZ < 3855 && delta > 0 && !once_Z)
-			once_Z = 1, i_Z += 1;
-		else if (counterZ < 3855 && delta < 0)
-			once_Z = 0;
-		else if (counterZ > 61680 && delta < 0 && !once_Z)
-			once_Z = 1, i_Z -= 1;
+		if (counterZ > 61680 && delta > 0 && once_Z){
+			once_Z = 0;}
+		else if (counterZ < 3855 && delta > 0 && !once_Z){
+			once_Z = 1, i_Z += 1;}
+		else if (counterZ < 3855 && delta < 0){
+			once_Z = 0;}
+		else if (counterZ > 61680 && delta < 0 && !once_Z){
+			once_Z = 1, i_Z -= 1;}
 		/* End of Magic */
 
 		position_mm_Z = (double) ((counterZ / 3855) + (i_Z * 17));  // update position
@@ -92,8 +91,8 @@ uint8_t move_to_posZ(double posZ)
 
 		send_msg_data((uint8_t*)"\rPos Z: %d\n\r", (int)position_mm_Z);
 	}
-	reset_Direction_Z();
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 200); // must be large enough for the motor to NOT drop?
+	reset_Direction_Z(); 					// reverses the direction to stop it from dropping due gravity
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 200); //  PWM to lower value to improve power consumption
 	return 1;
 }
 

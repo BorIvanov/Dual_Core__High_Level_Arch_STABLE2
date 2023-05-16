@@ -4,5 +4,5 @@ usart.c:118:6:HAL_UART_MspInit	5
 usart.c:201:6:HAL_UART_MspDeInit	3
 usart.c:245:6:ST_LINK_WRITE	1
 usart.c:250:6:send_msg	1
-usart.c:259:6:send_msg_data	1
-usart.c:268:6:send_msg_2data	1
+usart.c:260:6:send_msg_data	1
+usart.c:269:6:send_msg_2data	1

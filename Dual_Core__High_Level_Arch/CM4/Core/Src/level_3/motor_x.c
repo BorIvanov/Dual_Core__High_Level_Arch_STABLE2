@@ -29,8 +29,8 @@ uint8_t homeMotorX()
 
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 140); 	// set PWM of motor
 
-	set_Direction_X(); 									// counter-clockwise  | towards HOME
-	set_Ready_X(); 										// enables motor X
+	set_Direction_X(); 									// counter-clockwise  | towards HOME TODO:Change name
+	set_Ready_X(); 										// enables motor X TODO:Change name
 
 	while (!get_Homing_X())
 	{
@@ -44,7 +44,6 @@ uint8_t homeMotorX()
 	counterX = 0;
 	i_X = 0;
 	__HAL_TIM_SET_COUNTER(&htim3, 0); 					// reset timer
-//	move_to_posX(5); 									// move away from home position (prev val 10)
 	return 1;
 }
 
@@ -61,25 +60,25 @@ uint8_t move_to_posX(double posX)
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 130); 			// adjust speed (prev val 140) 120 is a bit slow, but safe speed for not crashing during testing
 
 	set_Ready_X(); 												// enable motor
-	while (abs(delta) > 2)
+	while (abs(delta) > 2) 										// accuracy of movement TODO: prove it
 	{
-		if (delta > 0)
-			reset_Direction_X(); 								// clockwise | towards END
-		else if (delta < 0)
-			set_Direction_X();  								// counter-clockwise | towards HOME
-		else
-			break;
+		if (delta > 0){
+			reset_Direction_X();} 								// clockwise | towards END
+		else if (delta < 0){
+			set_Direction_X();}  								// counter-clockwise | towards HOME
+		else{
+			break;}
 
 		counterX = __HAL_TIM_GET_COUNTER(&htim3);				// update counter
 		/* Some Magic */
-		if (counterX > 61680 && delta > 0 && once_X)
-			once_X = 0;
-		else if (counterX < 3855 && delta > 0 && !once_X)
-			once_X = 1, i_X += 1;
-		else if (counterX < 3855 && delta < 0)
-			once_X = 0;
-		else if (counterX > 61680 && delta < 0 && !once_X)
-			once_X = 1, i_X -= 1;
+		if (counterX > 61680 && delta > 0 && once_X){
+			once_X = 0;}
+		else if (counterX < 3855 && delta > 0 && !once_X){
+			once_X = 1, i_X += 1;}
+		else if (counterX < 3855 && delta < 0){
+			once_X = 0;}
+		else if (counterX > 61680 && delta < 0 && !once_X){
+			once_X = 1, i_X -= 1;}
 		/* End of Magic */
 
 		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));	// update position

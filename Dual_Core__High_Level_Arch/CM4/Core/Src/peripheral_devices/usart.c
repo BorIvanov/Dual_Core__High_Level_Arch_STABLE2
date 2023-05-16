@@ -250,7 +250,8 @@ void ST_LINK_WRITE(uint8_t * msg, uint8_t length)
 void send_msg(uint8_t *msg_array)
 /* Sends a message to the user */
 {
-	uint8_t buffer[50];
+	uint8_t buffer[50]; // TODO: I think all buffers could be a global one at
+						// a later stage or local for the library
 	sprintf(buffer,(uint8_t*) msg_array);
 	ST_LINK_WRITE(buffer, sizeof(buffer));
 	HAL_Delay(10);
@@ -266,6 +267,7 @@ void send_msg_data(uint8_t *msg_array, int data)
 }
 
 void send_msg_2data(uint8_t *msg_array, int data, int data2)
+/* Sends a message with two data inputs to the user */
 {
 	uint8_t buffer[40];
 	sprintf(buffer, (uint8_t*)msg_array, data, data2);

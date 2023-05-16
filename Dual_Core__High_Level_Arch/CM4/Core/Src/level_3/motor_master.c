@@ -15,10 +15,10 @@ void initMotors()
 uint8_t move_to_X_and_Z(int16_t posX, int16_t posZ)
 {
 	move_to_posX(posX);
-	send_msg((uint8_t*)"\rMotor X has reached final position!\n\r");
+	send_msg((uint8_t*)"\r**** Motor X is at the final position! ****\n\r");
 
 	move_to_posZ(posZ);
-	send_msg((uint8_t*)"\rMotor Z has reached final position!\n\r");
+	send_msg((uint8_t*)"\r**** Motor Z is at the final position! ****\n\r");
 
 	return 1;
 }
@@ -29,12 +29,13 @@ uint8_t HomeMotors(uint8_t homeX, uint8_t homeZ)
 	{
 		homeMotorX();
 	}
-	send_msg((uint8_t*)"\rMotor X has reached final position!\n\r");
-	HAL_Delay(1000);
+	send_msg((uint8_t*)"\r######## Motor X is at HOME ########\n\r");
+
+	HAL_Delay(250);
 	if (homeZ)
 	{
 		homeMotorZ();
 	}
-	send_msg((uint8_t*)"\rMotor Z has reached final position!\n\r");
+	send_msg((uint8_t*)"\r######## Motor Z is at HOME ########\n\r");
 	return 1;
 }
