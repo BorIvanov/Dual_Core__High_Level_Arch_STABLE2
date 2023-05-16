@@ -1,11 +1,18 @@
 /*
- * VCNL4010.c
+ * proximity_sensor.c
+ * Hardware Device: VCNL4010
  *
  *  Created on: May 2, 2022
  *      Author: Pascal
  */
 
-#include "level_3/VCNL4010.h"
+#include "level_3/proximity_sensor.h"
+
+/*
+ *  S1 = VCNL4010_Create(0x13, &hi2c1); // create struct for PROXIMITY sensor
+ *	VCNL4010_Init(&S1); 				// init the proximity sensor
+ *	valProxy = VCNL4010_ReceiveProxy(&S1); // get sensor value
+ */
 
 void VCNL4010_Init(const VCNL4010 *const self)
 {

@@ -1,12 +1,13 @@
 /*
- * TCS3472.h
+ * colour_sensor.c
+ * Hardware Device:TCS3472.c
  *
  *  Created on: 7 dec. 2022
  *      Author: laure
  */
 
-#ifndef INC_TCS3472_H_
-#define INC_TCS3472_H_
+#ifndef INC_colour_sensor_H_
+#define INC_colour_sensor_H_
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -36,4 +37,4 @@ void TCS3472_Transmit(const TCS3472 *const self, uint8_t data_reg,
 
 TCS3472 TCS3472_Create(uint8_t addr, I2C_HandleTypeDef *inBus);
 
-#endif /* INC_TCS3472_H_ */
+#endif /* INC_colour_sensor_H_ */

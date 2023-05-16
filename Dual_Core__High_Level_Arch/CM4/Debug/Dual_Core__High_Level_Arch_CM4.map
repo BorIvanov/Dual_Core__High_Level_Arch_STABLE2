@@ -556,183 +556,12 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x35 ./Core/Src/level_3/TCS3472.o
  .debug_macro   0x0000000000000000       0x20 ./Core/Src/level_3/TCS3472.o
  .debug_macro   0x0000000000000000       0x2e ./Core/Src/level_3/TCS3472.o
- .debug_line    0x0000000000000000      0x9b0 ./Core/Src/level_3/TCS3472.o
- .debug_str     0x0000000000000000   0x1987f6 ./Core/Src/level_3/TCS3472.o
+ .debug_line    0x0000000000000000      0x9b6 ./Core/Src/level_3/TCS3472.o
+ .debug_str     0x0000000000000000   0x1987fc ./Core/Src/level_3/TCS3472.o
  .comment       0x0000000000000000       0x51 ./Core/Src/level_3/TCS3472.o
  .debug_frame   0x0000000000000000       0xb0 ./Core/Src/level_3/TCS3472.o
  .ARM.attributes
                 0x0000000000000000       0x34 ./Core/Src/level_3/TCS3472.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .group         0x0000000000000000        0xc ./Core/Src/level_3/VCNL4010.o
- .text          0x0000000000000000        0x0 ./Core/Src/level_3/VCNL4010.o
- .data          0x0000000000000000        0x0 ./Core/Src/level_3/VCNL4010.o
- .bss           0x0000000000000000        0x0 ./Core/Src/level_3/VCNL4010.o
- .text.VCNL4010_Init
-                0x0000000000000000       0x6c ./Core/Src/level_3/VCNL4010.o
- .text.VCNL4010_ReceiveProxy
-                0x0000000000000000       0x50 ./Core/Src/level_3/VCNL4010.o
- .text.VCNL4010_Create
-                0x0000000000000000       0x32 ./Core/Src/level_3/VCNL4010.o
- .debug_info    0x0000000000000000      0x8dd ./Core/Src/level_3/VCNL4010.o
- .debug_abbrev  0x0000000000000000      0x1da ./Core/Src/level_3/VCNL4010.o
- .debug_aranges
-                0x0000000000000000       0x30 ./Core/Src/level_3/VCNL4010.o
- .debug_ranges  0x0000000000000000       0x20 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x381 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0xa7e ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x22 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x8e ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x51 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x103 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x6a ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x1df ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x1e ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x52 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x3c ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x34 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x10e ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x8d ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x43 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x34 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x10 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x58 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x71 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x1c ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x12a ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x341 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x29 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x244 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x2e ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x3b ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x1c ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x22 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0xfb ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000     0x1011 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x11f ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000    0x2736c ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x6d ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000     0x3d22 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x19b ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x5d ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000     0x3b99 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000     0x1048 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x14d ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x130 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x3be ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0xac ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x72d ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x228 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x66 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x3bb ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0xa95 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x129 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x407 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x244 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000     0x1036 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x6c5 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x36e ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x3ca ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x4a2 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x51 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x4a ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x22c ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x67 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0xa5 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x218 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x2ea ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x35 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0xaec ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x29f ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x67e ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0xa6 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x798 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000      0x20c ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x35 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x20 ./Core/Src/level_3/VCNL4010.o
- .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/VCNL4010.o
- .debug_line    0x0000000000000000      0x9dc ./Core/Src/level_3/VCNL4010.o
- .debug_str     0x0000000000000000   0x1987a0 ./Core/Src/level_3/VCNL4010.o
- .comment       0x0000000000000000       0x51 ./Core/Src/level_3/VCNL4010.o
- .debug_frame   0x0000000000000000       0x80 ./Core/Src/level_3/VCNL4010.o
- .ARM.attributes
-                0x0000000000000000       0x34 ./Core/Src/level_3/VCNL4010.o
  .group         0x0000000000000000        0xc ./Core/Src/level_3/motor_master.o
  .group         0x0000000000000000        0xc ./Core/Src/level_3/motor_master.o
  .group         0x0000000000000000        0xc ./Core/Src/level_3/motor_master.o
@@ -1270,6 +1099,177 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/motor_z.o
  .debug_macro   0x0000000000000000       0x29 ./Core/Src/level_3/motor_z.o
  .debug_macro   0x0000000000000000       0x7c ./Core/Src/level_3/motor_z.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .group         0x0000000000000000        0xc ./Core/Src/level_3/proximity_sensor.o
+ .text          0x0000000000000000        0x0 ./Core/Src/level_3/proximity_sensor.o
+ .data          0x0000000000000000        0x0 ./Core/Src/level_3/proximity_sensor.o
+ .bss           0x0000000000000000        0x0 ./Core/Src/level_3/proximity_sensor.o
+ .text.VCNL4010_Init
+                0x0000000000000000       0x6c ./Core/Src/level_3/proximity_sensor.o
+ .text.VCNL4010_ReceiveProxy
+                0x0000000000000000       0x50 ./Core/Src/level_3/proximity_sensor.o
+ .text.VCNL4010_Create
+                0x0000000000000000       0x32 ./Core/Src/level_3/proximity_sensor.o
+ .debug_info    0x0000000000000000      0x8dd ./Core/Src/level_3/proximity_sensor.o
+ .debug_abbrev  0x0000000000000000      0x1da ./Core/Src/level_3/proximity_sensor.o
+ .debug_aranges
+                0x0000000000000000       0x30 ./Core/Src/level_3/proximity_sensor.o
+ .debug_ranges  0x0000000000000000       0x20 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x381 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0xa7e ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x22 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x8e ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x51 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x103 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x6a ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x1df ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x1e ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x52 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x3c ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x34 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x10e ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x8d ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x43 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x34 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x10 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x58 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x71 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x1c ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x12a ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x341 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x29 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x244 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x2e ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x3b ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x1c ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x22 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0xfb ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000     0x1011 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x11f ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000    0x2736c ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x6d ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000     0x3d22 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x19b ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x5d ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000     0x3b99 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000     0x1048 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x14d ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x130 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x3be ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0xac ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x72d ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x228 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x66 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x3bb ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0xa95 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x129 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x407 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x244 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000     0x1036 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x6c5 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x36e ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x3ca ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x4a2 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x51 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x4a ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x22c ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x67 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0xa5 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x218 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x2ea ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x35 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0xaec ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x29f ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x67e ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0xa6 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x798 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000      0x20c ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x35 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x20 ./Core/Src/level_3/proximity_sensor.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/level_3/proximity_sensor.o
+ .debug_line    0x0000000000000000      0x9ec ./Core/Src/level_3/proximity_sensor.o
+ .debug_str     0x0000000000000000   0x1987b0 ./Core/Src/level_3/proximity_sensor.o
+ .comment       0x0000000000000000       0x51 ./Core/Src/level_3/proximity_sensor.o
+ .debug_frame   0x0000000000000000       0x80 ./Core/Src/level_3/proximity_sensor.o
+ .ARM.attributes
+                0x0000000000000000       0x34 ./Core/Src/level_3/proximity_sensor.o
  .group         0x0000000000000000        0xc ./Core/Src/level_3/servo_controller.o
  .group         0x0000000000000000        0xc ./Core/Src/level_3/servo_controller.o
  .group         0x0000000000000000        0xc ./Core/Src/level_3/servo_controller.o
@@ -7998,10 +7998,10 @@ LOAD ./Core/Src/level_2/token_colour_separator.o
 LOAD ./Core/Src/level_2/token_picker_controller.o
 LOAD ./Core/Src/level_2/user_detector.o
 LOAD ./Core/Src/level_3/TCS3472.o
-LOAD ./Core/Src/level_3/VCNL4010.o
 LOAD ./Core/Src/level_3/motor_master.o
 LOAD ./Core/Src/level_3/motor_x.o
 LOAD ./Core/Src/level_3/motor_z.o
+LOAD ./Core/Src/level_3/proximity_sensor.o
 LOAD ./Core/Src/level_3/servo_controller.o
 LOAD ./Core/Src/level_3/solenoid.o
 LOAD ./Core/Src/level_3/token_picker_master.o

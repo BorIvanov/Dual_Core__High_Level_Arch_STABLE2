@@ -1347,7 +1347,7 @@ uint8_t homeMotorX()
 
 	set_Ready_X(); 												// enable motor
  8100ec0:	f000 ff8a 	bl	8101dd8 <set_Ready_X>
-	while (abs(delta) > 2)
+	while (abs(delta) > 2) 										// accuracy of movement TODO: prove it
  8100ec4:	e0b7      	b.n	8101036 <move_to_posX+0x1d2>
 	{
 		if (delta > 0){
@@ -1518,7 +1518,7 @@ uint8_t homeMotorX()
  810102e:	4619      	mov	r1, r3
  8101030:	4813      	ldr	r0, [pc, #76]	; (8101080 <move_to_posX+0x21c>)
  8101032:	f001 fbda 	bl	81027ea <send_msg_data>
-	while (abs(delta) > 2)
+	while (abs(delta) > 2) 										// accuracy of movement TODO: prove it
  8101036:	e9d7 0102 	ldrd	r0, r1, [r7, #8]
  810103a:	f7ff fbe5 	bl	8100808 <__aeabi_d2iz>
  810103e:	4603      	mov	r3, r0
@@ -1690,7 +1690,7 @@ uint8_t homeMotorZ()
 
 	set_Ready_Z(); 												// enable motor
  8101168:	f000 fe66 	bl	8101e38 <set_Ready_Z>
-	while (abs(delta) > 2)										// desired accuracy in cm?
+	while (abs(delta) > 2)										// desired accuracy in cm? TODO:prove it
  810116c:	e0c0      	b.n	81012f0 <move_to_posZ+0x1dc>
 	{
 		if (delta > 0)
@@ -1876,7 +1876,7 @@ uint8_t homeMotorZ()
  81012e8:	4619      	mov	r1, r3
  81012ea:	4813      	ldr	r0, [pc, #76]	; (8101338 <move_to_posZ+0x224>)
  81012ec:	f001 fa7d 	bl	81027ea <send_msg_data>
-	while (abs(delta) > 2)										// desired accuracy in cm?
+	while (abs(delta) > 2)										// desired accuracy in cm? TODO:prove it
  81012f0:	e9d7 0102 	ldrd	r0, r1, [r7, #8]
  81012f4:	f7ff fa88 	bl	8100808 <__aeabi_d2iz>
  81012f8:	4603      	mov	r3, r0

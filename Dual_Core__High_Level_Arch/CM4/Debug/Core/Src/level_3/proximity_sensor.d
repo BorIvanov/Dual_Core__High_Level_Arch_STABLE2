@@ -1,6 +1,7 @@
-Core/Src/level_3/VCNL4010.o: ../Core/Src/level_3/VCNL4010.c \
- ../Core/Inc/level_3/VCNL4010.h ../Core/Inc/peripheral_devices/i2c.h \
- ../Core/Inc/main.h \
+Core/Src/level_3/proximity_sensor.o: \
+ ../Core/Src/level_3/proximity_sensor.c \
+ ../Core/Inc/level_3/proximity_sensor.h \
+ ../Core/Inc/peripheral_devices/i2c.h ../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -39,7 +40,7 @@ Core/Src/level_3/VCNL4010.o: ../Core/Src/level_3/VCNL4010.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
  ../Core/Inc/peripheral_devices/gpio.h
-../Core/Inc/level_3/VCNL4010.h:
+../Core/Inc/level_3/proximity_sensor.h:
 ../Core/Inc/peripheral_devices/i2c.h:
 ../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:

@@ -1,11 +1,12 @@
 /*
- * TCS3472.c
+ * colour_sensor.c
+ * Hardware Device:TCS3472.c
  *
  *  Created on: 7 dec. 2022
  *      Author: laure
  */
 
-#include "level_3/TCS3472.h"
+#include "level_3/colour_sensor.h"
 
 void TCS3472_Init(const TCS3472 *const self)
 {
