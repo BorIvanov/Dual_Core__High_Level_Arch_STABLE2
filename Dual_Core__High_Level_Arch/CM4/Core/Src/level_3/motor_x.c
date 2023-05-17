@@ -12,6 +12,7 @@
 /* TODO: Move to Variables.c */
 uint32_t counterX;
 double position_mm_X;
+int msg_counter_x = 0; 										// Counter limit for messages
 
 uint8_t i_X = 0;
 uint8_t once_X = 1;
@@ -27,7 +28,7 @@ uint8_t homeMotorX()
 /* homeMotorX: Moves the motor to the home position */
 {
 
-	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 140); 	// set PWM of motor
+	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 130); 	// set PWM of motor
 
 	set_Direction_X(); 									// counter-clockwise  | towards HOME TODO:Change name
 	set_Ready_X(); 										// enables motor X TODO:Change name
@@ -60,7 +61,7 @@ uint8_t move_to_posX(double posX)
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 130); 			// adjust speed (prev val 140) 120 is a bit slow, but safe speed for not crashing during testing
 
 	set_Ready_X(); 												// enable motor
-	while (abs(delta) > 2) 										// accuracy of movement TODO: prove it
+	while (abs(delta) > 1.5) 										// accuracy of movement TODO: prove it
 	{
 		if (delta > 0){
 			reset_Direction_X();} 								// clockwise | towards END
@@ -84,7 +85,13 @@ uint8_t move_to_posX(double posX)
 		position_mm_X = (double) ((counterX / 3855) + (i_X * 17));	// update position
 		delta = posX - position_mm_X;								// update delta
 
-		send_msg_data((uint8_t*)"\rPos X: %d\n\r", (int)position_mm_X);
+		// limit msg sending every Nth operation
+		if (msg_counter_x % 200000 == 0)							// TODO: move 10 to a define freq of msging
+		{
+			send_msg_data((uint8_t*)"\rCurrently @ Pos X: %d\n\r", (int)position_mm_X);
+		}
+		msg_counter_x++;
+
 	}
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 0);					// set PWM to 0
 	reset_Ready_X();

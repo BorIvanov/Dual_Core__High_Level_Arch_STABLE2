@@ -36,3 +36,51 @@ void set_Slide_Servo(float angle)
 			* (TIMER_COUNTER_PERIOD) / (CONTROL_PULSE_RANGE); 		// mapping the values of us to the range of Timer Counter
 	TIM14->CCR1 = CCR_value_slide; 									// applying value to TIM
 }
+
+// Fully programmed positions of board opener and end-effactor rotator
+/*
+		// THIS order of opening has to be preserved
+		send_msg((uint8_t*)"\rOpening Column 2\n\r");
+		set_Slide_Servo(OPEN_COL_2);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 6\n\r");
+		set_Slide_Servo(OPEN_COL_6);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 7\n\r");
+		set_Slide_Servo(OPEN_COL_7);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 4\n\r");
+		set_Slide_Servo(OPEN_COL_4);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 1\n\r");
+		set_Slide_Servo(OPEN_COL_1);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 5\n\r");
+		set_Slide_Servo(OPEN_COL_5);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 3\n\r");
+		set_Slide_Servo(OPEN_COL_3);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening board fully\n\r");
+		set_Slide_Servo(SLIDE_OPEN);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rClosing board fully\n\r");
+		set_Slide_Servo(SLIDE_CLOSED);
+		HAL_Delay(1000);
+
+		set_Rotate_Servo(ROTATE_NEUTRAL);
+		HAL_Delay(1000);
+		set_Rotate_Servo(ROTATE_TO_STACK);
+		HAL_Delay(1000);
+		set_Rotate_Servo(ROTATE_TO_DROP);
+		HAL_Delay(1000);
+		set_Rotate_Servo(ROTATE_NEUTRAL);
+ */

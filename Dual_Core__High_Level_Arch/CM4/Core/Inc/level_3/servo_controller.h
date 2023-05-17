@@ -40,6 +40,8 @@
 #define ROTATE_NEUTRAL 5.30 	// 2.80% Duty Cycle | This position points to the operator
 #define ROTATE_TO_STACK 13.0	// 7.20% Duty Cycle
 #define ROTATE_TO_DROP 23.0 	// 12.8% Duty Cycle
+#define ROTATE_TO_STORE 13.2	// untested
+
 
 /* FUNCTIONS */
 void set_Rotate_Servo(float angle);

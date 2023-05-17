@@ -118,114 +118,64 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
-		reset_Valve();
+		set_Rotate_Servo(ROTATE_NEUTRAL);
 
-		// THIS order of opening has to be preserved
-		send_msg((uint8_t*)"\rOpening Column 2\n\r");
-		set_Slide_Servo(OPEN_COL_2);
-		HAL_Delay(1000);
 
-		send_msg((uint8_t*)"\rOpening Column 6\n\r");
-		set_Slide_Servo(OPEN_COL_6);
-		HAL_Delay(1000);
+		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_STACK_3);
+		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_STORE_TOP);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);
+		HAL_Delay(1500);
+		set_Rotate_Servo(ROTATE_TO_STORE);
+		HAL_Delay(500);
 
-		send_msg((uint8_t*)"\rOpening Column 7\n\r");
-		set_Slide_Servo(OPEN_COL_7);
-		HAL_Delay(1000);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6);
+		HAL_Delay(1500);
 
-		send_msg((uint8_t*)"\rOpening Column 4\n\r");
-		set_Slide_Servo(OPEN_COL_4);
-		HAL_Delay(1000);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);
+		HAL_Delay(500);
 
-		send_msg((uint8_t*)"\rOpening Column 1\n\r");
-		set_Slide_Servo(OPEN_COL_1);
+		// Moving above col 1 and going down to drop token
+		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_COL_1);
+		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_TOP);
+		move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
 		HAL_Delay(1000);
-
-		send_msg((uint8_t*)"\rOpening Column 5\n\r");
-		set_Slide_Servo(OPEN_COL_5);
-		HAL_Delay(1000);
-
-		send_msg((uint8_t*)"\rOpening Column 3\n\r");
-		set_Slide_Servo(OPEN_COL_3);
-		HAL_Delay(1000);
-
-		send_msg((uint8_t*)"\rOpening board fully\n\r");
-		set_Slide_Servo(SLIDE_OPEN);
-		HAL_Delay(1000);
-
-		send_msg((uint8_t*)"\rClosing board fully\n\r");
-		set_Slide_Servo(SLIDE_CLOSED);
-		HAL_Delay(1000);
+		set_Rotate_Servo(ROTATE_TO_DROP);
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_1, Z_POS_DROP);
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
 
 		set_Rotate_Servo(ROTATE_NEUTRAL);
-		HAL_Delay(1000);
-//		set_Rotate_Servo(ROTATE_TO_STACK);
-//		HAL_Delay(1000);
-//		set_Rotate_Servo(ROTATE_TO_DROP);
-//		HAL_Delay(1000);
-//		set_Rotate_Servo(ROTATE_NEUTRAL);
-
-		HAL_Delay(2000);
-		//testing direction X
-		send_msg_data((uint8_t*)"\rMoving to position X: %d\n\r", 30);
-		move_to_posX(30);
-		HAL_Delay(5000);
-
-		//testing direction Z
-		send_msg_data((uint8_t*)"\rMoving to position Z: %d\n\r", 42);
-		move_to_posZ(42);
-		HAL_Delay(5000);
-
-		send_msg_2data((uint8_t*)"\rMoving to pos Z: %d | pos X: %d\n\r", 46, 18);
-		move_to_X_and_Z(46, 18);
-		HAL_Delay(5000);
-
-		send_msg_2data((uint8_t*)"\rMoving to pos Z: %d | pos X: %d\n\r", 40, 3);
-		move_to_X_and_Z(40, 3);
-		HAL_Delay(5000);
-
 		HAL_Delay(500);
-		set_Pump();
-		HAL_Delay(4000);
-		set_Valve();
-		while(GetVAC() < 2000){
 
-		}
-//		reset_Pump();
-		move_to_X_and_Z(46.67, 18);
-		set_Rotate_Servo(0.0);
-		HAL_Delay(1000);
-		reset_Valve();
-		reset_Pump();
-		HAL_Delay(1000);
-		set_Rotate_Servo(0.45);
-		HAL_Delay(1000);
-		float i = 0.0;
-		for(i = 0; i<1; i+=0.1){
-			move_to_X_and_Z(46.67, 18);
-			move_to_X_and_Z(46.67, 0);
-			HAL_Delay(2000);
-			set_Pump();
-			HAL_Delay(4000);
-			set_Valve();
-			while(GetVAC() < 2000){
+		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_DUMP_BASE);
+		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_DUMP_BASE);
+		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_BASE);
+		HAL_Delay(1500);
 
-			}
-//			reset_Pump();
-			move_to_X_and_Z(46.67, 18);
-			set_Rotate_Servo(0.0);
-			HAL_Delay(1000);
-			reset_Valve();
-			reset_Pump();
-			HAL_Delay(1000);
-			set_Rotate_Servo(0.45);
-			HAL_Delay(1000);
-			set_Slide_Servo(i);
-			HAL_Delay(3000);
-		}
-		while(1){
+		set_Rotate_Servo(ROTATE_TO_STACK);
+		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_DUMP_BASE);
+		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_DUMP_2);
+		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_2);
+		HAL_Delay(1500);
 
-		}
+		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_DUMP_BASE);
+		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_DUMP_BASE);
+		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_BASE);
+		HAL_Delay(1500);
+
+		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_FLIPPER);
+		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_FLIPPER_BASE);
+		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE);
+		HAL_Delay(1500);
+		set_Rotate_Servo(ROTATE_TO_STACK);
+		HAL_Delay(500);
+
+		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER);
+		HAL_Delay(1500);
+
+		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE);
+		HAL_Delay(500);
 
 	}
 	/* USER CODE END 3 */

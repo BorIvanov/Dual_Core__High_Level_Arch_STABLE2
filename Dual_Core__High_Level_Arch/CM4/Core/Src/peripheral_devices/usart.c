@@ -261,7 +261,7 @@ void send_msg_data(uint8_t *msg_array, int data)
 /* Sends a message with data to the user */
 {
 
-	uint8_t buffer[30];
+	uint8_t buffer[40];
 	sprintf(buffer, (uint8_t*)msg_array, data);
 	ST_LINK_WRITE(buffer, sizeof(buffer));
 }
@@ -274,4 +274,5 @@ void send_msg_2data(uint8_t *msg_array, int data, int data2)
 	ST_LINK_WRITE(buffer, sizeof(buffer));
 	HAL_Delay(10);
 }
+
 /* USER CODE END 1 */
