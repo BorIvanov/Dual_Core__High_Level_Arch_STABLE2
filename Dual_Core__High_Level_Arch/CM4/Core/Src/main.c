@@ -112,7 +112,6 @@ int main(void)
 	/* USER CODE BEGIN 2 */
 	init_Start_Up();
 
-	int value_rgb = 0;
 	uint16_t value_proxy = 0;
 
 	VCNL4010 struct_proxy;
@@ -121,7 +120,7 @@ int main(void)
 	//struct_proxy = VCNL4010_Create(0x13, &hi2c1); // create struct for PROXIMITY sensor
 	//VCNL4010_Init(&struct_proxy); 				// init the proximity sensor
 
-	struct_rgb = TCS3472_Create(0x29, &hi2c1);
+	struct_rgb = TCS3472_Create(RGB_BUS, &hi2c1);
 	rgb_init(&struct_rgb);
 
 	/* USER CODE END 2 */
@@ -135,10 +134,9 @@ int main(void)
 		/* USER CODE BEGIN 3 */
 
 
-		/* Movement Demo ******************************
 		set_Rotate_Servo(ROTATE_NEUTRAL);
 
-
+		/*
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_STACK_3);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_STORE_TOP);
 		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);
@@ -199,8 +197,16 @@ int main(void)
 
 		//value_proxy = VCNL4010_ReceiveProxy(&struct_proxy); // get sensor value
 
+		separate_tokens(&struct_rgb);
 
-		value_rgb = rgb_read_sensor(&struct_rgb);
+		set_Flipper();
+		reset_Flipper();
+
+		set_Valve();
+		reset_Valve();
+
+		set_Pump();
+		reset_Pump();
 
 	}
 	/* USER CODE END 3 */

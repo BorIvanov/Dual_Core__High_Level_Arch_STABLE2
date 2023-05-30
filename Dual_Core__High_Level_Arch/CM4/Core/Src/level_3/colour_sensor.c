@@ -64,11 +64,7 @@ TCS3472 TCS3472_Create(uint8_t addr, I2C_HandleTypeDef *handle)
 
 void rgb_init(const TCS3472 *const self)
 {
-	//status of device
-	// if status HAL_OK
-	// program the device
-
-	rgb_send(self, 0x80, 0x03); // turn on device
+	rgb_send(self, 0x80, 0x03); // command to turn on the device
 	HAL_Delay(2);
 
 	// Set timing register (ADC integration time)
@@ -76,7 +72,7 @@ void rgb_init(const TCS3472 *const self)
 	// 0xFF = 2.4 ms
 	// 0x00 = 700 ms
 	// 0xEE = 238; (256 - 238) * 2.4 = 43.2 ms
-	rgb_send(self, 0x81, 0xEE); // program ATIME
+	rgb_send(self, 0x81, 0xEE); // command to program ATIME
 	HAL_Delay(10);
 
 }
@@ -84,8 +80,8 @@ void rgb_init(const TCS3472 *const self)
 int rgb_read_sensor(const TCS3472 *const self)
 {
 	struct Color sens_RGBOut;
-	int robotCoin = -2;
-	int t_it_RGB = 0;
+	int robotCoin = -2; 		// arbitrary value
+	int t_it_RGB = 0;			// integration time ?
 	uint16_t hue = 0;
 
 	// initiate sensor
@@ -101,7 +97,7 @@ int rgb_read_sensor(const TCS3472 *const self)
 		if (hue >= 35 && hue <= 75)
 		{
 			// it is yellow
-			robotCoin = 0; //for endurance test else 0
+			robotCoin = 0;
 			yellow++;
 		}
 		if (hue >= 340 && hue <= 360)
@@ -115,8 +111,7 @@ int rgb_read_sensor(const TCS3472 *const self)
 		HAL_Delay(2);
 		if (t_it_RGB > 24)
 		{
-			//error = -1;
-			robotCoin = 3; //for endurance test else -1; // dump to human, let the humanoid sort it out (altered to recheck)
+			robotCoin = 3;
 			rgb_error++;
 		}
 	}

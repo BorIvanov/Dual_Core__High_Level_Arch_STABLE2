@@ -73,8 +73,6 @@ void reset_Pump(void);
 void set_Flipper(void);
 void reset_Flipper(void);
 
-
-
 void set_Direction_X(void);
 void reset_Direction_X(void);
 
