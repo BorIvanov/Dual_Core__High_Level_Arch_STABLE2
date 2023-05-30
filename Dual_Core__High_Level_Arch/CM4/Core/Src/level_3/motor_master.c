@@ -41,6 +41,12 @@ uint8_t HomeMotors(uint8_t homeX, uint8_t homeZ)
 	send_msg((uint8_t*)"\r######## Motor Z is at HOME ########\n\r");
 	return 1;
 }
+/*
+ * To see how the code bellow function
+ * simply paste it into the main.c file of CM4
+ * and run it.
+ */
+
 // Fully working set up to get the arms to the top
 // and simulate dropping down a token in each column
 /*

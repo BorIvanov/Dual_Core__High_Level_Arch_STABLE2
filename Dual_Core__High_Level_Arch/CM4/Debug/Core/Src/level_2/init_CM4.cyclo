@@ -1,4 +1,4 @@
 init_CM4.c:13:6:start_PWM	1
 init_CM4.c:22:6:init_Movement	1
 init_CM4.c:30:6:init_MX_init	1
-init_CM4.c:41:6:init_Start_Up	1
+init_CM4.c:42:6:init_Start_Up	1

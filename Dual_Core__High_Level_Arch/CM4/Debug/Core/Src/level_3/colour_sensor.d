@@ -1,4 +1,4 @@
-Core/Src/level_3/TCS3472.o: ../Core/Src/level_3/TCS3472.c \
+Core/Src/level_3/colour_sensor.o: ../Core/Src/level_3/colour_sensor.c \
  ../Core/Inc/level_3/colour_sensor.h ../Core/Inc/peripheral_devices/i2c.h \
  ../Core/Inc/main.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \

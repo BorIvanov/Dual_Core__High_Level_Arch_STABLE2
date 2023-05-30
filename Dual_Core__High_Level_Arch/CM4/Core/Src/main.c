@@ -28,6 +28,10 @@
 #include "level_3/motor_master.h"
 
 #include "level_3/servo_controller.h"
+
+#include "level_3/proximity_sensor.h"
+#include "level_3/colour_sensor.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,6 +112,17 @@ int main(void)
 	/* USER CODE BEGIN 2 */
 	init_Start_Up();
 
+	int value_rgb = 0;
+	uint16_t value_proxy = 0;
+
+	VCNL4010 struct_proxy;
+	TCS3472 struct_rgb;
+
+	//struct_proxy = VCNL4010_Create(0x13, &hi2c1); // create struct for PROXIMITY sensor
+	//VCNL4010_Init(&struct_proxy); 				// init the proximity sensor
+
+	struct_rgb = TCS3472_Create(0x29, &hi2c1);
+	rgb_init(&struct_rgb);
 
 	/* USER CODE END 2 */
 
@@ -118,6 +133,9 @@ int main(void)
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
+
+
+		/* Movement Demo ******************************
 		set_Rotate_Servo(ROTATE_NEUTRAL);
 
 
@@ -176,6 +194,13 @@ int main(void)
 
 		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE);
 		HAL_Delay(500);
+
+		*/
+
+		//value_proxy = VCNL4010_ReceiveProxy(&struct_proxy); // get sensor value
+
+
+		value_rgb = rgb_read_sensor(&struct_rgb);
 
 	}
 	/* USER CODE END 3 */

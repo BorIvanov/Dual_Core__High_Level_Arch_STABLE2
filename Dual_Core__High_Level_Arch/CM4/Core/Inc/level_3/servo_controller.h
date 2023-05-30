@@ -20,7 +20,7 @@
 #define CONTROL_PULSE_RANGE CONTROL_PULSE_MAX-CONTROL_PULSE_MIN
 #define TIMER_COUNTER_PERIOD 60000 	// TIM13/14 AAR
 
-#define SLIDE_CLOSED 1.0	// Doesn't turn lower than 1 degree
+#define SLIDE_CLOSED 5.0	// Doesn't turn lower than 1 degree
 #define SLIDE_OPEN 25.0		// Doesn't turn higher than 25 degrees
 
 /* This is the natural order of opening the columns

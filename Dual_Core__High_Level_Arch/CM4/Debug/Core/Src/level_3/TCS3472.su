@@ -1,4 +1,0 @@
-../Core/Src/level_3/TCS3472.c:11:6:TCS3472_Init	16	static
-../Core/Src/level_3/TCS3472.c:16:10:TCS3472_ReceiveStatus	16	static
-../Core/Src/level_3/TCS3472.c:21:6:TCS3472_Transmit	16	static
-../Core/Src/level_3/TCS3472.c:27:9:TCS3472_Create	24	static

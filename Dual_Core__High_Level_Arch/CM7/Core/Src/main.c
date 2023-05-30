@@ -74,8 +74,7 @@ int main(void)
   int32_t timeout;
 /* USER CODE END Boot_Mode_Sequence_0 */
 
-  /* Enable I-Cache---------------------------------------------------------*/
-  SCB_EnableICache();
+  /* Enable I-Cache---------------------------------------------------------*/  SCB_EnableICache();
 
   /* Enable D-Cache---------------------------------------------------------*/
   SCB_EnableDCache();

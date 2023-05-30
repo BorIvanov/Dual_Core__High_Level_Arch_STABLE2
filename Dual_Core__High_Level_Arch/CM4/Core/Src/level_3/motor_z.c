@@ -90,8 +90,8 @@ uint8_t move_to_posZ(double posZ)
 		position_mm_Z = (double) ((counterZ / 3855) + (i_Z * 17));  // update position
 		delta = posZ - position_mm_Z;								// update delta
 
-		// limit msg sending every Nth operation
-		if (msg_counter_z % 200000 == 0)							// TODO: move 10 to a define freq of msging
+		// limit msg sending every Nth itteration
+		if (msg_counter_z % 200000 == 0)							// TODO: move 200000 to a define freq of msging
 		{
 			send_msg_data((uint8_t*)"\rCurrently @ Pos Z: %d\n\r", (int)position_mm_Z);
 		}
