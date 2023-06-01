@@ -8,63 +8,25 @@
 
 #include "level_3/colour_sensor.h"
 
-/* Define macro that finds maximum of two numbers */
-#define max(a, b) \
-	({ __typeof__ (a) _a = (a); \
-       __typeof__ (b) _b = (b); \
-     _a > _b ? _a : _b; })
-
-/* Define macro that finds minimum of two numbers */
-#define min(a, b) \
-	({ __typeof__ (a) _a = (a); \
-       __typeof__ (b) _b = (b); \
-     _a < _b ? _a : _b; })
-
-/* Define thresholds for colour recognition */
-#define ROBOT_RED_LOWER 100
-#define ROBOT_YELLOW_UPPER 100
-#define HUMAN_RED_LOWER 200
-#define HUMAN_YELLOW_LOWER 100
-#define BLUE_UPPER 150
-
-#define RGB_ENABLE_AIEN 0x10
-#define RGB_ENABLE_AEN 0x02 // RGBC Enable - Writing 1 activates the ADC, 0 disables it
-#define RGB_ENABLE_PON 0x01 // Power on - Writing 1 activates the internal oscillator, 0 disables it
-#define RGB_COMMAND_REG 0x80 // When sending commands, always set RGB_COMMAND_REG bit
-
-#define RGB_REG_ENABLE 0x00
-#define RGB_REG_TIMING 0x01
-#define RGB_REG_CONTROL 0x0F // doesn't seem to be used anywhere as of yet
-
-#define RGB_RED_LOW 0x16 	/* Red channel data */
-#define RGB_RED_HIGH 0x17
-#define RGB_GREEN_LOW 0x18 	/* Green channel data */
-#define RGB_GREEN_HIGH 0x19
-#define RGB_BLUE_LOW 0x1A 	/* Blue channel data */
-#define RGB_BLUE_HIGH 0x1B
-int red;
-int yellow;
-int rgb_error;
-
-struct Color
-{
-	uint16_t r;
-	uint16_t g;
-	uint16_t b;
-} Color;
+int red = 0;
+int yellow = 0;
+int rgb_error = 0;
 
 TCS3472 TCS3472_Create(uint8_t addr, I2C_HandleTypeDef *handle)
 /* Structure with the address and I2C handle of the RGB Sensor */
 {
 	//create structure of RBG sensor data
 	TCS3472 sensor_data =
-	{ addr, handle};
+	{ addr, handle };
 	return sensor_data;
 }
 
 void rgb_init(const TCS3472 *const self)
 {
-	rgb_send(self, 0x80, 0x03); // command to turn on the device
+	// command to turn on the device [0x03] sent to register [0x80]
+	rgb_send(self, RGB_COMMAND_REG | RGB_REG_ENABLE,
+			RGB_ENABLE_PON | RGB_ENABLE_AEN);
+
 	HAL_Delay(2);
 
 	// Set timing register (ADC integration time)
@@ -72,37 +34,44 @@ void rgb_init(const TCS3472 *const self)
 	// 0xFF = 2.4 ms
 	// 0x00 = 700 ms
 	// 0xEE = 238; (256 - 238) * 2.4 = 43.2 ms
-	rgb_send(self, 0x81, 0xEE); // command to program ATIME
+
+	//  ATIME = 0xEE; sent to TIMING register [0x81]
+	rgb_send(self, RGB_COMMAND_REG | RGB_REG_TIMING, 0xEE);
 	HAL_Delay(10);
+	send_msg((uint8_t*) "\r!RGB-Sensor Initialised!\n\r");
 
 }
 
 int rgb_read_sensor(const TCS3472 *const self)
+/* rgb_read_sensor: Function which interprets the result from RGB sensor
+ * legacy code
+ * @param1 self: An address to the structure of the device
+ *
+ * RETURNS:
+ * robotCoin = 0 --> The token is yellow
+ * robotCoin = 1 --> The token is red
+ * robotCoin = 3 --> The token is not present
+ */
 {
 	struct Color sens_RGBOut;
-	int robotCoin = -2; 		// arbitrary value
-	int t_it_RGB = 0;			// integration time ?
+	int robotCoin = -2; 		// arbitrary value to enter while loop
+	int t_it_RGB = 0;			// integration time ? interrupt time ? Can't figure out name
 	uint16_t hue = 0;
 
-	// initiate sensor
-	rgb_init(self);
-
-	while (robotCoin == -2) // loop until we have reached the max
+	while (robotCoin == -2) // loop until any return is reached
 	{
-		sens_RGBOut = queryRGBSensor(self);
+		sens_RGBOut = queryRGBSensor(self); // store the structure of colours values from sens
 
 		// get hue value (dominant wavelength) out of RGB sensor readings
 		hue = getHue(sens_RGBOut.r, sens_RGBOut.g, sens_RGBOut.b);
 
 		if (hue >= 35 && hue <= 75)
 		{
-			// it is yellow
 			robotCoin = 0;
 			yellow++;
 		}
 		if (hue >= 340 && hue <= 360)
 		{
-			// it is red
 			robotCoin = 1;
 			red++;
 		}
@@ -111,6 +80,7 @@ int rgb_read_sensor(const TCS3472 *const self)
 		HAL_Delay(2);
 		if (t_it_RGB > 24)
 		{
+			// no token present
 			robotCoin = 3;
 			rgb_error++;
 		}
@@ -129,15 +99,16 @@ void rgb_send(const TCS3472 *const self, uint8_t regAddress, uint8_t data)
 	i2c_Transmit(self->handle, self->dev_addr, regAddress, 1, &data, 1);
 }
 
-/**
+struct Color queryRGBSensor(const TCS3472 *const self)
+/*
  * queryRGBSensor: retrieve information from sensor
- *
  * Retrieves 16-bit number for red, green and blue
  *
+ * @param1 self: An address to the structure of the device
+ *
  * Returns:
- * 	Color struct containing r, g and b
+ * 	Colour struct containing r, g and b
  */
-struct Color queryRGBSensor(const TCS3472 *const self)
 {
 
 	/* Read RGB values */
@@ -146,48 +117,53 @@ struct Color queryRGBSensor(const TCS3472 *const self)
 	HAL_StatusTypeDef dev_Status;
 	struct Color color;
 
-	// Read red value
-	dev_Status = i2c_Receive(self->handle, self->dev_addr, RGB_COMMAND_REG | RGB_RED_LOW, 1, &low, sizeof(low));
-	dev_Status = i2c_Receive(self->handle, self->dev_addr, RGB_COMMAND_REG | RGB_RED_HIGH, 1, &high, sizeof(high));
-
-	if (dev_Status != HAL_OK)
+	// Read red value; LOW and HIGH channels
+	dev_Status = i2c_Receive(self->handle, self->dev_addr,
+			RGB_COMMAND_REG | RGB_RED_LOW, 1, &low, sizeof(low));
+	dev_Status = i2c_Receive(self->handle, self->dev_addr,
+			RGB_COMMAND_REG | RGB_RED_HIGH, 1, &high, sizeof(high));
+	if (dev_Status != HAL_OK) // if device is not OK
 	{
-		color.r = 0;
+		color.r = 0; //output 0
 	}
 	else
 	{
-		color.r = (high << 8) | low;
+		color.r = (high << 8) | low; // combine both local values into the output struct
 	}
 
-	// Read green value
-	i2c_Receive(self->handle, self->dev_addr, RGB_COMMAND_REG | RGB_GREEN_LOW, 1, &low, sizeof(low));
-	i2c_Receive(self->handle, self->dev_addr, RGB_COMMAND_REG | RGB_GREEN_HIGH, 1, &high, sizeof(high));
-	if (dev_Status != HAL_OK)
+	// Read green value; LOW and HIGH channels
+	dev_Status = i2c_Receive(self->handle, self->dev_addr,
+			RGB_COMMAND_REG | RGB_GREEN_LOW, 1, &low, sizeof(low));
+	dev_Status = i2c_Receive(self->handle, self->dev_addr,
+			RGB_COMMAND_REG | RGB_GREEN_HIGH, 1, &high, sizeof(high));
+	if (dev_Status != HAL_OK) // if device is not OK
 	{
-		color.g = 0;
+		color.g = 0; //output 0
 	}
 	else
 	{
-		color.g = (high << 8) | low;
+		color.g = (high << 8) | low; // combine both local values into the output struct
 	}
 
-	// Read blue value
-	i2c_Receive(self->handle, self->dev_addr, RGB_COMMAND_REG | RGB_BLUE_LOW, 1, &low, sizeof(low));
-	i2c_Receive(self->handle, self->dev_addr, RGB_COMMAND_REG | RGB_BLUE_HIGH, 1, &high, sizeof(high));
-	if (dev_Status != HAL_OK)
+	// Read blue value; LOW and HIGH channels
+	dev_Status = i2c_Receive(self->handle, self->dev_addr,
+			RGB_COMMAND_REG | RGB_BLUE_LOW, 1, &low, sizeof(low));
+	dev_Status = i2c_Receive(self->handle, self->dev_addr,
+			RGB_COMMAND_REG | RGB_BLUE_HIGH, 1, &high, sizeof(high));
+	if (dev_Status != HAL_OK) // if device is not OK
 	{
-		color.b = 0;
+		color.b = 0; //output 0
 	}
 	else
 	{
-		color.b = (high << 8) | low;
+		color.b = (high << 8) | low; // combine both local values into the output struct
 	}
 	return color;
 }
 
 /**
  * getHue: retrieve information from sensor
- *
+ * legacy code
  * Converts an RGB value to Hue spectrum (dominant wavelength)
  *
  * Inputs:

@@ -38,12 +38,12 @@
 #define RGB_ENABLE_AIEN 0x10
 #define RGB_ENABLE_AEN 0x02 // RGBC Enable - Writing 1 activates the ADC, 0 disables it
 #define RGB_ENABLE_PON 0x01 // Power on - Writing 1 activates the internal oscillator, 0 disables it
-#define RGB_COMMAND_REG 0x80 // When sending commands, always set RGB_COMMAND_REG bit
+#define RGB_COMMAND_REG 0x80 // When sending commands, always use RGB_COMMAND_REG as MSB
 
 #define RGB_REG_ENABLE 0x00
 #define RGB_REG_TIMING 0x01
 #define RGB_REG_CONTROL 0x0F // doesn't seem to be used anywhere as of yet
-#define RGB_BUS 0x29
+#define RGB_ADD 0x29 		// address of the device
 
 #define RGB_RED_LOW 0x16 	/* Red channel data */
 #define RGB_RED_HIGH 0x17
@@ -52,12 +52,18 @@
 #define RGB_BLUE_LOW 0x1A 	/* Blue channel data */
 #define RGB_BLUE_HIGH 0x1B
 
-
 typedef struct TCS3472
 {
 	uint8_t dev_addr;
 	I2C_HandleTypeDef *handle;
 } TCS3472;
+
+struct Color
+{
+	uint16_t r;
+	uint16_t g;
+	uint16_t b;
+};
 
 void rgb_init(const TCS3472 *const self);
 

@@ -23,12 +23,12 @@
 /* TODO: Defines about specific position needed for gameplay*/
 // Miscellaneous
 #define X_END_LIMIT 47 			// the last few mm are tricky, due to physical cable block (black holder)
-#define X_POS_DUMP_BASE 50 		// however the robot can only move to 47. Then it gets stuck
-#define X_POS_FLIPPER 23.5		// position of flipper
+#define X_POS_DUMP_BASE 48 		// however the robot can only move to 47. Then it gets stuck
+#define X_POS_FLIPPER 24.5		// position of flipper
 #define X_POS_HOME 0			// home position
 
 // Column positions
-#define X_POS_COL_1 2.5			// column 1 position
+#define X_POS_COL_1 2.0			// column 1 position
 #define X_POS_COL_2 8.4			// column 2 position
 #define X_POS_COL_3 13.5		// column 3 position
 #define X_POS_COL_4 18.0		// column 4 position

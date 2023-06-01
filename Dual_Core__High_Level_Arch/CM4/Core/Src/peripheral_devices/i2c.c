@@ -149,6 +149,18 @@ HAL_StatusTypeDef i2c_CheckDev(I2C_HandleTypeDef *bus, uint8_t DevAddress)
 HAL_StatusTypeDef i2c_Transmit(I2C_HandleTypeDef *bus, uint8_t DevAddress,
 		uint8_t MemAddress, uint8_t MemAddSize, uint8_t *pData,
 		uint8_t pData_size)
+/* @brief Transmits data over I2C bus.
+This function transmits data over the I2C bus using the specified parameters.
+
+@param[1] bus: Pointer to the I2C_HandleTypeDef structure that contains
+@param[2] DevAddress: Target device address.
+@param[3] MemAddress: Memory address within the target device (register address).
+@param[4] MemAddSize: Size of the memory address in bytes.
+@param[5] pData: Pointer to the data buffer containing the data to be transmitted.
+@param[6] pData_size: Size of the data buffer in bytes.
+
+@retval HAL_StatusTypeDef: HAL status enumeration value.
+ */
 {
 	HAL_StatusTypeDef retFunc;
 	uint8_t write_addr = DevAddress << 1;
@@ -160,6 +172,19 @@ HAL_StatusTypeDef i2c_Transmit(I2C_HandleTypeDef *bus, uint8_t DevAddress,
 HAL_StatusTypeDef i2c_Receive(I2C_HandleTypeDef *bus, uint8_t DevAddress,
 		uint8_t MemAddress, uint8_t MemAddSize, uint8_t *pData,
 		uint8_t pData_size)
+/*
+@brief Receives data over I2C bus.
+This function receives data over the I2C bus using the specified parameters.
+
+@param[1] bus: Pointer to the I2C_HandleTypeDef structure that contains
+@param[2] DevAddress: Target device address.
+@param[3] MemAddress: Memory address within the target device (register address).
+@param[4] MemAddSize: Size of the memory address in bytes (can be 1 or 2).
+@param[5] pData: Pointer to the data buffer to store the received data.
+@param[6] pData_size: Size of the data buffer in bytes.
+
+@retval HAL_StatusTypeDef: HAL status enumeration value.
+ */
 {
 	HAL_StatusTypeDef retFunc;
 	uint8_t read_addr = (DevAddress << 1) | 0x01;

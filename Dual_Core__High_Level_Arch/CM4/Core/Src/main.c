@@ -113,15 +113,14 @@ int main(void)
 	init_Start_Up();
 
 	uint16_t value_proxy = 0;
+	int columnDetected = 0;
 
 	VCNL4010 struct_proxy;
 	TCS3472 struct_rgb;
 
-	//struct_proxy = VCNL4010_Create(0x13, &hi2c1); // create struct for PROXIMITY sensor
-	//VCNL4010_Init(&struct_proxy); 				// init the proximity sensor
-
-	struct_rgb = TCS3472_Create(RGB_BUS, &hi2c1);
+	struct_rgb = TCS3472_Create(RGB_ADD, &hi2c1);
 	rgb_init(&struct_rgb);
+	init_coinDetector();
 
 	/* USER CODE END 2 */
 
@@ -160,6 +159,14 @@ int main(void)
 		move_to_X_and_Z(X_POS_COL_1, Z_POS_DROP);
 		HAL_Delay(500);
 		move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_2, Z_POS_TOP);
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_2, Z_POS_DROP);
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_2, Z_POS_TOP);
+		set_Rotate_Servo(ROTATE_NEUTRAL);
+
 
 		set_Rotate_Servo(ROTATE_NEUTRAL);
 		HAL_Delay(500);
@@ -192,21 +199,10 @@ int main(void)
 
 		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE);
 		HAL_Delay(500);
-
 		*/
 
-		//value_proxy = VCNL4010_ReceiveProxy(&struct_proxy); // get sensor value
-
 		separate_tokens(&struct_rgb);
-
-		set_Flipper();
-		reset_Flipper();
-
-		set_Valve();
-		reset_Valve();
-
-		set_Pump();
-		reset_Pump();
+		columnDetected = queryLightGate();
 
 	}
 	/* USER CODE END 3 */

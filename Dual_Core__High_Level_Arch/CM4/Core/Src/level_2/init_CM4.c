@@ -45,11 +45,11 @@ void init_Start_Up(void)
  *	Homes the servos.
  */
 {
-	send_msg((uint8_t*)"\rInitialising Micro-controller Signals\n\r");
+	send_msg((uint8_t*)"\r!Initialising Micro-controller Signals!\n\r");
 	init_MX_init();
 	HAL_Delay(50);
 
-	send_msg((uint8_t*)"\rEnabling movement signals\n\r");
+	send_msg((uint8_t*)"\r!Initialising movement signals!\n\r");
 	init_Movement();
 	HAL_Delay(50);
 
@@ -57,8 +57,9 @@ void init_Start_Up(void)
 	HAL_Delay(50);
 
 	HomeMotors(1, 1); // homing motors
+	HAL_Delay(50);
 
-	send_msg((uint8_t*)"\rMotors Homed\n\r");
+	send_msg((uint8_t*)"\r########Motors Homed########\n\r");
 	HAL_Delay(50);
 
 	send_msg((uint8_t*)"\rHoming servos\n\r");
@@ -66,7 +67,7 @@ void init_Start_Up(void)
 
 	set_Slide_Servo(SLIDE_CLOSED);
 	set_Rotate_Servo(ROTATE_NEUTRAL);
-	send_msg((uint8_t*)"\rServos Homed\n\r");
+	send_msg((uint8_t*)"\r########Servos Homed########\n\r");
 	HAL_Delay(50);
 
 }

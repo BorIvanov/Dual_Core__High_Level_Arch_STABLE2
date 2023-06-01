@@ -7,19 +7,28 @@
 
 #include "level_2/token_colour_separator.h"
 
-void separate_tokens(const TCS3472 *const self)
+int separate_tokens(const TCS3472 *const self)
+/* separate_tokens: Function which separates tokens to robot/user storage
+ *
+ * Shoots yellow token, or gives signal to move red token
+ *
+ */
 {
 	int value_rgb = 0;
 
-	value_rgb = rgb_read_sensor(self);
+	value_rgb = rgb_read_sensor(self); // store sensor readings
 
 	switch (value_rgb)
 	{
 	case 0: 	// yellow token
 		send_msg((uint8_t*)"\rThe colour of the token is YELLOW!\n\r");
+
+		/* uncomment when FLIPPER is fixed
 		set_Flipper();
 		HAL_Delay(5);
 		reset_Flipper();
+		break;
+		*/
 		break;
 
 	case 1: 	// red token
@@ -31,7 +40,8 @@ void separate_tokens(const TCS3472 *const self)
 		break;
 
 	default:
-		send_msg((uint8_t*)"\rNo token is present!\n\r");
+		send_msg((uint8_t*)"\rDEF:No token is present!\n\r");
 		break;
 	}
+	return value_rgb;
 }
