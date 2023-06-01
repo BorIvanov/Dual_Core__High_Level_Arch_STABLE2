@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -21,7 +21,7 @@
 #include "peripheral_devices/adc.h"
 
 /* USER CODE BEGIN 0 */
-uint32_t value;
+
 /* USER CODE END 0 */
 
 ADC_HandleTypeDef hadc1;
@@ -85,6 +85,7 @@ void MX_ADC1_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC1_Init 2 */
+
   /* USER CODE END ADC1_Init 2 */
 
 }
@@ -158,15 +159,5 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 }
 
 /* USER CODE BEGIN 1 */
-uint32_t GetVAC(){
-	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1, 1);
-	value = HAL_ADC_GetValue(&hadc1);
 
-	send_msg_data((uint8_t*)"\rVAC: %d\n\r", (int) value);
-
-	HAL_ADC_Stop(&hadc1);
-
-	return value;
-}
 /* USER CODE END 1 */

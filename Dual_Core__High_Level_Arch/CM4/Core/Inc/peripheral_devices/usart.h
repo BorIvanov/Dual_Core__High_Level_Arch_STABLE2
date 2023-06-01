@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -28,7 +28,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "string.h"
-#include <stdio.h>
 
 /* USER CODE BEGIN Includes */
 
@@ -46,11 +45,10 @@ void MX_UART5_Init(void);
 void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-void ST_LINK_WRITE(uint8_t *, uint8_t);
+void ST_LINK_WRITE(uint8_t * msg, uint8_t length);
 void send_msg(uint8_t *msg_array);
 void send_msg_data(uint8_t *msg_array, int data);
 void send_msg_2data(uint8_t *msg_array, int data, int data2);
-
 
 /* USER CODE END Prototypes */
 

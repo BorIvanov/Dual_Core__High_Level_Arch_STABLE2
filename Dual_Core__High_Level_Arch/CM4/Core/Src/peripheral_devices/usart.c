@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -274,5 +274,4 @@ void send_msg_2data(uint8_t *msg_array, int data, int data2)
 	ST_LINK_WRITE(buffer, sizeof(buffer));
 	HAL_Delay(10);
 }
-
 /* USER CODE END 1 */

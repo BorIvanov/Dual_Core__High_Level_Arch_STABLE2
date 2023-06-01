@@ -42,7 +42,6 @@ Core/Src/level_2/user_detector.o: ../Core/Src/level_2/user_detector.c \
  ../Core/Inc/peripheral_devices/gpio.h \
  ../Core/Inc/peripheral_devices/adc.h \
  ../Core/Inc/peripheral_devices/usart.h \
- ../Core/Inc/peripheral_devices/usart.h \
  ../Core/Inc/level_3/motor_master.h ../Core/Inc/level_3/motor_x.h \
  ../Core/Inc/level_3/motor_master.h ../Core/Inc/level_3/motor_z.h \
  ../Core/Inc/level_3/servo_controller.h \
@@ -91,7 +90,6 @@ Core/Src/level_2/user_detector.o: ../Core/Src/level_2/user_detector.c \
 ../Core/Inc/peripheral_devices/tim.h:
 ../Core/Inc/peripheral_devices/gpio.h:
 ../Core/Inc/peripheral_devices/adc.h:
-../Core/Inc/peripheral_devices/usart.h:
 ../Core/Inc/peripheral_devices/usart.h:
 ../Core/Inc/level_3/motor_master.h:
 ../Core/Inc/level_3/motor_x.h:

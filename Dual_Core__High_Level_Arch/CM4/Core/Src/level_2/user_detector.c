@@ -89,9 +89,8 @@ int whatStackToEmpty(void)
 
 void init_coinDetector(void)
 {
-	uint8_t inputPorts = 0;
 	HAL_StatusTypeDef dev_Status;
-	uint8_t data = 0xFF;
+	uint8_t data = 0xFF; // ensures all ports are INPUT configured
 
 	// Program command byte:
 	// configuration register [0x03] sets all ports as inputs (1)
@@ -106,13 +105,6 @@ void init_coinDetector(void)
 	{
 		send_msg((uint8_t*) "\r!User-Detector Initialised!\n\r");
 	}
-
-	dev_Status = i2c_Receive(&hi2c1, CD_ADD, 0x03, 1, &inputPorts, 1);
-
-	inputPorts &= ~0x01;
-	// Program command byte:
-	// Preparing the device to read input port register
-
 }
 
 int queryLightGate(void)
@@ -120,7 +112,7 @@ int queryLightGate(void)
  * queryLightGate: read coin detector value.
  *
  * Reads coin detector using I2C. Returns column where something is present.
- *
+ *60000-1
  * Returns:
  * -2: Error from PCA9554
  * -1: All gates are free
@@ -129,8 +121,6 @@ int queryLightGate(void)
  */
 {
 	uint8_t cd;
-	uint8_t cd_full; // local for test purposes
-	uint8_t cd_secondcall; // local for test purposes
 
 	HAL_StatusTypeDef dev_Status;
 	/* Retrieve input data from
@@ -146,7 +136,6 @@ int queryLightGate(void)
 	 */
 	// Program command byte: Reading the input port [0x00] register
 	dev_Status = i2c_Receive(&hi2c1, CD_ADD, 0x00, 1, &cd, sizeof(cd));
-	cd_full = cd;
 
 	if (dev_Status != HAL_OK)
 	{

@@ -1,6 +1,6 @@
 ../Core/Src/peripheral_devices/i2c.c:30:6:MX_I2C1_Init	8	static
 ../Core/Src/peripheral_devices/i2c.c:73:6:HAL_I2C_MspInit	232	static
-../Core/Src/peripheral_devices/i2c.c:115:6:HAL_I2C_MspDeInit	16	static
-../Core/Src/peripheral_devices/i2c.c:141:19:i2c_CheckDev	24	static
-../Core/Src/peripheral_devices/i2c.c:149:19:i2c_Transmit	48	static
-../Core/Src/peripheral_devices/i2c.c:172:19:i2c_Receive	48	static
+../Core/Src/peripheral_devices/i2c.c:113:6:HAL_I2C_MspDeInit	16	static
+../Core/Src/peripheral_devices/i2c.c:139:19:i2c_CheckDev	24	static
+../Core/Src/peripheral_devices/i2c.c:147:19:i2c_Transmit	48	static
+../Core/Src/peripheral_devices/i2c.c:170:19:i2c_Receive	48	static

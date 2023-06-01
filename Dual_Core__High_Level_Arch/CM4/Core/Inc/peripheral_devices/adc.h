@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -28,23 +28,21 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "string.h"
-#include <stdio.h>
 
 /* USER CODE BEGIN Includes */
-#include "usart.h"
+
 /* USER CODE END Includes */
 
 extern ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN Private defines */
-#define Vaccuum_Sensor_Pin GPIO_PIN_4
-#define Vaccuum_Sensor_GPIO_Port GPIOA
+
 /* USER CODE END Private defines */
 
 void MX_ADC1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-uint32_t GetVAC(void);
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -35,6 +35,7 @@ void init_MX_init(void)
 	MX_TIM2_Init();
 	MX_TIM3_Init();
 	MX_TIM4_Init();
+	MX_TIM7_Init();
 	MX_TIM13_Init();
 	MX_TIM14_Init();
 }
