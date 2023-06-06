@@ -28,8 +28,13 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "string.h"
+#include "level_2/vars.h"
+
 
 /* USER CODE BEGIN Includes */
+
+// did we get a coin? 0 = no, 1:7 is entry point, 9 for error
+int Sens_CoinEntry = 0;
 
 /* USER CODE END Includes */
 

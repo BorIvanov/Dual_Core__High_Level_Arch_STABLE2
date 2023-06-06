@@ -6,6 +6,7 @@
 "./Core/Src/level_2/token_colour_separator.o"
 "./Core/Src/level_2/token_picker_controller.o"
 "./Core/Src/level_2/user_detector.o"
+"./Core/Src/level_2/vars.o"
 "./Core/Src/level_3/colour_sensor.o"
 "./Core/Src/level_3/motor_master.o"
 "./Core/Src/level_3/motor_x.o"

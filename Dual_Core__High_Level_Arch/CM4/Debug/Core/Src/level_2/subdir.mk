@@ -11,7 +11,8 @@ C_SRCS += \
 ../Core/Src/level_2/task_manager.c \
 ../Core/Src/level_2/token_colour_separator.c \
 ../Core/Src/level_2/token_picker_controller.c \
-../Core/Src/level_2/user_detector.c 
+../Core/Src/level_2/user_detector.c \
+../Core/Src/level_2/vars.c 
 
 OBJS += \
 ./Core/Src/level_2/board_opener.o \
@@ -20,7 +21,8 @@ OBJS += \
 ./Core/Src/level_2/task_manager.o \
 ./Core/Src/level_2/token_colour_separator.o \
 ./Core/Src/level_2/token_picker_controller.o \
-./Core/Src/level_2/user_detector.o 
+./Core/Src/level_2/user_detector.o \
+./Core/Src/level_2/vars.o 
 
 C_DEPS += \
 ./Core/Src/level_2/board_opener.d \
@@ -29,7 +31,8 @@ C_DEPS += \
 ./Core/Src/level_2/task_manager.d \
 ./Core/Src/level_2/token_colour_separator.d \
 ./Core/Src/level_2/token_picker_controller.d \
-./Core/Src/level_2/user_detector.d 
+./Core/Src/level_2/user_detector.d \
+./Core/Src/level_2/vars.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -39,7 +42,7 @@ Core/Src/level_2/%.o Core/Src/level_2/%.su Core/Src/level_2/%.cyclo: ../Core/Src
 clean: clean-Core-2f-Src-2f-level_2
 
 clean-Core-2f-Src-2f-level_2:
-	-$(RM) ./Core/Src/level_2/board_opener.cyclo ./Core/Src/level_2/board_opener.d ./Core/Src/level_2/board_opener.o ./Core/Src/level_2/board_opener.su ./Core/Src/level_2/init_CM4.cyclo ./Core/Src/level_2/init_CM4.d ./Core/Src/level_2/init_CM4.o ./Core/Src/level_2/init_CM4.su ./Core/Src/level_2/motor_controller.cyclo ./Core/Src/level_2/motor_controller.d ./Core/Src/level_2/motor_controller.o ./Core/Src/level_2/motor_controller.su ./Core/Src/level_2/task_manager.cyclo ./Core/Src/level_2/task_manager.d ./Core/Src/level_2/task_manager.o ./Core/Src/level_2/task_manager.su ./Core/Src/level_2/token_colour_separator.cyclo ./Core/Src/level_2/token_colour_separator.d ./Core/Src/level_2/token_colour_separator.o ./Core/Src/level_2/token_colour_separator.su ./Core/Src/level_2/token_picker_controller.cyclo ./Core/Src/level_2/token_picker_controller.d ./Core/Src/level_2/token_picker_controller.o ./Core/Src/level_2/token_picker_controller.su ./Core/Src/level_2/user_detector.cyclo ./Core/Src/level_2/user_detector.d ./Core/Src/level_2/user_detector.o ./Core/Src/level_2/user_detector.su
+	-$(RM) ./Core/Src/level_2/board_opener.cyclo ./Core/Src/level_2/board_opener.d ./Core/Src/level_2/board_opener.o ./Core/Src/level_2/board_opener.su ./Core/Src/level_2/init_CM4.cyclo ./Core/Src/level_2/init_CM4.d ./Core/Src/level_2/init_CM4.o ./Core/Src/level_2/init_CM4.su ./Core/Src/level_2/motor_controller.cyclo ./Core/Src/level_2/motor_controller.d ./Core/Src/level_2/motor_controller.o ./Core/Src/level_2/motor_controller.su ./Core/Src/level_2/task_manager.cyclo ./Core/Src/level_2/task_manager.d ./Core/Src/level_2/task_manager.o ./Core/Src/level_2/task_manager.su ./Core/Src/level_2/token_colour_separator.cyclo ./Core/Src/level_2/token_colour_separator.d ./Core/Src/level_2/token_colour_separator.o ./Core/Src/level_2/token_colour_separator.su ./Core/Src/level_2/token_picker_controller.cyclo ./Core/Src/level_2/token_picker_controller.d ./Core/Src/level_2/token_picker_controller.o ./Core/Src/level_2/token_picker_controller.su ./Core/Src/level_2/user_detector.cyclo ./Core/Src/level_2/user_detector.d ./Core/Src/level_2/user_detector.o ./Core/Src/level_2/user_detector.su ./Core/Src/level_2/vars.cyclo ./Core/Src/level_2/vars.d ./Core/Src/level_2/vars.o ./Core/Src/level_2/vars.su
 
 .PHONY: clean-Core-2f-Src-2f-level_2
 

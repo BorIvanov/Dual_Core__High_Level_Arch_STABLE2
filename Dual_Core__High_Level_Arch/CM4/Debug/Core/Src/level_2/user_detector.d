@@ -38,14 +38,13 @@ Core/Src/level_2/user_detector.o: ../Core/Src/level_2/user_detector.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
  ../Core/Inc/peripheral_devices/gpio.h ../Core/Inc/level_2/init_CM4.h \
- ../Core/Inc/peripheral_devices/tim.h \
+ ../Core/Inc/peripheral_devices/tim.h ../Core/Inc/level_2/vars.h \
  ../Core/Inc/peripheral_devices/gpio.h \
  ../Core/Inc/peripheral_devices/adc.h \
  ../Core/Inc/peripheral_devices/usart.h \
- ../Core/Inc/level_3/motor_master.h ../Core/Inc/level_3/motor_x.h \
- ../Core/Inc/level_3/motor_master.h ../Core/Inc/level_3/motor_z.h \
- ../Core/Inc/level_3/servo_controller.h \
- ../Core/Inc/peripheral_devices/i2c.h
+ ../Core/Inc/peripheral_devices/i2c.h ../Core/Inc/level_3/motor_master.h \
+ ../Core/Inc/level_3/motor_x.h ../Core/Inc/level_3/motor_master.h \
+ ../Core/Inc/level_3/motor_z.h ../Core/Inc/level_3/servo_controller.h
 ../Core/Inc/level_2/user_detector.h:
 ../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
@@ -88,12 +87,13 @@ Core/Src/level_2/user_detector.o: ../Core/Src/level_2/user_detector.c \
 ../Core/Inc/peripheral_devices/gpio.h:
 ../Core/Inc/level_2/init_CM4.h:
 ../Core/Inc/peripheral_devices/tim.h:
+../Core/Inc/level_2/vars.h:
 ../Core/Inc/peripheral_devices/gpio.h:
 ../Core/Inc/peripheral_devices/adc.h:
 ../Core/Inc/peripheral_devices/usart.h:
+../Core/Inc/peripheral_devices/i2c.h:
 ../Core/Inc/level_3/motor_master.h:
 ../Core/Inc/level_3/motor_x.h:
 ../Core/Inc/level_3/motor_master.h:
 ../Core/Inc/level_3/motor_z.h:
 ../Core/Inc/level_3/servo_controller.h:
-../Core/Inc/peripheral_devices/i2c.h:

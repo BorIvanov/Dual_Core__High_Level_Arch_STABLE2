@@ -578,10 +578,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 // Interrupt to check if a coin has been inserted
 // Frequency is 50Hz ?
 {
-	if (htim->Instance == TIM7)
+	if (htim->Instance == TIM7) // check for which timer the Interrupt is for
 	{
-		int amIhere = 0;
-		return;
+		Sens_CoinEntry = coinInsertDetection();
+
+		if (Sens_CoinEntry > 0 && Sens_CoinEntry < 8)
+		{
+			mem_Board[Sens_CoinEntry - 1]++;
+		}
 	}
 }
 

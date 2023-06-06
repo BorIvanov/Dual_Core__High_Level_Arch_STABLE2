@@ -112,7 +112,7 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 	init_Start_Up();
-	HAL_TIM_Base_Start_IT(&htim7);
+	//HAL_TIM_Base_Start_IT(&htim7);
 
 	uint16_t value_proxy = 0;
 	int columnDetected = 0;
@@ -136,7 +136,6 @@ int main(void)
 
 
 		set_Rotate_Servo(ROTATE_NEUTRAL);
-
 
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_STACK_3);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_STORE_TOP);
@@ -203,8 +202,8 @@ int main(void)
 		HAL_Delay(500);
 
 
-		separate_tokens(&struct_rgb);
-		columnDetected = queryLightGate();
+		separate_tokens(&struct_rgb); 		// detect colour token
+		columnDetected = queryLightGate(); 	// detect blocked column
 
 	}
   /* USER CODE END 3 */

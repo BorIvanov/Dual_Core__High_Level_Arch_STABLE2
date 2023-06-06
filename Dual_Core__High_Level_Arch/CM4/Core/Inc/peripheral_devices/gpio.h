@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2022 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -39,6 +39,73 @@ extern "C" {
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void set_Debug_1(void);
+void reset_Debug_1(void);
+
+void set_Debug_2(void);
+void reset_Debug_2(void);
+
+void set_Debug_3(void);
+void reset_Debug_3(void);
+
+void set_Debug_4(void);
+void reset_Debug_4(void);
+
+
+
+void set_LD1(void);
+void reset_LD1(void);
+
+void set_LD2(void);
+void reset_LD2(void);
+
+void set_LD3(void);
+void reset_LD3(void);
+
+
+
+void set_Valve(void);
+void reset_Valve(void);
+
+void set_Pump(void);
+void reset_Pump(void);
+
+void set_Flipper(void);
+void reset_Flipper(void);
+
+void set_Direction_X(void);
+void reset_Direction_X(void);
+
+void set_Ready_X(void);
+void reset_Ready_X(void);
+
+void set_Digout_X(void);
+void reset_Digout_X(void);
+
+
+
+void set_Direction_Z(void);
+void reset_Direction_Z(void);
+
+void set_Ready_Z(void);
+void reset_Ready_Z(void);
+
+void set_Digout_Z(void);
+void reset_Digout_Z(void);
+
+void set_Enable_Power(void);
+void reset_Enable_Power(void);
+
+int get_Homing_X(void);
+int get_Homing_Z(void);
+int get_Endstop_X(void);
+int get_Endstop_Z(void);
+
+int get_Rotary_C1(void);
+int get_Rotary_C2(void);
+int get_Rotary_C4(void);
+int get_Rotary_C8(void);
+int get_Start_Selector(void);
 
 /* USER CODE END Prototypes */
 

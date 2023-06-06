@@ -38,14 +38,20 @@ void init_MX_init(void)
 	MX_TIM7_Init();
 	MX_TIM13_Init();
 	MX_TIM14_Init();
+
+	HAL_TIM_Base_Start_IT(&htim7); // activate interrupt for TIM7
 }
 
 void init_Start_Up(void)
 /* init_Start_Up: Function to initialise the whole system and set inital values to PWMs
  *	The microcontroller peripherals. The Motors and Servos.
  *	Homes the servos.
+ *
+ *	TODO: Add output to each init func, to catch errors
  */
 {
+	initGlobalVars();
+
 	send_msg((uint8_t*)"\r!Initialising Micro-controller Signals!\n\r");
 	init_MX_init();
 	HAL_Delay(50);
@@ -70,7 +76,6 @@ void init_Start_Up(void)
 	set_Rotate_Servo(ROTATE_NEUTRAL);
 	send_msg((uint8_t*)"\r########Servos Homed########\n\r");
 	HAL_Delay(50);
-
 }
 
 
