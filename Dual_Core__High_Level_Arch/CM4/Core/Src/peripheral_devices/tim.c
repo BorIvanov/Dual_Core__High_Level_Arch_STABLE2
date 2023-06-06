@@ -580,12 +580,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == TIM7) // check for which timer the Interrupt is for
 	{
+		/* implement the coinInsertDetection
 		Sens_CoinEntry = coinInsertDetection();
 
 		if (Sens_CoinEntry > 0 && Sens_CoinEntry < 8)
 		{
 			mem_Board[Sens_CoinEntry - 1]++;
 		}
+		*/
 	}
 }
 

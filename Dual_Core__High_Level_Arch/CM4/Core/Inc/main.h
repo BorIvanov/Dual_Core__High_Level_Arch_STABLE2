@@ -32,6 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "peripheral_devices/gpio.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
