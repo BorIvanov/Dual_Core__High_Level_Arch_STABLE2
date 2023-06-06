@@ -581,7 +581,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if (htim->Instance == TIM7)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/* implement the coinInsertDetection
+=======
+		/*
+>>>>>>> parent of eb1e294 (enters callback. Finished branch intention)
 		Sens_CoinEntry = coinInsertDetection();
 
 		if (Sens_CoinEntry > 0 && Sens_CoinEntry < 8)
