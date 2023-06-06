@@ -110,7 +110,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART3_UART_Init();
-  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
 	init_Start_Up();
 
