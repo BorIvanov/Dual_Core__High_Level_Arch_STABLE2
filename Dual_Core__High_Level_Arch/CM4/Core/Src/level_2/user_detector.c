@@ -13,7 +13,6 @@ int coinInsertDetection(void)
  * coinInsertDetection: check with light gates if coin is inserted
  *
  * returns:
- * -2: error from PCA
  * 	0: no move
  * 	1-7: inserted into column n
  * 	9: error

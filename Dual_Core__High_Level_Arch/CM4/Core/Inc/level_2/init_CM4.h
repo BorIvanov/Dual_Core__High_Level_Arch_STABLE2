@@ -14,9 +14,8 @@
 #include "peripheral_devices/gpio.h"
 #include "peripheral_devices/adc.h"
 #include "peripheral_devices/usart.h"
-#include "peripheral_devices/i2c.h"
 
-
+#include "level_2/init_CM4.h"
 #include "level_3/motor_master.h"
 #include "level_3/servo_controller.h"
 #include "main.h"

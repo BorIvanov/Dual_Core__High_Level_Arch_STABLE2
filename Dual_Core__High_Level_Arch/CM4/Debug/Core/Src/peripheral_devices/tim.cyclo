@@ -11,4 +11,8 @@ tim.c:405:6:HAL_TIM_MspPostInit	4
 tim.c:475:6:HAL_TIM_PWM_MspDeInit	2
 tim.c:491:6:HAL_TIM_Encoder_MspDeInit	3
 tim.c:534:6:HAL_TIM_Base_MspDeInit	4
+<<<<<<< HEAD
 tim.c:577:6:HAL_TIM_PeriodElapsedCallback	1
+=======
+tim.c:577:6:HAL_TIM_PeriodElapsedCallback	2
+>>>>>>> parent of e537ea1 (fucking around)

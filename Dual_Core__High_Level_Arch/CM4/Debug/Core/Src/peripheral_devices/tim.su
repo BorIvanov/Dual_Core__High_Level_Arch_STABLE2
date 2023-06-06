@@ -11,4 +11,4 @@
 ../Core/Src/peripheral_devices/tim.c:475:6:HAL_TIM_PWM_MspDeInit	16	static
 ../Core/Src/peripheral_devices/tim.c:491:6:HAL_TIM_Encoder_MspDeInit	16	static
 ../Core/Src/peripheral_devices/tim.c:534:6:HAL_TIM_Base_MspDeInit	16	static
-../Core/Src/peripheral_devices/tim.c:577:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/peripheral_devices/tim.c:577:6:HAL_TIM_PeriodElapsedCallback	24	static

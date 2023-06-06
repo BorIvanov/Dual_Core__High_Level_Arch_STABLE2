@@ -38,9 +38,12 @@ void init_MX_init(void)
 	MX_TIM7_Init();
 	MX_TIM13_Init();
 	MX_TIM14_Init();
+<<<<<<< HEAD
 
 	HAL_TIM_Base_Start_IT(&htim7); // activate interrupt for TIM7
 
+=======
+>>>>>>> parent of e537ea1 (fucking around)
 }
 
 void init_Start_Up(void)

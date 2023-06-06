@@ -42,10 +42,16 @@ Core/Src/level_2/init_CM4.o: ../Core/Src/level_2/init_CM4.c \
  ../Core/Inc/peripheral_devices/gpio.h \
  ../Core/Inc/peripheral_devices/adc.h \
  ../Core/Inc/peripheral_devices/usart.h \
+<<<<<<< HEAD
  ../Core/Inc/peripheral_devices/usart.h \
  ../Core/Inc/peripheral_devices/i2c.h ../Core/Inc/level_3/motor_master.h \
  ../Core/Inc/level_3/motor_x.h ../Core/Inc/level_3/motor_master.h \
  ../Core/Inc/level_3/motor_z.h ../Core/Inc/level_3/servo_controller.h
+=======
+ ../Core/Inc/level_3/motor_master.h ../Core/Inc/level_3/motor_x.h \
+ ../Core/Inc/level_3/motor_master.h ../Core/Inc/level_3/motor_z.h \
+ ../Core/Inc/level_3/servo_controller.h
+>>>>>>> parent of e537ea1 (fucking around)
 ../Core/Inc/level_2/init_CM4.h:
 ../Core/Inc/peripheral_devices/tim.h:
 ../Core/Inc/main.h:
@@ -90,8 +96,11 @@ Core/Src/level_2/init_CM4.o: ../Core/Src/level_2/init_CM4.c \
 ../Core/Inc/peripheral_devices/gpio.h:
 ../Core/Inc/peripheral_devices/adc.h:
 ../Core/Inc/peripheral_devices/usart.h:
+<<<<<<< HEAD
 ../Core/Inc/peripheral_devices/usart.h:
 ../Core/Inc/peripheral_devices/i2c.h:
+=======
+>>>>>>> parent of e537ea1 (fucking around)
 ../Core/Inc/level_3/motor_master.h:
 ../Core/Inc/level_3/motor_x.h:
 ../Core/Inc/level_3/motor_master.h:

@@ -1,6 +1,6 @@
 user_detector.c:11:5:coinInsertDetection	5
-user_detector.c:44:5:whatStackToFill	3
-user_detector.c:68:5:whatStackToEmpty	3
-user_detector.c:91:6:init_coinDetector	2
-user_detector.c:111:5:queryLightGate	17
-user_detector.c:218:5:checkcoin	5
+user_detector.c:43:5:whatStackToFill	3
+user_detector.c:67:5:whatStackToEmpty	3
+user_detector.c:90:6:init_coinDetector	2
+user_detector.c:110:5:queryLightGate	17
+user_detector.c:217:5:checkcoin	5

@@ -578,8 +578,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 // Interrupt to check if a coin has been inserted
 // Frequency is 50Hz ?
 {
-	if (htim->Instance == TIM7) // check for which timer the Interrupt is for
+	if (htim->Instance == TIM7)
 	{
+<<<<<<< HEAD
 		/* implement the coinInsertDetection
 		Sens_CoinEntry = coinInsertDetection();
 
@@ -588,6 +589,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			mem_Board[Sens_CoinEntry - 1]++;
 		}
 		*/
+=======
+		int amIhere = 0;
+		return;
+>>>>>>> parent of e537ea1 (fucking around)
 	}
 }
 
