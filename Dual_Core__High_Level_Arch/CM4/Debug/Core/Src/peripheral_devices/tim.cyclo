@@ -13,3 +13,4 @@ tim.c:481:6:HAL_TIM_Encoder_MspDeInit	3
 tim.c:524:6:HAL_TIM_Base_MspDeInit	3
 tim.c:552:6:set_Motor_X_PWM	1
 tim.c:556:6:set_Motor_Z_PWM	1
+tim.c:561:6:HAL_TIM_PeriodElapsedCallback	2

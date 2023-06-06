@@ -557,4 +557,22 @@ void set_Motor_Z_PWM(float percent){
 	CH4_DC = (int)(((percent*0.8f)+0.1f) * (48000-1));
 	TIM2->CCR4 = CH4_DC;
 }
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+// Interrupt to check if a coin has been inserted
+// Frequency is 50Hz ?
+{
+	if (htim->Instance == TIM7) // check for which timer the Interrupt is for
+	{
+		/*
+		Sens_CoinEntry = coinInsertDetection();
+
+		if (Sens_CoinEntry > 0 && Sens_CoinEntry < 8)
+		{
+			mem_Board[Sens_CoinEntry - 1]++;
+		}
+		*/
+		int i_am_Here = 0;
+	}
+}
 /* USER CODE END 1 */
