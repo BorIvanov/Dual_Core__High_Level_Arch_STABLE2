@@ -25,11 +25,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "level_2/init_CM4.h"
+#include "level_2/user_detector.h"
+#include "level_2/token_colour_separator.h"
 
 #include "level_3/motor_master.h"
-
 #include "level_3/servo_controller.h"
-
 #include "level_3/proximity_sensor.h"
 #include "level_3/colour_sensor.h"
 
@@ -114,10 +114,10 @@ int main(void)
 	init_Start_Up();
 
 	/* TODO: Move to global vars */
-	uint16_t value_proxy = 0;
+	//uint16_t value_proxy = 0;
 	int columnDetected = 0;
 
-	VCNL4010 struct_proxy;
+	//VCNL4010 struct_proxy;
 	TCS3472 struct_rgb;
 
 	struct_rgb = TCS3472_Create(RGB_ADD, &hi2c1);

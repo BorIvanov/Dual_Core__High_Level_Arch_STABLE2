@@ -87,50 +87,48 @@ int whatStackToEmpty(void)
 	return stack;
 }
 
+/**
+ * @brief Initialize the coin detector.
+ *
+ * This function initializes the coin detector by programming the configuration register
+ * to set all ports as inputs. It checks the device status after transmitting the command
+ * byte and displays appropriate messages based on the result. It then receives the input
+ * ports and performs some operations on them.
+ */
 void init_coinDetector(void)
 {
-	uint8_t inputPorts = 0;
-	HAL_StatusTypeDef dev_Status;
-	uint8_t data = 0xFF;
+    HAL_StatusTypeDef dev_Status;           // Device status variable
+    uint8_t data = 0xFF;                    // Command byte data to set all ports as inputs
 
-	// Program command byte:
-	// configuration register [0x03] sets all ports as inputs (1)
-	dev_Status = i2c_Transmit(&hi2c1, CD_ADD, 0x03, 1, &data, 1);
+    dev_Status = i2c_Transmit(&hi2c1, CD_ADD, 0x03, 1, &data, 1);   // Transmit command byte to configure the device
 
-	if (dev_Status != HAL_OK) // if device is not OK
-	{
-		send_msg((uint8_t*) "\r¡User-Detector Initialisation FAILED¡\n\r");
-		return;
-	}
-	else
-	{
-		send_msg((uint8_t*) "\r!User-Detector Initialised!\n\r");
-	}
-
-	dev_Status = i2c_Receive(&hi2c1, CD_ADD, 0x03, 1, &inputPorts, 1);
-
-	inputPorts &= ~0x01;
-	// Program command byte:
-	// Preparing the device to read input port register
-
+    if (dev_Status != HAL_OK)   // Check if device status is not OK
+    {
+        send_msg((uint8_t*) "\r¡User-Detector Initialisation FAILED¡\n\r");   // Display error message
+        return;
+    }
+    else
+    {
+        send_msg((uint8_t*) "\r!User-Detector Initialised!\n\r");   // Display success message
+    }
 }
+
 
 int queryLightGate(void)
 /**
- * queryLightGate: read coin detector value.
+ * @brief Reads the coin detector using I2C and determines the column where something is present.
  *
- * Reads coin detector using I2C. Returns column where something is present.
+ * This function reads the coin detector using I2C communication. It retrieves the input data from
+ * the input ports and checks their values to determine the column where something is present.
  *
- * Returns:
- * -2: Error from PCA9554
- * -1: All gates are free
- * 1-7: Stack where gate is blocked
- * 9: More than one gate is blocked
+ * @return The column where something is present, or:
+ *         - -2: Error from PCA9554
+ *         - -1: All gates are free
+ *         - 1 to 7: Stack where the gate is blocked
+ *         - 9: More than one gate is blocked
  */
 {
 	uint8_t cd;
-	uint8_t cd_full; // local for test purposes
-	uint8_t cd_secondcall; // local for test purposes
 
 	HAL_StatusTypeDef dev_Status;
 	/* Retrieve input data from
@@ -146,11 +144,10 @@ int queryLightGate(void)
 	 */
 	// Program command byte: Reading the input port [0x00] register
 	dev_Status = i2c_Receive(&hi2c1, CD_ADD, 0x00, 1, &cd, sizeof(cd));
-	cd_full = cd;
 
 	if (dev_Status != HAL_OK)
 	{
-		return -2;
+        return -2;              // Error from PCA9554
 	}
 	else
 	{
@@ -159,7 +156,7 @@ int queryLightGate(void)
 
 		/* Check if empty: */
 		if (!cd)
-			return -1;
+            return -1;          // All gates are free
 
 		if (cd == 0x02)
 		{
@@ -190,7 +187,7 @@ int queryLightGate(void)
 			return 2; 	// flipped in hardware
 		}
 
-		//More than one coin
+        // More than one coin detected, update the mem_Board array accordingly
 		if ((cd >> 1) & 1)
 		{
 			mem_Board[7 - 1]++;
@@ -220,30 +217,45 @@ int queryLightGate(void)
 			mem_Board[2 - 1]++;
 		}
 		sens = 0;
-		return 9;
+        return 9;               // More than one gate is blocked
+
 	}
 }
 
-/*Function to check if a new coin has been tossed in*/
+/**
+ * @brief Checks for any change in the state of the columns indicating a coin insertion.
+ *
+ * This function compares the current state of the columns (mem_Board) with the previous state
+ * (mem_Board_old) to determine if any column has changed. If only one column has changed,
+ * it returns the index of that column. If more than one column has changed, it returns 9
+ * to indicate an error condition.
+ *
+ * @return Index of the column that has changed (1-7), or:
+ *         - 9: Error (more than one column changed)
+ *         - -1: No column changed
+ */
 int checkcoin(void)
 {
-	int column = -1;
-	int amountOfColumnsChanged = 0;
-	for (int i = 0; i < 7; i++)
-	{
-		if (mem_Board[i] - mem_Board_old[i] > 0)
-		{
-			column = i;
-			amountOfColumnsChanged++;
-		}
-	}
-	if (amountOfColumnsChanged == 1)
-	{
-		column++;
-	}
-	else if (amountOfColumnsChanged > 1)
-	{
-		column = 9;
-	}
-	return column;
+    int column = -1;                      // Index of the changed column (-1 if none)
+    int amountOfColumnsChanged = 0;       // Number of columns that have changed
+
+    for (int i = 0; i < 7; i++)
+    {
+        if (mem_Board[i] - mem_Board_old[i] > 0)
+        {
+            column = i;                   // Update column index
+            amountOfColumnsChanged++;     // Increment count of changed columns
+        }
+    }
+
+    if (amountOfColumnsChanged == 1)
+    {
+        column++;                         // Increment column index by 1
+    }
+    else if (amountOfColumnsChanged > 1)
+    {
+        column = 9;                       // More than one column changed, set error value
+    }
+
+    return column;                        // Return column index or error value
 }

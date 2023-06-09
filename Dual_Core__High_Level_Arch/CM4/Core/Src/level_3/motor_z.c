@@ -9,7 +9,7 @@
  */
 #include "level_3/motor_z.h"
 
-/* TODO: Move to Variables.c */
+/* TODO: Move to Vars */
 uint32_t counterZ;
 double position_mm_Z;
 int msg_counter_z = 0; 										// Counter limit for messages
@@ -20,8 +20,8 @@ uint8_t once_Z = 1;
 void initMotorZ()
 /* Initialises the necessary timers for motor Z */
 {
-	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-	HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);
+    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);   // Start PWM output for motor Z using TIM2 channel 4
+    HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_ALL);   // Enable encoder interface with interrupt for all channels of TIM4
 }
 
 uint8_t homeMotorZ()

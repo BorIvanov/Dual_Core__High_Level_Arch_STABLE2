@@ -1,6 +1,6 @@
 ../Core/Src/level_2/user_detector.c:11:5:coinInsertDetection	16	static
 ../Core/Src/level_2/user_detector.c:43:5:whatStackToFill	16	static
 ../Core/Src/level_2/user_detector.c:67:5:whatStackToEmpty	16	static
-../Core/Src/level_2/user_detector.c:90:6:init_coinDetector	24	static
-../Core/Src/level_2/user_detector.c:118:5:queryLightGate	24	static
-../Core/Src/level_2/user_detector.c:228:5:checkcoin	24	static
+../Core/Src/level_2/user_detector.c:98:6:init_coinDetector	24	static
+../Core/Src/level_2/user_detector.c:117:5:queryLightGate	24	static
+../Core/Src/level_2/user_detector.c:237:5:checkcoin	24	static

@@ -38,7 +38,7 @@ Core/Src/level_2/init_CM4.o: ../Core/Src/level_2/init_CM4.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- ../Core/Inc/peripheral_devices/gpio.h \
+ ../Core/Inc/peripheral_devices/gpio.h ../Core/Inc/vars.h \
  ../Core/Inc/peripheral_devices/gpio.h \
  ../Core/Inc/peripheral_devices/adc.h \
  ../Core/Inc/peripheral_devices/usart.h \
@@ -87,6 +87,7 @@ Core/Src/level_2/init_CM4.o: ../Core/Src/level_2/init_CM4.c \
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
 ../Core/Inc/peripheral_devices/gpio.h:
+../Core/Inc/vars.h:
 ../Core/Inc/peripheral_devices/gpio.h:
 ../Core/Inc/peripheral_devices/adc.h:
 ../Core/Inc/peripheral_devices/usart.h:

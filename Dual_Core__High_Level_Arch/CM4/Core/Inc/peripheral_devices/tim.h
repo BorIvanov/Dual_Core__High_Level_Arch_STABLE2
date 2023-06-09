@@ -28,6 +28,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "string.h"
+#include "vars.h"
 
 /* USER CODE BEGIN Includes */
 
