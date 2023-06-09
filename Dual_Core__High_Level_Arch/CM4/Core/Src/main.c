@@ -113,6 +113,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	init_Start_Up();
 
+	/* TODO: Move to global vars */
 	uint16_t value_proxy = 0;
 	int columnDetected = 0;
 
@@ -133,77 +134,150 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-
-		set_Rotate_Servo(ROTATE_NEUTRAL);
-
-		/*
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_STACK_3);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_STORE_TOP);
-		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3
 		HAL_Delay(1500);
-		set_Rotate_Servo(ROTATE_TO_STORE);
+		set_Rotate_Servo(ROTATE_TO_STORE); 				// rotates end-effector down
 		HAL_Delay(500);
 
-		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6); 	// moves down to place token
 		HAL_Delay(1500);
 
-		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3 (goes back  up safely)
 		HAL_Delay(500);
 
-		// Moving above col 1 and going down to drop token
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_COL_1);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_TOP);
-		move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
+		move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP); 	// Moving above col 1 and going down to drop token
 		HAL_Delay(1000);
-		set_Rotate_Servo(ROTATE_TO_DROP);
+		set_Rotate_Servo(ROTATE_TO_DROP);			// rotate to dropping position for the board
 		HAL_Delay(500);
-		move_to_X_and_Z(X_POS_COL_1, Z_POS_DROP);
+		move_to_X_and_Z(X_POS_COL_1, Z_POS_DROP); 	// moves to drops token in the board
 		HAL_Delay(500);
-		move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
+		move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);	// moves back up
 		HAL_Delay(500);
-		move_to_X_and_Z(X_POS_COL_2, Z_POS_TOP);
+		move_to_X_and_Z(X_POS_COL_2, Z_POS_TOP);	// moves to position 2
 		HAL_Delay(500);
-		move_to_X_and_Z(X_POS_COL_2, Z_POS_DROP);
+		move_to_X_and_Z(X_POS_COL_2, Z_POS_DROP);	// moves to drop token in the board
 		HAL_Delay(500);
-		move_to_X_and_Z(X_POS_COL_2, Z_POS_TOP);
+		move_to_X_and_Z(X_POS_COL_2, Z_POS_TOP);	// moves back up
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_3, Z_POS_TOP);	// moves to position 3
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_3, Z_POS_DROP);	// moves to drop token in the board
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_3, Z_POS_TOP);	// moves back up
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_4, Z_POS_TOP);	// moves to position 4
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_4, Z_POS_DROP);	// moves to drop token in the board
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_4, Z_POS_TOP);	// moves back up
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_5, Z_POS_TOP);	// moves to position 5
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_5, Z_POS_DROP);	// moves to drop token in the board
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_5, Z_POS_TOP);	// moves back up
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_6, Z_POS_TOP);	// moves to position 6
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_6, Z_POS_DROP);	// moves to drop token in the board
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_6, Z_POS_TOP);	// moves back up
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_7, Z_POS_TOP);	// moves to position 7
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_7, Z_POS_DROP);	// moves to drop token in the board
+		HAL_Delay(500);
+		move_to_X_and_Z(X_POS_COL_7, Z_POS_TOP);	// moves back up
+		HAL_Delay(1000);
 		set_Rotate_Servo(ROTATE_NEUTRAL);
-
-
-		set_Rotate_Servo(ROTATE_NEUTRAL);
 		HAL_Delay(500);
+
+		// THIS order of opening has to be preserved
+		send_msg((uint8_t*)"\rOpening Column 2\n\r");
+		set_Slide_Servo(OPEN_COL_2);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 6\n\r");
+		set_Slide_Servo(OPEN_COL_6);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 7\n\r");
+		set_Slide_Servo(OPEN_COL_7);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 4\n\r");
+		set_Slide_Servo(OPEN_COL_4);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 1\n\r");
+		set_Slide_Servo(OPEN_COL_1);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 5\n\r");
+		set_Slide_Servo(OPEN_COL_5);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening Column 3\n\r");
+		set_Slide_Servo(OPEN_COL_3);
+		HAL_Delay(1000);
+
+		send_msg((uint8_t*)"\rOpening board fully\n\r");
+		set_Slide_Servo(SLIDE_OPEN);
+		HAL_Delay(1500);
+
+		send_msg((uint8_t*)"\rClosing board fully\n\r");
+		set_Slide_Servo(SLIDE_CLOSED);
+		HAL_Delay(1000);
 
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_DUMP_BASE);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_DUMP_BASE);
-		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_BASE);
+		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_BASE);	// moves to above dump (clean-up task)
 		HAL_Delay(1500);
 
-		set_Rotate_Servo(ROTATE_TO_STACK);
+		set_Rotate_Servo(ROTATE_TO_STACK); 					// move to picking up position (maybe rename define)
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_DUMP_BASE);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_DUMP_2);
-		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_2);
+		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_2); 	// goes down to pick up a token
 		HAL_Delay(1500);
 
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_DUMP_BASE);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_DUMP_BASE);
-		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_BASE);
+		move_to_X_and_Z(X_POS_DUMP_BASE, Z_POS_DUMP_BASE);	// goes out of dump shoot
 		HAL_Delay(1500);
 
 		send_msg_data((uint8_t*)"\r##### Moving to pos X: %d #####\n\r", X_POS_FLIPPER);
 		send_msg_data((uint8_t*)"\r##### Moving to pos Z: %d #####\n\r", Z_POS_FLIPPER_BASE);
-		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE);
-		HAL_Delay(1500);
-		set_Rotate_Servo(ROTATE_TO_STACK);
-		HAL_Delay(500);
-
-		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER);
+		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE);	// go above the RGB sensor
 		HAL_Delay(1500);
 
-		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE);
-		HAL_Delay(500);
-		*/
+		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER); // go down to drop token
+		HAL_Delay(1500);
 
-		separate_tokens(&struct_rgb);
-		columnDetected = queryLightGate();
+		move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE); // go up
+		HAL_Delay(500);
+
+
+		separate_tokens(&struct_rgb); // colour detecting
+		HAL_Delay(5000);
+		separate_tokens(&struct_rgb); // colour detecting
+		HAL_Delay(5000);
+		separate_tokens(&struct_rgb); // colour detecting
+		HAL_Delay(5000);
+
+
+		columnDetected = queryLightGate(); // check columns
+		send_msg_data((uint8_t*)"\r***** Column %d is blocked *****\n\r", columnDetected);
+		HAL_Delay(5000);
+		columnDetected = queryLightGate(); // check columns
+		send_msg_data((uint8_t*)"\r***** Column %d is blocked *****\n\r", columnDetected);
+		HAL_Delay(5000);
+		columnDetected = queryLightGate(); // check columns
+		send_msg_data((uint8_t*)"\r***** Column %d is blocked *****\n\r", columnDetected);
+		HAL_Delay(5000);
 
 	}
   /* USER CODE END 3 */

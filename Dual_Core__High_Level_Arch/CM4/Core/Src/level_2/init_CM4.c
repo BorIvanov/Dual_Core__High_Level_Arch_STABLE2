@@ -49,6 +49,8 @@ void init_Start_Up(void)
  *	Homes the servos.
  */
 {
+	// TODO: init global vars
+
 	send_msg((uint8_t*)"\r!Initialising Micro-controller Signals!\n\r");
 	init_MX_init();
 	HAL_Delay(50);

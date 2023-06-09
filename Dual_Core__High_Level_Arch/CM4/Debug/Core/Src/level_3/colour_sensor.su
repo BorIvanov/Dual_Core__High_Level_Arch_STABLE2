@@ -1,6 +1,6 @@
 ../Core/Src/level_3/colour_sensor.c:15:9:TCS3472_Create	32	static
-../Core/Src/level_3/colour_sensor.c:24:6:rgb_init	16	static
-../Core/Src/level_3/colour_sensor.c:45:5:rgb_read_sensor	32	static
-../Core/Src/level_3/colour_sensor.c:91:6:rgb_send	24	static
-../Core/Src/level_3/colour_sensor.c:102:14:queryRGBSensor	40	static
-../Core/Src/level_3/colour_sensor.c:177:10:getHue	48	static
+../Core/Src/level_3/colour_sensor.c:25:6:rgb_init	16	static
+../Core/Src/level_3/colour_sensor.c:47:5:rgb_read_sensor	32	static
+../Core/Src/level_3/colour_sensor.c:93:6:rgb_send	24	static
+../Core/Src/level_3/colour_sensor.c:104:14:queryRGBSensor	40	static
+../Core/Src/level_3/colour_sensor.c:167:10:getHue	48	static

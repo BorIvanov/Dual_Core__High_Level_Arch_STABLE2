@@ -1,6 +1,6 @@
 colour_sensor.c:15:9:TCS3472_Create	1
-colour_sensor.c:24:6:rgb_init	1
-colour_sensor.c:45:5:rgb_read_sensor	7
-colour_sensor.c:91:6:rgb_send	1
-colour_sensor.c:102:14:queryRGBSensor	4
-colour_sensor.c:177:10:getHue	5
+colour_sensor.c:25:6:rgb_init	1
+colour_sensor.c:47:5:rgb_read_sensor	7
+colour_sensor.c:93:6:rgb_send	1
+colour_sensor.c:104:14:queryRGBSensor	4
+colour_sensor.c:167:10:getHue	5

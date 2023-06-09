@@ -12,6 +12,7 @@ int separate_tokens(const TCS3472 *const self)
  *
  * Shoots yellow token, or gives signal to move red token
  *
+ * param1 self: A structure with address of the sensor and I2C coms
  */
 {
 	int value_rgb = 0;
@@ -20,7 +21,7 @@ int separate_tokens(const TCS3472 *const self)
 
 	switch (value_rgb)
 	{
-	case 0: 	// yellow token
+	case YELLOW:
 		send_msg((uint8_t*)"\rThe colour of the token is YELLOW!\n\r");
 
 		/* uncomment when FLIPPER is fixed
@@ -31,11 +32,12 @@ int separate_tokens(const TCS3472 *const self)
 		*/
 		break;
 
-	case 1: 	// red token
+	case RED:
 		send_msg((uint8_t*)"\rThe colour of the token is RED!\n\r");
+		// TODO: send output to trigger movement towards storage location
 		break;
 
-	case 3:		// no token present
+	case NO_TOKEN:
 		send_msg((uint8_t*)"\rNo token is present!\n\r");
 		break;
 

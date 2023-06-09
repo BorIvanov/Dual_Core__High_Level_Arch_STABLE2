@@ -21,7 +21,9 @@ TCS3472 TCS3472_Create(uint8_t addr, I2C_HandleTypeDef *handle)
 	return sensor_data;
 }
 
+
 void rgb_init(const TCS3472 *const self)
+/* Function that programs the RGB sensor to turn on and then sets initial values */
 {
 	// command to turn on the device [0x03] sent to register [0x80]
 	rgb_send(self, RGB_COMMAND_REG | RGB_REG_ENABLE,
@@ -161,8 +163,9 @@ struct Color queryRGBSensor(const TCS3472 *const self)
 	return color;
 }
 
-/**
- * getHue: retrieve information from sensor
+
+uint16_t getHue(uint16_t red, uint16_t green, uint16_t blue)
+/* getHue: retrieve information from sensor
  * legacy code
  * Converts an RGB value to Hue spectrum (dominant wavelength)
  *
@@ -174,7 +177,6 @@ struct Color queryRGBSensor(const TCS3472 *const self)
  * Returns:
  * 	hue value in the range of 0 to 360
  */
-uint16_t getHue(uint16_t red, uint16_t green, uint16_t blue)
 {
 	uint16_t max = max(max(red, green), blue);
 	uint16_t min = min(min(red, green), blue);

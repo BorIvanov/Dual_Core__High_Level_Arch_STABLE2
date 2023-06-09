@@ -25,7 +25,10 @@ void initMotorZ()
 }
 
 uint8_t homeMotorZ()
-/* homeMotorZ: Moves the motor to the home position */
+/* homeMotorZ: Moves the motor to the home position
+ *
+ * return: none todo: make a return for error catching and/or others
+ * */
 {
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 115); 	// set PWM of motor
 
@@ -40,7 +43,7 @@ uint8_t homeMotorZ()
 	__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 0); 	// set PWM of motor
 	reset_Ready_Z(); 									//disable motor
 	HAL_Delay(1000);
-	/* Initialise variables */
+	/* reset variables */
 	position_mm_Z = 0.0;
 	counterZ = 0;
 	i_Z = 0;
@@ -64,7 +67,7 @@ uint8_t move_to_posZ(double posZ)
 	{
 		if (delta > 0)
 		{
-			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 380);	// adjust speed (prev val 340)
+			__HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_4, 450);	// adjust speed (prev val 340)
 			reset_Direction_Z(); 								// clockwise | towards END/up
 		}
 		else if (delta < 0)
