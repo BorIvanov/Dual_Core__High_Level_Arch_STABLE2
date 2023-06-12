@@ -2,5 +2,6 @@
 ../Core/Src/level_2/user_detector.c:43:5:whatStackToFill	16	static
 ../Core/Src/level_2/user_detector.c:67:5:whatStackToEmpty	16	static
 ../Core/Src/level_2/user_detector.c:98:6:init_coinDetector	24	static
-../Core/Src/level_2/user_detector.c:117:5:queryLightGate	24	static
-../Core/Src/level_2/user_detector.c:237:5:checkcoin	24	static
+../Core/Src/level_2/user_detector.c:116:5:queryLightGate	24	static
+../Core/Src/level_2/user_detector.c:236:5:checkcoin	24	static
+../Core/Src/level_2/user_detector.c:262:6:update_board_mem	16	static

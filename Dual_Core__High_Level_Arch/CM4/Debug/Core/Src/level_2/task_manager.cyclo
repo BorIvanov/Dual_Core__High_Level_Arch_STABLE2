@@ -1,0 +1,10 @@
+task_manager.c:11:6:activate_HSEM_Notifications	1
+task_manager.c:22:6:HAL_HSEM_FreeCallback	3
+task_manager.c:39:6:gameplay_loop_CM4	8
+task_manager.c:78:6:state_init	1
+task_manager.c:85:6:state_idle	1
+task_manager.c:92:6:state_robot_move	1
+task_manager.c:100:6:state_human_move	1
+task_manager.c:111:6:state_clean_up	1
+task_manager.c:119:6:state_cheat_detected	1
+task_manager.c:125:6:state_game_end	1

@@ -585,6 +585,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		if (Sens_CoinEntry > 0 && Sens_CoinEntry < 8)
 		{
 			mem_Board[Sens_CoinEntry - 1]++;
+			// make a flag for user msg
+			// and check for it in some state
+			// display msg, then clear it
 		}
 	}
 }

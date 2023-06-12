@@ -21,15 +21,13 @@
 
 /* Variables */
 
-
+/* Functions */
 int coinInsertDetection(void);
 int whatStackToFill(void);
 int whatStackToEmpty(void);
 int queryLightGate(void);
 int checkcoin(void);
 void init_coinDetector(void);
-
-
-
+void update_board_mem(void);
 
 #endif /* INC_LEVEL_2_USER_DETECTOR_H_ */

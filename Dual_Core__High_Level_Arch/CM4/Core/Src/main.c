@@ -269,10 +269,7 @@ int main(void)
 		separate_tokens(&struct_rgb); 		// colour detecting
 		if (checkcoin() != 9)
 		{
-			for (int k = 0; k < 7; k++) 	//update board
-			{
-				mem_Board_old[k] = mem_Board[k];
-			}
+			update_board_mem();
 		}
 		HAL_Delay(1500);
 

@@ -97,22 +97,21 @@ int whatStackToEmpty(void)
  */
 void init_coinDetector(void)
 {
-    HAL_StatusTypeDef dev_Status;           // Device status variable
-    uint8_t data = 0xFF;                    // Command byte data to set all ports as inputs
+	HAL_StatusTypeDef dev_Status;           // Device status variable
+	uint8_t data = 0xFF;         // Command byte data to set all ports as inputs
 
-    dev_Status = i2c_Transmit(&hi2c1, CD_ADD, 0x03, 1, &data, 1);   // Transmit command byte to configure the device
+	dev_Status = i2c_Transmit(&hi2c1, CD_ADD, 0x03, 1, &data, 1); // Transmit command byte to configure the device
 
-    if (dev_Status != HAL_OK)   // Check if device status is not OK
-    {
-        send_msg((uint8_t*) "\r¡User-Detector Initialisation FAILED¡\n\r");   // Display error message
-        return;
-    }
-    else
-    {
-        send_msg((uint8_t*) "\r!User-Detector Initialised!\n\r");   // Display success message
-    }
+	if (dev_Status != HAL_OK)   // Check if device status is not OK
+	{
+		send_msg((uint8_t*) "\r¡User-Detector Initialisation FAILED¡\n\r"); // Display error message
+		return;
+	}
+	else
+	{
+		send_msg((uint8_t*) "\r!User-Detector Initialised!\n\r"); // Display success message
+	}
 }
-
 
 int queryLightGate(void)
 /**
@@ -147,7 +146,7 @@ int queryLightGate(void)
 
 	if (dev_Status != HAL_OK)
 	{
-        return -2;              // Error from PCA9554
+		return -2;              // Error from PCA9554
 	}
 	else
 	{
@@ -156,7 +155,7 @@ int queryLightGate(void)
 
 		/* Check if empty: */
 		if (!cd)
-            return -1;          // All gates are free
+			return -1;          // All gates are free
 
 		if (cd == 0x02)
 		{
@@ -187,7 +186,7 @@ int queryLightGate(void)
 			return 2; 	// flipped in hardware
 		}
 
-        // More than one coin detected, update the mem_Board array accordingly
+		// More than one coin detected, update the mem_Board array accordingly
 		if ((cd >> 1) & 1)
 		{
 			mem_Board[7 - 1]++;
@@ -217,7 +216,7 @@ int queryLightGate(void)
 			mem_Board[2 - 1]++;
 		}
 		sens = 0;
-        return 9;               // More than one gate is blocked
+		return 9;               // More than one gate is blocked
 
 	}
 }
@@ -236,26 +235,34 @@ int queryLightGate(void)
  */
 int checkcoin(void)
 {
-    int column = -1;                      // Index of the changed column (-1 if none)
-    int amountOfColumnsChanged = 0;       // Number of columns that have changed
+	int column = -1;                 // Index of the changed column (-1 if none)
+	int amountOfColumnsChanged = 0;       // Number of columns that have changed
 
-    for (int i = 0; i < 7; i++)
-    {
-        if (mem_Board[i] - mem_Board_old[i] > 0)
-        {
-            column = i;                   // Update column index
-            amountOfColumnsChanged++;     // Increment count of changed columns
-        }
-    }
+	for (int i = 0; i < 7; i++)
+	{
+		if (mem_Board[i] - mem_Board_old[i] > 0)
+		{
+			column = i;                   // Update column index
+			amountOfColumnsChanged++;     // Increment count of changed columns
+		}
+	}
 
-    if (amountOfColumnsChanged == 1)
-    {
-        column++;                         // Increment column index by 1
-    }
-    else if (amountOfColumnsChanged > 1)
-    {
-        column = 9;                       // More than one column changed, set error value
-    }
+	if (amountOfColumnsChanged == 1)
+	{
+		column++;                         // Increment column index by 1
+	}
+	else if (amountOfColumnsChanged > 1)
+	{
+		column = 9;             // More than one column changed, set error value
+	}
 
-    return column;                        // Return column index or error value
+	return column;                        // Return column index or error value
+}
+
+void update_board_mem(void)
+{
+	for (int k = 0; k < 7; k++) 	//update board
+	{
+		mem_Board_old[k] = mem_Board[k];
+	}
 }
