@@ -12,6 +12,8 @@
 #define INC_LEVEL_2_BOARD_OPENER_H_
 
 #include "level_3/servo_controller.h"
+#include "peripheral_devices/usart.h"
+
 
 void open_all_columns(void);
 void open_column_1(void);

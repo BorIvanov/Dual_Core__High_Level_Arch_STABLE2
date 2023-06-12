@@ -37,8 +37,9 @@ Core/Src/level_2/task_manager.o: ../Core/Src/level_2/task_manager.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- ../Core/Inc/peripheral_devices/gpio.h ../Core/Inc/level_2/board_opener.h \
+ ../Core/Inc/peripheral_devices/gpio.h ../Core/Inc/vars.h \
  ../Core/Inc/level_3/servo_controller.h \
+ ../Core/Inc/peripheral_devices/usart.h \
  D:\University\Fontys\Year5\Internship\STM32H_Example\ Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h
 ../Core/Inc/level_2/task_manager.h:
 ../Core/Inc/main.h:
@@ -80,6 +81,7 @@ Core/Src/level_2/task_manager.o: ../Core/Src/level_2/task_manager.c \
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
 ../Core/Inc/peripheral_devices/gpio.h:
-../Core/Inc/level_2/board_opener.h:
+../Core/Inc/vars.h:
 ../Core/Inc/level_3/servo_controller.h:
+../Core/Inc/peripheral_devices/usart.h:
 D:\University\Fontys\Year5\Internship\STM32H_Example\ Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h:

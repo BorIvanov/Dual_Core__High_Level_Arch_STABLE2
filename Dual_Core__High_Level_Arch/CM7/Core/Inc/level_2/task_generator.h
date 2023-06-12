@@ -33,6 +33,7 @@
 #define TASK_USER_TURN						0
 #define TASK_ROBOT_TURN						1
 #define TASK_CLEAN_UP						2
+#define TASK_CM4_INIT						3
 
 void initTaskGenerator(uint8_t* state, uint8_t* substateRM, uint8_t* substateHM, uint8_t* dataIn);
 

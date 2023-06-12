@@ -6,33 +6,50 @@
  */
 #include "level_2/task_manager.h"
 
-state = STATE_IDLE;
-
-void activate_HSEM_Notifications() // possibly t
+void activate_HSEM_Notifications()
 /* activate_HSEM_Notifications: Called in the beginning of the
  * program to activate notifications to look out for (ones arriving from CM7) */
 {
 	HAL_HSEM_ActivateNotification(HSEM_CM7_TO_CM4_MASK);
+	HAL_HSEM_ActivateNotification(HSEM_CM4_INIT_MASK);
 	HAL_HSEM_ActivateNotification(HSEM_ROBOT_TURN_MASK);
 	HAL_HSEM_ActivateNotification(HSEM_USER_TURN_MASK);
+	HAL_HSEM_ActivateNotification(HSEM_GAME_END_MASK);
+	HAL_HSEM_ActivateNotification(HSEM_CLEAN_UP_MASK);
 }
 
+void HAL_HSEM_FreeCallback(uint32_t SemMask)
 /* Function is called automatically when a semaphore is released
  * This function takes care of HSEM's released from Cortex-M7 */
-void HAL_HSEM_FreeCallback(uint32_t SemMask)
 {
 	// Handle the semaphore release event
-	if (SemMask == HSEM_ROBOT_TURN_MASK)
+	switch (SemMask)
 	{
-//		memcpy(data, SharedBuf, 1);			// get column data from share buffer
-//		state = STATE_ROBOT_MOVE; 			// Changes the state in this core
+	case HSEM_CM4_INIT_MASK:
+		state = STATE_INIT;
+		HAL_HSEM_ActivateNotification(HSEM_CM4_INIT_MASK);
+		break;
+
+	case HSEM_ROBOT_TURN_MASK:
+		//memcpy(data, SharedBuf, 1);			// get column data from share buffer
+		//state = STATE_ROBOT_MOVE; 			// Changes the state in this core
 		HAL_HSEM_ActivateNotification(HSEM_ROBOT_TURN_MASK); // reactivate notification
-	}
-	if (SemMask == HSEM_USER_TURN_MASK)
-	{
-//		humanMove = 0;
+		break;
+
+	case HSEM_USER_TURN_MASK:
+		//humanMove = 0;
 		state = STATE_HUMAN_MOVE;			// Changes the state in this core
 		HAL_HSEM_ActivateNotification(HSEM_USER_TURN_MASK); // reactivate notification
+		break;
+
+	case HSEM_GAME_END_MASK:
+		break;
+
+	case HSEM_CLEAN_UP_MASK:
+		break;
+
+	default:
+		break;
 	}
 }
 
@@ -79,6 +96,8 @@ void state_init()
 {
 	// initialize necessary signals
 	// home procedure
+	open_all_columns();
+
 	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); // tell CM7 that CM4 is done with task
 }
 

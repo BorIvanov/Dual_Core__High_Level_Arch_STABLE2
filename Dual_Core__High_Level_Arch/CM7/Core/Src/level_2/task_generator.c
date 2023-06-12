@@ -36,6 +36,7 @@ void initTaskGenerator(uint8_t *state, uint8_t *substateRM, uint8_t *substateHM,
 	data = dataIn; // Rx_data
 
 	HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK);
+	HAL_HSEM_ActivateNotification(HSEM_CHEAT);
 	memset(SharedBuf, 0, 10); // init shared buffer
 }
 
@@ -60,6 +61,10 @@ void taskToDo(uint8_t task)
 	if (task == TASK_CLEAN_UP)
 	{
 		HSEM_TAKE_RELEASE(HSEM_CLEAN_UP);
+	}
+	if (task == TASK_CM4_INIT)
+	{
+		HSEM_TAKE_RELEASE(HSEM_CM4_INIT);
 	}
 }
 

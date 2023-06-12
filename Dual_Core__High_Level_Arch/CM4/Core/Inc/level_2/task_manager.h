@@ -13,22 +13,11 @@
 #define INC_LEVEL_2_TASK_MANAGER_H_
 
 #include "main.h"
+#include "vars.h"
 #include <string.h>
-#include "level_2/board_opener.h"
+#include "level_3/servo_controller.h"
+#include "peripheral_devices/usart.h"
 #include "D:\University\Fontys\Year5\Internship\STM32H_Example Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h"
-
-/* DEFINES */ //TODO: redefine
-#define STATE_INIT							0
-#define STATE_IDLE							1
-#define STATE_ROBOT_MOVE					2
-#define STATE_HUMAN_MOVE					3
-#define STATE_CLEAN_UP						4
-#define STATE_CHEAT_DETECTED				5
-#define STATE_GAME_END						6
-
-#define TASK_HUMAN_MOVE						0
-#define TASK_ROBOT_MOVE						1
-#define TASK_CLEAN_UP						2
 
 /* VARIABLES */
 

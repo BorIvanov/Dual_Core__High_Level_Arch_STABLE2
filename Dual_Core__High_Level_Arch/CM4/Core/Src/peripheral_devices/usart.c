@@ -254,7 +254,7 @@ void send_msg(uint8_t *msg_array)
 						// a later stage or local for the library
 	sprintf(buffer,(uint8_t*) msg_array);
 	ST_LINK_WRITE(buffer, sizeof(buffer));
-	HAL_Delay(10);
+	//HAL_Delay(10);
 }
 
 void send_msg_data(uint8_t *msg_array, int data)

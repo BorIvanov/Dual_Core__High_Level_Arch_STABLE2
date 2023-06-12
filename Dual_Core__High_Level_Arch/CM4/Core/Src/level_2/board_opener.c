@@ -83,7 +83,7 @@ void open_fully(void)
 {
 	send_msg((uint8_t*) "\rOpening board fully\n\r");
 	set_Slide_Servo(SLIDE_OPEN);
-	HAL_Delay(1500);
+	HAL_Delay(1000);
 }
 
 void close(void)

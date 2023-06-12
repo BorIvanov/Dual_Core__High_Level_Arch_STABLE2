@@ -28,6 +28,9 @@
 #include "level_2/user_detector.h"
 #include "level_2/token_colour_separator.h"
 #include "level_2/board_opener.h"
+#include "level_2/task_manager.h"
+#include "vars.h"
+
 
 #include "level_3/motor_master.h"
 #include "level_3/servo_controller.h"
@@ -126,7 +129,7 @@ int main(void)
 	rgb_init(&struct_rgb);
 	init_coinDetector();
 
-	open_all_columns();
+	activate_HSEM_Notifications();
 
 	/* USER CODE END 2 */
 
@@ -265,6 +268,11 @@ int main(void)
 		 move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE); // go up
 		 HAL_Delay(500);
 		 */
+
+		if (state == STATE_INIT)
+		{
+			gameplay_loop_CM4(STATE_INIT);
+		}
 
 		separate_tokens(&struct_rgb); 		// colour detecting
 		if (checkcoin() != 9)
