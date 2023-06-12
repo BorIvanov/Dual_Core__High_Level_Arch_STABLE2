@@ -13,9 +13,9 @@
 #include "level_3/colour_sensor.h"
 #include "peripheral_devices/gpio.h"
 
-#define NO_TOKEN 0
+#define NO_TOKEN 3
 #define RED 1
-#define YELLOW 2
+#define YELLOW 0
 
 int separate_tokens(const TCS3472 *const self);
 

@@ -1,0 +1,10 @@
+../Core/Src/level_2/board_opener.c:10:6:open_all_columns	8	static
+../Core/Src/level_2/board_opener.c:33:6:open_column_1	8	static
+../Core/Src/level_2/board_opener.c:40:6:open_column_2	8	static
+../Core/Src/level_2/board_opener.c:47:6:open_column_3	8	static
+../Core/Src/level_2/board_opener.c:54:6:open_column_4	8	static
+../Core/Src/level_2/board_opener.c:61:6:open_column_5	8	static
+../Core/Src/level_2/board_opener.c:68:6:open_column_6	8	static
+../Core/Src/level_2/board_opener.c:75:6:open_column_7	8	static
+../Core/Src/level_2/board_opener.c:82:6:open_fully	8	static
+../Core/Src/level_2/board_opener.c:89:6:close	8	static

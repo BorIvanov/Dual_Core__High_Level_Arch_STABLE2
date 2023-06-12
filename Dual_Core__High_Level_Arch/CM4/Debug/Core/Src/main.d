@@ -47,7 +47,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/level_3/motor_z.h ../Core/Inc/level_3/servo_controller.h \
  ../Core/Inc/level_2/user_detector.h \
  ../Core/Inc/level_2/token_colour_separator.h \
- ../Core/Inc/level_3/colour_sensor.h \
+ ../Core/Inc/level_3/colour_sensor.h ../Core/Inc/level_2/board_opener.h \
  ../Core/Inc/level_3/proximity_sensor.h
 ../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
@@ -104,4 +104,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/level_2/user_detector.h:
 ../Core/Inc/level_2/token_colour_separator.h:
 ../Core/Inc/level_3/colour_sensor.h:
+../Core/Inc/level_2/board_opener.h:
 ../Core/Inc/level_3/proximity_sensor.h:
