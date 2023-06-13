@@ -22,7 +22,6 @@ uint8_t *subHumanM;
 uint8_t *st;
 uint8_t *data;
 
-
 void initTaskGenerator(uint8_t *state, uint8_t *substateRM, uint8_t *substateHM,
 		uint8_t *dataIn)
 /* initTaskGenerator: Initializes the states and variables.
@@ -49,42 +48,49 @@ void taskToDo(uint8_t task)
  * task: task to be sent to CM4
  */
 {
-	if (task == TASK_ROBOT_TURN)
+	switch (task)
 	{
-		memset(SharedBuf, (int) (data[0] - '0'), 1); // writing the Rx_data in shared buff so CM4 can access it
-		HSEM_TAKE_RELEASE(HSEM_ROBOT_TURN); 		 // triggers action in CM4
-	}
-	if (task == TASK_USER_TURN)
-	{
-		HSEM_TAKE_RELEASE(HSEM_USER_TURN);
-	}
-	if (task == TASK_CLEAN_UP)
-	{
-		HSEM_TAKE_RELEASE(HSEM_CLEAN_UP);
-	}
-	if (task == TASK_CM4_INIT)
-	{
+	case TASK_CM4_INIT:
 		HSEM_TAKE_RELEASE(HSEM_CM4_INIT);
+		break;
+
+	case TASK_ROBOT_TURN:
+		HSEM_TAKE_RELEASE(HSEM_ROBOT_TURN);
+		break;
+
+	case TASK_USER_TURN:
+		HSEM_TAKE_RELEASE(HSEM_USER_TURN);
+		break;
+
+	case TASK_GAME_END:
+		HSEM_TAKE_RELEASE(HSEM_GAME_END);
+		break;
+
+	case TASK_CLEAN_UP:
+		HSEM_TAKE_RELEASE(HSEM_CLEAN_UP);
+		break;
+
+	default:
+		break;
 	}
 }
-
 
 void HAL_HSEM_FreeCallback(uint32_t SemMask)
 /* Function is called automatically when a semaphore is released.
  * This function takes care of HSEM's released from Cortex-M4.
  */
 {
-	if (SemMask == HSEM_CM4_DONE_MASK) 							// Is CM4 done with it's current task ?
+	if (SemMask == HSEM_CM4_DONE_MASK) 	// Is CM4 done with it's current task ?
 	{
 		// chose next state based on current state
 		if (*st == STATE_INIT)
 		{
-			*st = STATE_START;
+			*st = STATE_INIT;
 		}
 		if (*st == STATE_ROBOT_MOVE)
 		{
 			*subRobotM = SUBSTATE_RM_CM4_DONE;
 		}
-		HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); 		// reactivate notification
+		HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
 	}
 }

@@ -18,18 +18,20 @@
 #include "level_3/servo_controller.h"
 #include "peripheral_devices/usart.h"
 #include "D:\University\Fontys\Year5\Internship\STM32H_Example Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h"
+#include "level_2/board_opener.h"
 
 /* VARIABLES */
 
 /* FUNCTIONS */
 void activate_HSEM_Notifications(void);
 void gameplay_loop_CM4(int state);
-void state_init();
-void state_idle();
-void state_robot_move();
-void state_human_move();
-void state_clean_up();
-void state_cheat_detected();
-void state_game_end();
+void exec_state_init(void);
+void exec_state_idle(void);
+void exec_state_robot_move(void);
+void exec_state_user_move(void);
+void exec_state_clean_up(void);
+void exec_state_cheat_detected(void);
+void exec_state_game_end(void);
+int check_state(void);
 
 #endif /* INC_LEVEL_2_TASK_MANAGER_H_ */

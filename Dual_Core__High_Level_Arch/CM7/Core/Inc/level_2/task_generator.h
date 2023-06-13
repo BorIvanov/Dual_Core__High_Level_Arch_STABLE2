@@ -16,10 +16,12 @@
 #include "D:\University\Fontys\Year5\Internship\STM32H_Example Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h"
 
 #define STATE_INIT							0
-#define STATE_START							1
+#define STATE_IDLE							1
 #define STATE_ROBOT_MOVE					2
 #define STATE_HUMAN_MOVE					3
 #define STATE_CLEAN_UP						4
+#define STATE_CHEAT_DETECTED				5
+#define STATE_GAME_END						6
 
 #define SUBSTATE_RM_REQ_MOVE				0
 #define SUBSTATE_RM_REC_MOVE				1
@@ -34,6 +36,7 @@
 #define TASK_ROBOT_TURN						1
 #define TASK_CLEAN_UP						2
 #define TASK_CM4_INIT						3
+#define TASK_GAME_END						4
 
 void initTaskGenerator(uint8_t* state, uint8_t* substateRM, uint8_t* substateHM, uint8_t* dataIn);
 
