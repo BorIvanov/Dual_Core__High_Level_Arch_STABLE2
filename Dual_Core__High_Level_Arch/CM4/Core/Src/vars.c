@@ -16,7 +16,8 @@ int detect_error = 0;	//coinDetect/input fails
 int gateOld = -1;
 int TIM7_CustomTimerCounter = 0;
 int state_flag = STATE_IDLE;
-int current_state= STATE_IDLE;
+int current_state_CM4 = STATE_IDLE;
+int previous_state_CM4 = -1;
 
 void initGlobalVars()
 {

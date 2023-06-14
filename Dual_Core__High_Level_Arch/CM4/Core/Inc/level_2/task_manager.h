@@ -16,6 +16,8 @@
 #include "vars.h"
 #include <string.h>
 #include "level_3/servo_controller.h"
+#include "level_3/motor_master.h"
+
 #include "peripheral_devices/usart.h"
 #include "D:\University\Fontys\Year5\Internship\STM32H_Example Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h"
 #include "level_2/board_opener.h"

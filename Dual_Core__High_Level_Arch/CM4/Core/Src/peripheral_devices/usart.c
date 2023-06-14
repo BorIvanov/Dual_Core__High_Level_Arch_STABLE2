@@ -260,7 +260,6 @@ void send_msg(uint8_t *msg_array)
 void send_msg_data(uint8_t *msg_array, int data)
 /* Sends a message with data to the user */
 {
-
 	uint8_t buffer[40];
 	sprintf(buffer, (uint8_t*)msg_array, data);
 	ST_LINK_WRITE(buffer, sizeof(buffer));

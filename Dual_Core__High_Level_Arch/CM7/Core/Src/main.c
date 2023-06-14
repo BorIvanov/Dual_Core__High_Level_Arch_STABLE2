@@ -129,7 +129,7 @@ int main(void)
 	MX_GPIO_Init();
 	MX_USB_OTG_FS_PCD_Init();
 	/* USER CODE BEGIN 2 */
-	int test_flag = 1;
+	initTaskGenerator();
 	/* USER CODE END 2 */
 
 	/* Infinite loop */
@@ -137,10 +137,66 @@ int main(void)
 	while (1)
 	{
 		/* USER CODE END WHILE */
-		if (test_flag == 1)
+
+		// think of a way for the current_state to not be checked
+		// after the callback for the HSEM has been executed
+		if (been_HSEM == 0)
+			current_state_CM7 = check_state();
+
+		if (current_state_CM7 != previous_state_CM7)
 		{
-			taskToDo(TASK_CM4_INIT);
-			test_flag = 0;
+			switch (current_state_CM7)
+			{
+			case STATE_INIT:
+				gameplay_loop_CM7(current_state_CM7);
+				previous_state_CM7 = current_state_CM7;
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			case STATE_START_GAME:
+				gameplay_loop_CM7(current_state_CM7);
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			case STATE_IDLE:
+				gameplay_loop_CM7(current_state_CM7);
+				previous_state_CM7 = current_state_CM7;
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			case STATE_ROBOT_TURN:
+				gameplay_loop_CM7(current_state_CM7);
+				previous_state_CM7 = current_state_CM7;
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			case STATE_USER_TURN:
+				gameplay_loop_CM7(current_state_CM7);
+				previous_state_CM7 = current_state_CM7;
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			case STATE_CLEAN_UP:
+				gameplay_loop_CM7(current_state_CM7);
+				previous_state_CM7 = current_state_CM7;
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			case STATE_CHEAT_DETECTED:
+				gameplay_loop_CM7(current_state_CM7);
+				previous_state_CM7 = current_state_CM7;
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			case STATE_GAME_END:
+				gameplay_loop_CM7(current_state_CM7);
+				previous_state_CM7 = current_state_CM7;
+				been_HSEM = 0; // not sure about placement
+				break;
+
+			default:
+				break;
+			}
 		}
 
 		/* USER CODE BEGIN 3 */

@@ -2,10 +2,10 @@
 ../Core/Src/level_2/task_manager.c:21:6:HAL_HSEM_FreeCallback	16	static
 ../Core/Src/level_2/task_manager.c:59:6:gameplay_loop_CM4	16	static
 ../Core/Src/level_2/task_manager.c:98:6:exec_state_init	8	static
-../Core/Src/level_2/task_manager.c:107:6:exec_state_idle	4	static
-../Core/Src/level_2/task_manager.c:114:6:exec_state_robot_move	8	static
-../Core/Src/level_2/task_manager.c:121:6:exec_state_user_move	8	static
-../Core/Src/level_2/task_manager.c:131:6:exec_state_clean_up	8	static
-../Core/Src/level_2/task_manager.c:138:6:exec_state_cheat_detected	4	static
-../Core/Src/level_2/task_manager.c:144:6:exec_state_game_end	8	static
-../Core/Src/level_2/task_manager.c:158:5:check_state	4	static
+../Core/Src/level_2/task_manager.c:109:6:exec_state_idle	8	static
+../Core/Src/level_2/task_manager.c:117:6:exec_state_robot_move	8	static
+../Core/Src/level_2/task_manager.c:148:6:exec_state_user_move	8	static
+../Core/Src/level_2/task_manager.c:161:6:exec_state_clean_up	8	static
+../Core/Src/level_2/task_manager.c:170:6:exec_state_cheat_detected	8	static
+../Core/Src/level_2/task_manager.c:180:6:exec_state_game_end	8	static
+../Core/Src/level_2/task_manager.c:197:5:check_state	4	static

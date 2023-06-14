@@ -31,7 +31,6 @@
 #include "level_2/task_manager.h"
 #include "vars.h"
 
-
 #include "level_3/motor_master.h"
 #include "level_3/servo_controller.h"
 #include "level_3/proximity_sensor.h"
@@ -121,7 +120,6 @@ int main(void)
 	/* TODO: Move to global vars */
 	//uint16_t value_proxy = 0;
 	//int columnDetected = 0;
-
 	//VCNL4010 struct_proxy;
 	TCS3472 struct_rgb;
 
@@ -269,49 +267,55 @@ int main(void)
 		 HAL_Delay(500);
 		 */
 
-		current_state = check_state();
+		current_state_CM4 = check_state();
 
-		switch (current_state)
+		if (current_state_CM4 != previous_state_CM4)
 		{
-		case STATE_INIT:
-			gameplay_loop_CM4(current_state);
-			break;
+			switch (current_state_CM4)
+			{
+			case STATE_INIT:
+				gameplay_loop_CM4(current_state_CM4);
+				previous_state_CM4 = current_state_CM4;
+				break;
 
-		case STATE_IDLE:
-			gameplay_loop_CM4(current_state);
-			break;
+			case STATE_IDLE:
+				gameplay_loop_CM4(current_state_CM4);
+				previous_state_CM4 = current_state_CM4;
+				break;
 
-		case STATE_ROBOT_TURN:
-			gameplay_loop_CM4(current_state);
-			break;
+			case STATE_ROBOT_TURN:
+				gameplay_loop_CM4(current_state_CM4);
+				previous_state_CM4 = current_state_CM4;
+				break;
 
-		case STATE_USER_TURN:
-			gameplay_loop_CM4(current_state);
-			break;
+			case STATE_USER_TURN:
+				send_msg((uint8_t*) "\rWaiting for token INSERTION ...\n\r");
+				gameplay_loop_CM4(current_state_CM4);
+				previous_state_CM4 = current_state_CM4;
+				break;
 
-		case STATE_CLEAN_UP:
-			gameplay_loop_CM4(current_state);
-			break;
+			case STATE_CLEAN_UP:
+				gameplay_loop_CM4(current_state_CM4);
+				previous_state_CM4 = current_state_CM4;
+				break;
 
-		case STATE_CHEAT_DETECTED:
-			gameplay_loop_CM4(current_state);
-			break;
+			case STATE_CHEAT_DETECTED:
+				gameplay_loop_CM4(current_state_CM4);
+				previous_state_CM4 = current_state_CM4;
+				break;
 
-		case STATE_GAME_END:
-			gameplay_loop_CM4(current_state);
-			break;
+			case STATE_GAME_END:
+				gameplay_loop_CM4(current_state_CM4);
+				previous_state_CM4 = current_state_CM4;
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
+
 		}
 
-		separate_tokens(&struct_rgb); 		// colour detecting
-
-		if (checkcoin() != 9)
-		{
-			update_board_mem();
-		}
-		HAL_Delay(1500);
+		//separate_tokens(&struct_rgb); 		// colour detecting
 
 	}
 	/* USER CODE END 3 */
@@ -333,7 +337,7 @@ void Error_Handler(void)
 
 	reset_Enable_Power();
 
-	send_msg((uint8_t*)"\rERROR, resetting\n\r");
+	send_msg((uint8_t*) "\rERROR, resetting\n\r");
 
 	NVIC_SystemReset();
 	while (1)

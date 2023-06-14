@@ -26,28 +26,28 @@ void HAL_HSEM_FreeCallback(uint32_t SemMask)
 	switch (SemMask)
 	{
 	case HSEM_CM4_INIT_MASK:
-		state_flag = STATE_INIT; 			// change state according to command from CM7
-		HAL_HSEM_ActivateNotification(HSEM_CM4_INIT_MASK); 	// reactivate notification
+		current_state_CM4 = STATE_INIT; // change state according to command from CM7
+		HAL_HSEM_ActivateNotification(HSEM_CM4_INIT_MASK); // reactivate notification
 		break;
 
 	case HSEM_ROBOT_TURN_MASK:
-		state_flag = STATE_ROBOT_TURN; 			// change state according to command from CM7
+		current_state_CM4 = STATE_ROBOT_TURN; // change state according to command from CM7
 		HAL_HSEM_ActivateNotification(HSEM_ROBOT_TURN_MASK); // reactivate notification
 		break;
 
 	case HSEM_USER_TURN_MASK:
 		//humanMove = 0;
-		state_flag = STATE_USER_TURN; 			// change state according to command from CM7
+		current_state_CM4 = STATE_USER_TURN; // change state according to command from CM7
 		HAL_HSEM_ActivateNotification(HSEM_USER_TURN_MASK); // reactivate notification
 		break;
 
 	case HSEM_GAME_END_MASK:
-		state_flag = STATE_GAME_END; 			// change state according to command from CM7
+		current_state_CM4 = STATE_GAME_END; // change state according to command from CM7
 		HAL_HSEM_ActivateNotification(HSEM_GAME_END_MASK); // reactivate notification
 		break;
 
 	case HSEM_CLEAN_UP_MASK:
-		state_flag = STATE_CLEAN_UP; 			// change state according to command from CM7
+		current_state_CM4 = STATE_CLEAN_UP; // change state according to command from CM7
 		HAL_HSEM_ActivateNotification(HSEM_CLEAN_UP_MASK); // reactivate notification
 		break;
 
@@ -97,15 +97,18 @@ void gameplay_loop_CM4(int state)
 
 void exec_state_init(void)
 {
+	send_msg((uint8_t*) "\r🟢🟢🟢 Executing STATE INIT 🟢🟢🟢\n\r");
+
 	// initialize necessary signals
 	// home procedure
 	open_all_columns();
 
-	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); // tell CM7 that CM4 is done with task
+	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 that CM4 is done with task
 }
 
 void exec_state_idle(void)
 {
+	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE IDLE ⚡⚡⚡\n\r");
 	/* Do nothing
 	 A perfect place to check for current score and determine if the game ends
 	 or check for a cheat move */
@@ -113,50 +116,85 @@ void exec_state_idle(void)
 
 void exec_state_robot_move(void)
 {
-	// access "coulmn to be played at" from memory
+	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE ROBOT TURN ⚡⚡⚡\n\r");
+	// access "column to be played at" from memory
 	// move to that position
-	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); // tell CM7 that CM4 is done
+
+	send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+			X_POS_STACK_3);
+	send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+			Z_POS_STORE_TOP);
+	move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3
+	HAL_Delay(1500);
+	set_Rotate_Servo(ROTATE_TO_STORE); 				// rotates end-effector down
+	HAL_Delay(500);
+
+	move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6); 	// moves down to place token
+	HAL_Delay(1500);
+
+	move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3 (goes back  up safely)
+	HAL_Delay(500);
+
+	send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+			X_POS_COL_1);
+	send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+			Z_POS_TOP);
+	move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP); // Moving above col 1 and going down to drop token
+	HAL_Delay(1000);
+
+	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 that CM4 is done
 }
 
 void exec_state_user_move(void)
 {
-	// write to mem when user drops a token
-	if (1)
+	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE USER MOVE ⚡⚡⚡\n\r");
+	while (checkcoin() != -1) // check until a token is dropped
 	{
-		// possibly here include the userDetector (lightgate, PD+IR)
-		HSEM_TAKE_RELEASE(HSEM_CM4_DONE);
+		if (checkcoin() != 9)
+		{
+			update_board_mem();
+			HSEM_TAKE_RELEASE(HSEM_CM4_DONE); // tell CM7 that CM4 is done with task
+		}
 	}
 }
 
 void exec_state_clean_up(void)
 {
+	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE CLEAN-UP ⚡⚡⚡\n\r");
+
 	open_all_columns();
 
-	HSEM_TAKE_RELEASE(HSEM_CM4_DONE);
+	HSEM_TAKE_RELEASE(HSEM_CM4_DONE);	// tell CM7 that CM4 is done with task
 }
 
 void exec_state_cheat_detected(void)
 {
+	send_msg((uint8_t*) "\r⚠⚠⚠ CHEATER DETECTED ⚠⚠⚠\n\r");
+
 	// we arrive here from an interrupt from Lightgate (?)
 	// Send task that triggers Cheat Detected in CM7
+
+	HSEM_TAKE_RELEASE(HSEM_CM4_DONE);	// tell CM7 that CM4 is done with task
 }
 
 void exec_state_game_end(void)
 {
+	send_msg((uint8_t*) "\r🛑🛑🛑 Executing STATE CLEAN-UP 🛑🛑🛑\n\r");
+
 	// display appropriate msgs
-	HSEM_TAKE_RELEASE(HSEM_CM4_DONE);
+	HSEM_TAKE_RELEASE(HSEM_CM4_DONE);	// tell CM7 that CM4 is done with task
 }
 
 /* Returns:
-		 STATE_INIT							0
-		 STATE_IDLE							1
-		 STATE_ROBOT_TURN					2
-		 STATE_HUMAN_TURN					3
-		 STATE_CLEAN_UP						4
-		 STATE_CHEAT_DETECTED				5
-		 STATE_GAME_END						6
+ STATE_INIT							0
+ STATE_IDLE							1
+ STATE_ROBOT_TURN					2
+ STATE_HUMAN_TURN					3
+ STATE_CLEAN_UP						4
+ STATE_CHEAT_DETECTED				5
+ STATE_GAME_END						6
  */
 int check_state(void)
 {
-	return state_flag;
+	return current_state_CM4;
 }

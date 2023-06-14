@@ -1,3 +1,13 @@
-../Core/Src/level_2/task_generator.c:25:6:initTaskGenerator	24	static
-../Core/Src/level_2/task_generator.c:42:6:taskToDo	16	static
-../Core/Src/level_2/task_generator.c:78:6:HAL_HSEM_FreeCallback	16	static
+../Core/Src/level_2/task_generator.c:30:6:initTaskGenerator	8	static
+../Core/Src/level_2/task_generator.c:43:6:taskToDo	16	static
+../Core/Src/level_2/task_generator.c:79:6:HAL_HSEM_FreeCallback	16	static
+../Core/Src/level_2/task_generator.c:107:6:gameplay_loop_CM7	16	static
+../Core/Src/level_2/task_generator.c:150:6:exec_state_init	8	static
+../Core/Src/level_2/task_generator.c:155:6:exec_state_idle	4	static
+../Core/Src/level_2/task_generator.c:169:6:exec_state_robot_move	8	static
+../Core/Src/level_2/task_generator.c:174:6:exec_state_user_move	8	static
+../Core/Src/level_2/task_generator.c:179:6:exec_state_clean_up	8	static
+../Core/Src/level_2/task_generator.c:184:6:exec_state_cheat_detected	4	static
+../Core/Src/level_2/task_generator.c:189:6:exec_state_game_end	8	static
+../Core/Src/level_2/task_generator.c:194:6:exec_state_start_game	4	static
+../Core/Src/level_2/task_generator.c:211:5:check_state	4	static

@@ -21,21 +21,22 @@ uint8_t *subRobotM;
 uint8_t *subHumanM;
 uint8_t *st;
 uint8_t *data;
+int current_state_CM7 = STATE_INIT;
+int previous_state_CM7 = -1;
+bool whos_turn = USER;
+bool been_HSEM = 0;
 
-void initTaskGenerator(uint8_t *state, uint8_t *substateRM, uint8_t *substateHM,
-		uint8_t *dataIn)
+
+void initTaskGenerator()
 /* initTaskGenerator: Initializes the states and variables.
  *
  * Activates HSEM notifications to look out for from CM4. Initializes the shared buffer.
  */
 {
-	subRobotM = substateRM;
-	subHumanM = substateHM;
-	st = state;
-	data = dataIn; // Rx_data
+
 
 	HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK);
-	HAL_HSEM_ActivateNotification(HSEM_CHEAT);
+	HAL_HSEM_ActivateNotification(HSEM_CHEAT_MASK);
 	memset(SharedBuf, 0, 10); // init shared buffer
 }
 
@@ -78,19 +79,136 @@ void taskToDo(uint8_t task)
 void HAL_HSEM_FreeCallback(uint32_t SemMask)
 /* Function is called automatically when a semaphore is released.
  * This function takes care of HSEM's released from Cortex-M4.
+ *
+ * This progresses the FSM of Cortex-M7,
+ * whenever a HSEM is released from CM4
  */
 {
+	been_HSEM = 1;
 	if (SemMask == HSEM_CM4_DONE_MASK) 	// Is CM4 done with it's current task ?
 	{
 		// chose next state based on current state
-		if (*st == STATE_INIT)
+		if (current_state_CM7 == STATE_INIT)
 		{
-			*st = STATE_INIT;
+			current_state_CM7 = STATE_START_GAME;
 		}
-		if (*st == STATE_ROBOT_MOVE)
+		if (current_state_CM7 == STATE_ROBOT_TURN)
 		{
-			*subRobotM = SUBSTATE_RM_CM4_DONE;
+			current_state_CM7 = STATE_IDLE;
+		}
+		if (current_state_CM7 == STATE_USER_TURN)
+		{
+			current_state_CM7 = STATE_IDLE;
 		}
 		HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
 	}
+}
+
+void gameplay_loop_CM7(int state)
+// gameplay_loop_CM7: The main logic of Cortex-M4
+{
+	switch (state)
+	{
+	case STATE_INIT:
+		exec_state_init();
+		break;
+
+	case STATE_IDLE:
+		exec_state_idle();
+		break;
+
+	case STATE_ROBOT_TURN:
+		exec_state_robot_move();
+		break;
+
+	case STATE_USER_TURN:
+		exec_state_user_move();
+		break;
+
+	case STATE_CLEAN_UP:
+		exec_state_clean_up();
+		break;
+
+	case STATE_CHEAT_DETECTED:
+		exec_state_cheat_detected();
+		break;
+
+	case STATE_GAME_END:
+		exec_state_game_end();
+		break;
+
+	case STATE_START_GAME:
+		exec_state_start_game();
+		break;
+
+	default: // im not sure what needs to happen here yet
+		// maybe my default should be idle, maybe not
+		break;
+	}
+}
+
+void exec_state_init(void)
+{
+	HSEM_TAKE_RELEASE(HSEM_CM4_INIT); // tell CM4 to initialise
+}
+
+void exec_state_idle(void)
+{
+	if (whos_turn == USER)
+	{
+		whos_turn = !whos_turn; // robot's turn
+		current_state_CM7 = STATE_ROBOT_TURN; // go to robot move state
+	}
+	else // robot's turn
+	{
+		whos_turn = !whos_turn;	// user's turn
+		current_state_CM7 = STATE_USER_TURN; // go to user move state
+	}
+}
+
+void exec_state_robot_move(void)
+{
+	HSEM_TAKE_RELEASE(HSEM_ROBOT_TURN); // tell CM4 to execute robot move
+}
+
+void exec_state_user_move(void)
+{
+	HSEM_TAKE_RELEASE(HSEM_USER_TURN);// tell CM4 that it can validate user inputs
+}
+
+void exec_state_clean_up(void)
+{
+	HSEM_TAKE_RELEASE(HSEM_CLEAN_UP);	// tell CM4 to prepare for next game
+}
+
+void exec_state_cheat_detected(void)
+{
+
+}
+
+void exec_state_game_end(void)
+{
+	HSEM_TAKE_RELEASE(HSEM_GAME_END);// tell CM4 to display user msgs for game end
+}
+
+void exec_state_start_game(void)
+{
+	// TODO: prepare vars.c and others ?
+
+	current_state_CM7 = STATE_USER_TURN; // go to next state
+	whos_turn = USER;
+}
+
+/* Returns:
+ STATE_INIT							0
+ STATE_IDLE							1
+ STATE_ROBOT_TURN					2
+ STATE_HUMAN_TURN					3
+ STATE_CLEAN_UP						4
+ STATE_CHEAT_DETECTED				5
+ STATE_GAME_END						6
+ */
+int check_state(void)
+{
+	return current_state_CM7;
 }
