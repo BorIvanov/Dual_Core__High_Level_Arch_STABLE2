@@ -21,10 +21,13 @@
 #include "peripheral_devices/usart.h"
 #include "D:\University\Fontys\Year5\Internship\STM32H_Example Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h"
 #include "level_2/board_opener.h"
+#include "level_2/user_detector.h"
+
 
 /* VARIABLES */
 
 /* FUNCTIONS */
+void HAL_HSEM_FreeCallback(uint32_t SemMask);
 void activate_HSEM_Notifications(void);
 void gameplay_loop_CM4(int state);
 void exec_state_init(void);

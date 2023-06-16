@@ -266,7 +266,7 @@ int main(void)
 		 move_to_X_and_Z(X_POS_FLIPPER, Z_POS_FLIPPER_BASE); // go up
 		 HAL_Delay(500);
 		 */
-
+		// HAL_Delay(1);
 		current_state_CM4 = check_state();
 
 		if (current_state_CM4 != previous_state_CM4)
@@ -274,11 +274,13 @@ int main(void)
 			switch (current_state_CM4)
 			{
 			case STATE_INIT:
+				send_msg((uint8_t*) "\r⇛⇛⇛ Entering INITIALISATION STATE ⇚⇚⇚\n\r");
 				gameplay_loop_CM4(current_state_CM4);
 				previous_state_CM4 = current_state_CM4;
 				break;
 
 			case STATE_IDLE:
+				send_msg((uint8_t*) "\r⇛⇛⇛ Entering IDLE STATE ⇚⇚⇚\n\r");
 				gameplay_loop_CM4(current_state_CM4);
 				previous_state_CM4 = current_state_CM4;
 				break;
@@ -289,22 +291,26 @@ int main(void)
 				break;
 
 			case STATE_USER_TURN:
+				send_msg((uint8_t*) "\r⇛⇛⇛ It is the USER's TURN ⇚⇚⇚\n\r");
 				send_msg((uint8_t*) "\rWaiting for token INSERTION ...\n\r");
 				gameplay_loop_CM4(current_state_CM4);
 				previous_state_CM4 = current_state_CM4;
 				break;
 
 			case STATE_CLEAN_UP:
+				send_msg((uint8_t*) "\r⇛⇛⇛ Starting to clean the board⇚⇚⇚\n\r");
 				gameplay_loop_CM4(current_state_CM4);
 				previous_state_CM4 = current_state_CM4;
 				break;
 
 			case STATE_CHEAT_DETECTED:
+				send_msg((uint8_t*) "\r⇛⇛⇛Entering CHEATER DETECTED STATE⇚⇚⇚\n\r");
 				gameplay_loop_CM4(current_state_CM4);
 				previous_state_CM4 = current_state_CM4;
 				break;
 
 			case STATE_GAME_END:
+				send_msg((uint8_t*) "\r⇛⇛⇛The game has finished!⇚⇚⇚\n\r");
 				gameplay_loop_CM4(current_state_CM4);
 				previous_state_CM4 = current_state_CM4;
 				break;

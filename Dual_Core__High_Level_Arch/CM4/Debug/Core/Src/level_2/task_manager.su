@@ -5,7 +5,7 @@
 ../Core/Src/level_2/task_manager.c:109:6:exec_state_idle	8	static
 ../Core/Src/level_2/task_manager.c:117:6:exec_state_robot_move	8	static
 ../Core/Src/level_2/task_manager.c:148:6:exec_state_user_move	8	static
-../Core/Src/level_2/task_manager.c:161:6:exec_state_clean_up	8	static
-../Core/Src/level_2/task_manager.c:170:6:exec_state_cheat_detected	8	static
-../Core/Src/level_2/task_manager.c:180:6:exec_state_game_end	8	static
-../Core/Src/level_2/task_manager.c:197:5:check_state	4	static
+../Core/Src/level_2/task_manager.c:162:6:exec_state_clean_up	8	static
+../Core/Src/level_2/task_manager.c:171:6:exec_state_cheat_detected	8	static
+../Core/Src/level_2/task_manager.c:181:6:exec_state_game_end	8	static
+../Core/Src/level_2/task_manager.c:198:5:check_state	4	static

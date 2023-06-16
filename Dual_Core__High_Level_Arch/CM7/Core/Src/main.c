@@ -160,7 +160,6 @@ int main(void)
 
 			case STATE_IDLE:
 				gameplay_loop_CM7(current_state_CM7);
-				previous_state_CM7 = current_state_CM7;
 				been_HSEM = 0; // not sure about placement
 				break;
 

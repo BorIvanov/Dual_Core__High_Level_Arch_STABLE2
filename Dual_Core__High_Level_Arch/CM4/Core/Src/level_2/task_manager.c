@@ -103,7 +103,7 @@ void exec_state_init(void)
 	// home procedure
 	open_all_columns();
 
-	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 that CM4 is done with task
+	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 6that CM4 is done with task
 }
 
 void exec_state_idle(void)
@@ -121,9 +121,9 @@ void exec_state_robot_move(void)
 	// move to that position
 
 	send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
-			X_POS_STACK_3);
+	X_POS_STACK_3);
 	send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
-			Z_POS_STORE_TOP);
+	Z_POS_STORE_TOP);
 	move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3
 	HAL_Delay(1500);
 	set_Rotate_Servo(ROTATE_TO_STORE); 				// rotates end-effector down
@@ -136,9 +136,9 @@ void exec_state_robot_move(void)
 	HAL_Delay(500);
 
 	send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
-			X_POS_COL_1);
+	X_POS_COL_1);
 	send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
-			Z_POS_TOP);
+	Z_POS_TOP);
 	move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP); // Moving above col 1 and going down to drop token
 	HAL_Delay(1000);
 
@@ -148,12 +148,13 @@ void exec_state_robot_move(void)
 void exec_state_user_move(void)
 {
 	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE USER MOVE ⚡⚡⚡\n\r");
-	while (checkcoin() != -1) // check until a token is dropped
+	while (1)
 	{
-		if (checkcoin() != 9)
+		if (checkcoin() != 9 && checkcoin() != -1)
 		{
 			update_board_mem();
 			HSEM_TAKE_RELEASE(HSEM_CM4_DONE); // tell CM7 that CM4 is done with task
+			break;
 		}
 	}
 }

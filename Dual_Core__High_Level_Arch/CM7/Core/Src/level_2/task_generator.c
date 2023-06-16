@@ -26,7 +26,6 @@ int previous_state_CM7 = -1;
 bool whos_turn = USER;
 bool been_HSEM = 0;
 
-
 void initTaskGenerator()
 /* initTaskGenerator: Initializes the states and variables.
  *
@@ -34,10 +33,8 @@ void initTaskGenerator()
  */
 {
 
-
 	HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK);
 	HAL_HSEM_ActivateNotification(HSEM_CHEAT_MASK);
-	memset(SharedBuf, 0, 10); // init shared buffer
 }
 
 void taskToDo(uint8_t task)
@@ -85,22 +82,41 @@ void HAL_HSEM_FreeCallback(uint32_t SemMask)
  */
 {
 	been_HSEM = 1;
-	if (SemMask == HSEM_CM4_DONE_MASK) 	// Is CM4 done with it's current task ?
+
+	switch (SemMask)
 	{
-		// chose next state based on current state
-		if (current_state_CM7 == STATE_INIT)
+	case HSEM_CHEAT_MASK: // takes care of Cheater Semaphore
+
+		HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
+		break;
+
+	case HSEM_CM4_DONE_MASK: // takes care of all cases when CM4 is done
+		switch (current_state_CM7)
 		{
+		case STATE_INIT: // entered whenever CM4 is done initialising
 			current_state_CM7 = STATE_START_GAME;
-		}
-		if (current_state_CM7 == STATE_ROBOT_TURN)
-		{
+			HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
+			break;
+
+		case STATE_ROBOT_TURN: // entered whenever CM4 is done with robot move
 			current_state_CM7 = STATE_IDLE;
-		}
-		if (current_state_CM7 == STATE_USER_TURN)
-		{
+			HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
+			break;
+
+		case STATE_USER_TURN: // entered whenever CM4 is done with user move
 			current_state_CM7 = STATE_IDLE;
+			HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
+			break;
+
+		default:
+			HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
+			break;
 		}
 		HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
+		break;
+
+	default:
+		break;
 	}
 }
 
@@ -150,11 +166,14 @@ void gameplay_loop_CM7(int state)
 void exec_state_init(void)
 {
 	HSEM_TAKE_RELEASE(HSEM_CM4_INIT); // tell CM4 to initialise
+	HAL_Delay(5);
 }
 
 void exec_state_idle(void)
 {
-	if (whos_turn == USER)
+	/* A function to toggle between both players
+	 * depending on whoever played last */
+	if (whos_turn == USER) // user's move
 	{
 		whos_turn = !whos_turn; // robot's turn
 		current_state_CM7 = STATE_ROBOT_TURN; // go to robot move state
@@ -173,7 +192,7 @@ void exec_state_robot_move(void)
 
 void exec_state_user_move(void)
 {
-	HSEM_TAKE_RELEASE(HSEM_USER_TURN);// tell CM4 that it can validate user inputs
+	HSEM_TAKE_RELEASE(HSEM_USER_TURN); // tell CM4 that it can validate user inputs
 }
 
 void exec_state_clean_up(void)

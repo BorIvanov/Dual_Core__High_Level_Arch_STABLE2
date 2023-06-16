@@ -44,7 +44,10 @@ Core/Src/level_2/task_manager.o: ../Core/Src/level_2/task_manager.c \
  ../Core/Inc/peripheral_devices/tim.h ../Core/Inc/level_3/motor_master.h \
  ../Core/Inc/peripheral_devices/usart.h ../Core/Inc/level_3/motor_z.h \
  D:\University\Fontys\Year5\Internship\STM32H_Example\ Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h \
- ../Core/Inc/level_2/board_opener.h
+ ../Core/Inc/level_2/board_opener.h ../Core/Inc/level_2/user_detector.h \
+ ../Core/Inc/level_2/init_CM4.h ../Core/Inc/peripheral_devices/adc.h \
+ ../Core/Inc/peripheral_devices/usart.h \
+ ../Core/Inc/peripheral_devices/i2c.h
 ../Core/Inc/level_2/task_manager.h:
 ../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
@@ -96,3 +99,8 @@ Core/Src/level_2/task_manager.o: ../Core/Src/level_2/task_manager.c \
 ../Core/Inc/level_3/motor_z.h:
 D:\University\Fontys\Year5\Internship\STM32H_Example\ Codes\CURRENT\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch_STABLE\Dual_Core__High_Level_Arch\Common\Inc\common.h:
 ../Core/Inc/level_2/board_opener.h:
+../Core/Inc/level_2/user_detector.h:
+../Core/Inc/level_2/init_CM4.h:
+../Core/Inc/peripheral_devices/adc.h:
+../Core/Inc/peripheral_devices/usart.h:
+../Core/Inc/peripheral_devices/i2c.h:
