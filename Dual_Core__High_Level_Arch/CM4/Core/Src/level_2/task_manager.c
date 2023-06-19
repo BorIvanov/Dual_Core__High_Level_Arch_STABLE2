@@ -6,6 +6,8 @@
  */
 #include "level_2/task_manager.h"
 
+int column_dropped;
+
 void activate_HSEM_Notifications(void)
 /* activate_HSEM_Notifications: Called in the beginning of the
  * program to activate notifications to look out for (ones arriving from CM7) */
@@ -123,79 +125,43 @@ void exec_state_robot_move(void)
 
 	while (continuous_robot_check)
 	{
-		for (int i = 0; i < 7; i++)
-		{
-			if (mem_Board[i] != mem_Board_old[i])
-			{
-				played_column = i;
-			}
-		}
 
-		switch (played_column + 1)
-		{
-		case 1:
-			send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
-			X_POS_STACK_3);
-			send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
-			Z_POS_STORE_TOP);
-			move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);// moves to above storage number 3
-			HAL_Delay(1000);
-			set_Rotate_Servo(ROTATE_TO_STORE); 		// rotates end-effector down
-			HAL_Delay(500);
-			send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
-			X_POS_STACK_3);
-			send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
-			Z_POS_STORE_6);
-			move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6); // moves down to place token
-			HAL_Delay(1000);
-			send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
-			X_POS_STACK_3);
-			send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
-			Z_POS_STORE_TOP);
-			move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3 (goes back  up safely)
-			HAL_Delay(500);
+		send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+		X_POS_STACK_3);
+		send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+		Z_POS_STORE_TOP);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);// moves to above storage number 3
+		HAL_Delay(1000);
+		set_Rotate_Servo(ROTATE_TO_STORE); 		// rotates end-effector down
+		HAL_Delay(500);
+		send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+		X_POS_STACK_3);
+		send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+		Z_POS_STORE_6);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6); // moves down to place token
+		HAL_Delay(1000);
+		send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+		X_POS_STACK_3);
+		send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+		Z_POS_STORE_TOP);
+		move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3 (goes back  up safely)
+		HAL_Delay(500);
 
-			send_msg((uint8_t*) "\rMoving above board, to drop token!\n\r");
-			move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
-			HAL_Delay(1000);
-			set_Rotate_Servo(ROTATE_TO_DROP); // rotates end-effector to dropping stance
-			send_msg((uint8_t*) "\rDropping token!\n\r");
-			move_to_X_and_Z(X_POS_COL_1, Z_POS_DROP);
-			HAL_Delay(500);
-			send_msg(
-					(uint8_t*) "\rMoving above board, to a safe location!\n\r");
-			move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
-			HAL_Delay(1000);
-			set_Rotate_Servo(ROTATE_NEUTRAL); // rotates end-effector to neutral stance
+		send_msg((uint8_t*) "\rMoving above board, to drop token!\n\r");
+		move_to_X_and_Z(x_pos_array[column_dropped], Z_POS_TOP);
+		HAL_Delay(1000);
+		set_Rotate_Servo(ROTATE_TO_DROP); // rotates end-effector to dropping stance
+		send_msg((uint8_t*) "\rDropping token!\n\r");
+		move_to_X_and_Z(x_pos_array[column_dropped], Z_POS_DROP);
+		HAL_Delay(500);
+		send_msg((uint8_t*) "\rMoving above board, to a safe location!\n\r");
+		move_to_X_and_Z(x_pos_array[column_dropped], Z_POS_TOP);
+		HAL_Delay(1000);
+		set_Rotate_Servo(ROTATE_NEUTRAL); // rotates end-effector to neutral stance
 
-			continuous_robot_check = 0;
-			played_column = -2; // any number would work, just to make sure it doesn't run through for loop
-			break;
+		continuous_robot_check = 0;
+		//played_column = -2; // any number would work, just to make sure it doesn't run through for loop
 
-		case 2:
-			break;
-
-		case 3:
-			break;
-
-		case 4:
-			break;
-
-		case 5:
-			break;
-
-		case 6:
-			break;
-
-		case 7:
-			break;
-
-		case 9:
-			break;
-
-		default:
-			break;
-		}
 	}
 
 	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 that CM4 is done
@@ -208,6 +174,7 @@ void exec_state_user_move(void)
 	{
 		if (checkcoin() != 9 && checkcoin() != -1)
 		{
+			column_dropped = checkcoin();
 			update_board_mem();
 			HSEM_TAKE_RELEASE(HSEM_CM4_DONE); // tell CM7 that CM4 is done with task
 			break;

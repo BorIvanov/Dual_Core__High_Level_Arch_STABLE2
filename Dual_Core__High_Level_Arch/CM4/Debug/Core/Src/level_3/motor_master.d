@@ -40,7 +40,7 @@ Core/Src/level_3/motor_master.o: ../Core/Src/level_3/motor_master.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
  ../Core/Inc/peripheral_devices/gpio.h \
  ../Core/Inc/peripheral_devices/tim.h ../Core/Inc/vars.h \
- ../Core/Inc/level_3/motor_master.h \
+ ../Core/Inc/level_3/motor_master.h ../Core/Inc/level_3/motor_master.h \
  ../Core/Inc/peripheral_devices/usart.h ../Core/Inc/level_3/motor_z.h
 ../Core/Inc/level_3/motor_master.h:
 ../Core/Inc/level_3/motor_x.h:
@@ -86,6 +86,7 @@ Core/Src/level_3/motor_master.o: ../Core/Src/level_3/motor_master.c \
 ../Core/Inc/peripheral_devices/gpio.h:
 ../Core/Inc/peripheral_devices/tim.h:
 ../Core/Inc/vars.h:
+../Core/Inc/level_3/motor_master.h:
 ../Core/Inc/level_3/motor_master.h:
 ../Core/Inc/peripheral_devices/usart.h:
 ../Core/Inc/level_3/motor_z.h:

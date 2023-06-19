@@ -20,7 +20,7 @@ int current_state_CM4 = STATE_IDLE;
 int previous_state_CM4 = -1;
 bool continuous_robot_check = 1;
 int played_column = 0;
-
+double x_pos_array[] = { X_POS_COL_1, X_POS_COL_2, X_POS_COL_3, X_POS_COL_4, X_POS_COL_5, X_POS_COL_6, X_POS_COL_7 };
 
 void initGlobalVars()
 {

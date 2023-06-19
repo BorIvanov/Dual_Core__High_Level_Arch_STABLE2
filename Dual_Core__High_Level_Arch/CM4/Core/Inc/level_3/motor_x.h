@@ -35,10 +35,12 @@
 #define X_POS_COL_6 27.6		// column 6 position
 #define X_POS_COL_7 32.9		// column 7 position
 
+
 // left, middle, right store positions
 #define X_POS_STACK_1 1.5		// position for store location 1
 #define X_POS_STACK_2 7.5		// position for store location 2
 #define X_POS_STACK_3 12.5		// position for store location 3
+
 
 /* FUNCTIONS */
 void initMotorX();

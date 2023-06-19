@@ -9,6 +9,7 @@
 #define INC_VARS_H_
 
 #include <stdbool.h>
+#include "level_3/motor_master.h"
 
 /* Defines */
 #define NumberOfStorages 					3
@@ -41,6 +42,8 @@ extern int current_state_CM4;
 extern int previous_state_CM4;
 extern int played_column;
 extern bool continuous_robot_check;
+extern double x_pos_array[7];
+
 
 
 
