@@ -34,62 +34,62 @@ void open_column_1(void)
 {
 	send_msg((uint8_t*) "\rOpening Column 1\n\r");
 	set_Slide_Servo(OPEN_COL_1);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void open_column_2(void)
 {
 	send_msg((uint8_t*) "\rOpening Column 2\n\r");
 	set_Slide_Servo(OPEN_COL_2);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void open_column_3(void)
 {
 	send_msg((uint8_t*) "\rOpening Column 3\n\r");
 	set_Slide_Servo(OPEN_COL_3);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void open_column_4(void)
 {
 	send_msg((uint8_t*) "\rOpening Column 4\n\r");
 	set_Slide_Servo(OPEN_COL_4);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void open_column_5(void)
 {
 	send_msg((uint8_t*) "\rOpening Column 5\n\r");
 	set_Slide_Servo(OPEN_COL_5);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void open_column_6(void)
 {
 	send_msg((uint8_t*) "\rOpening Column 6\n\r");
 	set_Slide_Servo(OPEN_COL_6);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void open_column_7(void)
 {
 	send_msg((uint8_t*) "\rOpening Column 7\n\r");
 	set_Slide_Servo(OPEN_COL_7);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void open_fully(void)
 {
 	send_msg((uint8_t*) "\rOpening board fully\n\r");
 	set_Slide_Servo(SLIDE_OPEN);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 
 void close(void)
 {
 	send_msg((uint8_t*) "\rClosing board fully\n\r");
 	set_Slide_Servo(SLIDE_CLOSED);
-	HAL_Delay(1000);
+	HAL_Delay(OPENER_DELAY);
 }
 

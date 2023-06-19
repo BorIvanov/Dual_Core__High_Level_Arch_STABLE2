@@ -286,6 +286,7 @@ int main(void)
 				break;
 
 			case STATE_ROBOT_TURN:
+				send_msg((uint8_t*) "\r⇛⇛⇛ It is the ROBOT's TURN ⇚⇚⇚\n\r");
 				gameplay_loop_CM4(current_state_CM4);
 				previous_state_CM4 = current_state_CM4;
 				break;

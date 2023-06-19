@@ -23,8 +23,8 @@ uint8_t *st;
 uint8_t *data;
 int current_state_CM7 = STATE_INIT;
 int previous_state_CM7 = -1;
-bool whos_turn = USER;
-bool been_HSEM = 0;
+bool whos_turn = USER; // variable to toggle turns
+bool been_HSEM = 0; // variable that indicates if the program has been recently in an HSEM callback
 
 void initTaskGenerator()
 /* initTaskGenerator: Initializes the states and variables.
@@ -99,12 +99,12 @@ void HAL_HSEM_FreeCallback(uint32_t SemMask)
 			break;
 
 		case STATE_ROBOT_TURN: // entered whenever CM4 is done with robot move
-			current_state_CM7 = STATE_IDLE;
+			current_state_CM7 = STATE_USER_TURN;
 			HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
 			break;
 
 		case STATE_USER_TURN: // entered whenever CM4 is done with user move
-			current_state_CM7 = STATE_IDLE;
+			current_state_CM7 = STATE_ROBOT_TURN;
 			HAL_HSEM_ActivateNotification(HSEM_CM4_DONE_MASK); // reactivate notification
 			break;
 
@@ -165,14 +165,17 @@ void gameplay_loop_CM7(int state)
 
 void exec_state_init(void)
 {
+	HAL_Delay(100);
 	HSEM_TAKE_RELEASE(HSEM_CM4_INIT); // tell CM4 to initialise
-	HAL_Delay(5);
+	HAL_Delay(100);
 }
 
 void exec_state_idle(void)
 {
 	/* A function to toggle between both players
-	 * depending on whoever played last */
+		 * depending on whoever played last */
+	/*
+	HAL_Delay(100);
 	if (whos_turn == USER) // user's move
 	{
 		whos_turn = !whos_turn; // robot's turn
@@ -183,15 +186,19 @@ void exec_state_idle(void)
 		whos_turn = !whos_turn;	// user's turn
 		current_state_CM7 = STATE_USER_TURN; // go to user move state
 	}
+	*/
 }
 
 void exec_state_robot_move(void)
 {
+	HAL_Delay(100);
 	HSEM_TAKE_RELEASE(HSEM_ROBOT_TURN); // tell CM4 to execute robot move
+	HAL_Delay(100);
 }
 
 void exec_state_user_move(void)
 {
+	HAL_Delay(100);
 	HSEM_TAKE_RELEASE(HSEM_USER_TURN); // tell CM4 that it can validate user inputs
 }
 
@@ -213,6 +220,7 @@ void exec_state_game_end(void)
 void exec_state_start_game(void)
 {
 	// TODO: prepare vars.c and others ?
+	HAL_Delay(100);
 
 	current_state_CM7 = STATE_USER_TURN; // go to next state
 	whos_turn = USER;

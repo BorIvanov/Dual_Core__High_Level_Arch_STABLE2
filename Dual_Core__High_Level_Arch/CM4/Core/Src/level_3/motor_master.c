@@ -62,10 +62,10 @@ uint8_t HomeMotors(uint8_t homeX, uint8_t homeZ)
  * and run it.
  *
  * TODO: All sequences could be moved to function/s
- * TODO: Uncomment sections bellow to see better
+ * TODO: Uncomment sections bellow to visually see better
  */
 
-// Fully working set up to get the arms to the top
+// Fully working set up to get the arm to the top
 // and simulate dropping down a token in each column
 /*
  set_Rotate_Servo(ROTATE_NEUTRAL);

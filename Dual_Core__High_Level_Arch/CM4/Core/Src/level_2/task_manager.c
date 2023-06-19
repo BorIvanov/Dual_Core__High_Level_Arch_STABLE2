@@ -97,17 +97,17 @@ void gameplay_loop_CM4(int state)
 
 void exec_state_init(void)
 {
-	send_msg((uint8_t*) "\r🟢🟢🟢 Executing STATE INIT 🟢🟢🟢\n\r");
+	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE INIT ⚡⚡⚡\n\r");
 
 	// initialize necessary signals
 	// home procedure
 	open_all_columns();
-
-	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 6that CM4 is done with task
+	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 that CM4 is done with task
 }
 
 void exec_state_idle(void)
 {
+	HAL_Delay(200);
 	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE IDLE ⚡⚡⚡\n\r");
 	/* Do nothing
 	 A perfect place to check for current score and determine if the game ends
@@ -117,30 +117,86 @@ void exec_state_idle(void)
 void exec_state_robot_move(void)
 {
 	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE ROBOT TURN ⚡⚡⚡\n\r");
+	continuous_robot_check = 1;
 	// access "column to be played at" from memory
 	// move to that position
 
-	send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
-	X_POS_STACK_3);
-	send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
-	Z_POS_STORE_TOP);
-	move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3
-	HAL_Delay(1500);
-	set_Rotate_Servo(ROTATE_TO_STORE); 				// rotates end-effector down
-	HAL_Delay(500);
+	while (continuous_robot_check)
+	{
+		for (int i = 0; i < 7; i++)
+		{
+			if (mem_Board[i] != mem_Board_old[i])
+			{
+				played_column = i;
+			}
+		}
 
-	move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6); 	// moves down to place token
-	HAL_Delay(1500);
+		switch (played_column + 1)
+		{
+		case 1:
+			send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+			X_POS_STACK_3);
+			send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+			Z_POS_STORE_TOP);
+			move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP);// moves to above storage number 3
+			HAL_Delay(1000);
+			set_Rotate_Servo(ROTATE_TO_STORE); 		// rotates end-effector down
+			HAL_Delay(500);
+			send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+			X_POS_STACK_3);
+			send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+			Z_POS_STORE_6);
+			move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_6); // moves down to place token
+			HAL_Delay(1000);
+			send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
+			X_POS_STACK_3);
+			send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
+			Z_POS_STORE_TOP);
+			move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3 (goes back  up safely)
+			HAL_Delay(500);
 
-	move_to_X_and_Z(X_POS_STACK_3, Z_POS_STORE_TOP); // moves to above storage number 3 (goes back  up safely)
-	HAL_Delay(500);
+			send_msg((uint8_t*) "\rMoving above board, to drop token!\n\r");
+			move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
+			HAL_Delay(1000);
+			set_Rotate_Servo(ROTATE_TO_DROP); // rotates end-effector to dropping stance
+			send_msg((uint8_t*) "\rDropping token!\n\r");
+			move_to_X_and_Z(X_POS_COL_1, Z_POS_DROP);
+			HAL_Delay(500);
+			send_msg(
+					(uint8_t*) "\rMoving above board, to a safe location!\n\r");
+			move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP);
+			HAL_Delay(1000);
+			set_Rotate_Servo(ROTATE_NEUTRAL); // rotates end-effector to neutral stance
 
-	send_msg_data((uint8_t*) "\r##### Moving to pos X: %d #####\n\r",
-	X_POS_COL_1);
-	send_msg_data((uint8_t*) "\r##### Moving to pos Z: %d #####\n\r",
-	Z_POS_TOP);
-	move_to_X_and_Z(X_POS_COL_1, Z_POS_TOP); // Moving above col 1 and going down to drop token
-	HAL_Delay(1000);
+			continuous_robot_check = 0;
+			played_column = -2; // any number would work, just to make sure it doesn't run through for loop
+			break;
+
+		case 2:
+			break;
+
+		case 3:
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+		case 6:
+			break;
+
+		case 7:
+			break;
+
+		case 9:
+			break;
+
+		default:
+			break;
+		}
+	}
 
 	HSEM_TAKE_RELEASE(HSEM_CM4_DONE); 	// tell CM7 that CM4 is done
 }
@@ -180,7 +236,7 @@ void exec_state_cheat_detected(void)
 
 void exec_state_game_end(void)
 {
-	send_msg((uint8_t*) "\r🛑🛑🛑 Executing STATE CLEAN-UP 🛑🛑🛑\n\r");
+	send_msg((uint8_t*) "\r⚡⚡⚡ Executing STATE CLEAN-UP ⚡⚡⚡\n\r");
 
 	// display appropriate msgs
 	HSEM_TAKE_RELEASE(HSEM_CM4_DONE);	// tell CM7 that CM4 is done with task

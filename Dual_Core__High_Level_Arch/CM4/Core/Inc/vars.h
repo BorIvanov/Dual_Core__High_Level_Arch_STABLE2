@@ -8,6 +8,8 @@
 #ifndef INC_VARS_H_
 #define INC_VARS_H_
 
+#include <stdbool.h>
+
 /* Defines */
 #define NumberOfStorages 					3
 #define NumberOfBoardColumns 				7
@@ -37,6 +39,9 @@ extern int TIM7_CustomTimerCounter;
 extern int state_flag;
 extern int current_state_CM4;
 extern int previous_state_CM4;
+extern int played_column;
+extern bool continuous_robot_check;
+
 
 
 /* Functions */

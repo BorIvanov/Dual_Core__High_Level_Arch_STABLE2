@@ -14,6 +14,7 @@
 #include "level_3/servo_controller.h"
 #include "peripheral_devices/usart.h"
 
+#define OPENER_DELAY 750
 
 void open_all_columns(void);
 void open_column_1(void);
